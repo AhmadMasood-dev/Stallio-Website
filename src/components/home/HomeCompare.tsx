@@ -1,0 +1,195 @@
+"use client";
+
+import type { ReactNode } from "react";
+import { IconMessageCircle, IconShoppingBag } from "@tabler/icons-react";
+import { motion, useReducedMotion } from "motion/react";
+
+import { Compare } from "@/components/ui/compare";
+import { cn } from "@/lib/utils";
+
+const ease = [0.32, 0.72, 0, 1] as const;
+
+const chatOnly = [
+  "Orders scattered across chats",
+  "No single place for prices and photos",
+  "Customers ask the same questions on repeat",
+  "Payments and delivery feel improvised",
+] as const;
+
+const withStallio = [
+  "One link: catalog + cart",
+  "Clear product pages you can share anywhere",
+  "Fewer “how much?” messages",
+  "A storefront that looks intentional",
+] as const;
+
+export function HomeCompare() {
+  const reduce = useReducedMotion();
+
+  return (
+    <section className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,color-mix(in_srgb,var(--brand)_12%,transparent),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_70%_20%,color-mix(in_srgb,var(--brand)_20%,transparent),transparent_55%)]"
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-24 md:py-32">
+        <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
+          <motion.div
+            className="max-w-xl space-y-5 lg:col-span-5"
+            initial={reduce ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease }}
+          >
+            <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase backdrop-blur-sm">
+              Before & after
+            </span>
+            <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+              DMs are loud. A store is legible.
+            </h2>
+            <p className="text-muted-foreground max-w-[36ch] text-base leading-7 sm:text-lg sm:leading-8">
+              Drag the handle. Watch the chaos of chat-only selling give way to
+              a shelf buyers can actually browse.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="lg:col-span-7"
+            initial={reduce ? false : { opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.9, delay: reduce ? 0 : 0.08, ease }}
+          >
+            {/* Double-bezel shell */}
+            <div className="border-border/60 bg-foreground/[0.03] rounded-[2rem] border p-1.5 shadow-[0_40px_80px_-48px_color-mix(in_srgb,var(--brand)_45%,transparent)] dark:bg-white/[0.04]">
+              <div className="border-border/40 bg-background relative overflow-hidden rounded-[calc(2rem-0.375rem)] border shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+                <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between p-4 sm:p-5">
+                  <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase backdrop-blur-sm">
+                    Chat-only
+                  </span>
+                  <span className="bg-brand/90 rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase">
+                    With Stallio
+                  </span>
+                </div>
+
+                <Compare
+                  firstImage="/assets/images/compare-before.png"
+                  secondImage="/assets/images/compare-after.png"
+                  firstImageClassName="object-cover object-center"
+                  secondImageClassname="object-cover object-center"
+                  className="h-[18rem] w-full sm:h-[22rem] md:h-[26rem] lg:h-[28rem]"
+                  slideMode="drag"
+                  autoplay={!reduce}
+                  autoplayDuration={5500}
+                  initialSliderPercentage={48}
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="mt-14 grid gap-5 md:mt-16 md:grid-cols-2 md:gap-6">
+          <ComparePanel
+            tone="muted"
+            icon={<IconMessageCircle className="size-4" stroke={1.5} />}
+            title="Chat-only selling"
+            items={chatOnly}
+            delay={0.1}
+            reduce={!!reduce}
+          />
+          <ComparePanel
+            tone="brand"
+            icon={<IconShoppingBag className="size-4" stroke={1.5} />}
+            title="With Stallio"
+            items={withStallio}
+            delay={0.16}
+            reduce={!!reduce}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ComparePanel({
+  tone,
+  icon,
+  title,
+  items,
+  delay,
+  reduce,
+}: {
+  tone: "muted" | "brand";
+  icon: ReactNode;
+  title: string;
+  items: readonly string[];
+  delay: number;
+  reduce: boolean;
+}) {
+  const isBrand = tone === "brand";
+
+  return (
+    <motion.article
+      className={cn(
+        "rounded-[1.75rem] p-1.5",
+        isBrand
+          ? "bg-brand/10 ring-brand/15 ring-1"
+          : "bg-foreground/[0.03] ring-border/50 ring-1",
+      )}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.75, delay: reduce ? 0 : delay, ease }}
+    >
+      <div
+        className={cn(
+          "rounded-[calc(1.75rem-0.375rem)] p-6 sm:p-7",
+          isBrand
+            ? "bg-accent shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] dark:bg-brand/15"
+            : "bg-background/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] dark:bg-card",
+        )}
+      >
+        <div className="mb-5 flex items-center gap-3">
+          <span
+            className={cn(
+              "inline-flex size-9 items-center justify-center rounded-full",
+              isBrand
+                ? "bg-brand text-white"
+                : "bg-muted text-muted-foreground",
+            )}
+          >
+            {icon}
+          </span>
+          <h3
+            className={cn(
+              "text-lg font-semibold tracking-tight",
+              isBrand ? "text-brand" : "text-foreground",
+            )}
+          >
+            {title}
+          </h3>
+        </div>
+        <ul className="space-y-3.5">
+          {items.map((item) => (
+            <li
+              key={item}
+              className={cn(
+                "flex gap-3 text-sm leading-6",
+                isBrand ? "text-foreground/85" : "text-muted-foreground",
+              )}
+            >
+              <span
+                className={cn(
+                  "mt-2 size-1.5 shrink-0 rounded-full",
+                  isBrand ? "bg-brand" : "bg-muted-foreground/45",
+                )}
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.article>
+  );
+}
