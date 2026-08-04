@@ -62,7 +62,7 @@ export function HomeDemo() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_0%,color-mix(in_srgb,var(--brand)_10%,transparent),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_80%_0%,color-mix(in_srgb,var(--brand)_18%,transparent),transparent_50%)]"
@@ -125,14 +125,7 @@ export function HomeDemo() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.85, ease: motionEase }}
-        >
-          <StickyScroll content={[...stickyContent]} />
-        </motion.div>
+        <StickyScroll content={stickyContent} />
 
         <p className="text-muted-foreground mt-6 text-sm">
           Live example:{" "}
