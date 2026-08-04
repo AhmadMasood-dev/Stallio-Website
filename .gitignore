@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# skills
+.agents/
+agents
+skills-lock.json
+
+# cursor
+.cursor/
+
+# reference captures
+/public/assets/reference/
