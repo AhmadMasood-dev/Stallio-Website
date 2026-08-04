@@ -7,6 +7,7 @@ import {
   DraggableCardBody,
   DraggableCardContainer,
 } from "@/components/ui/draggable-card";
+import { motionEase } from "@/lib/motion";
 
 const items = [
   {
@@ -42,7 +43,7 @@ export function HomeHeroVisual() {
       transition={{
         duration: 0.75,
         delay: reduce ? 0 : 0.1,
-        ease: [0.16, 1, 0.3, 1],
+        ease: motionEase,
       }}
     >
       <DraggableCardContainer className="relative mx-auto flex min-h-[28rem] w-full items-center justify-center overflow-visible sm:min-h-[32rem]">

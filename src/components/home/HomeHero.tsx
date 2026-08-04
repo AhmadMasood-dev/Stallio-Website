@@ -14,8 +14,7 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { brandColors } from "@/constants/colors";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
-
-const ease = [0.16, 1, 0.3, 1] as const;
+import { motionEase } from "@/lib/motion";
 
 export function HomeHero() {
   const reduce = useReducedMotion();
@@ -62,7 +61,7 @@ export function HomeHero() {
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.65, ease },
+                transition: { duration: 0.65, ease: motionEase },
               },
             }}
           >
@@ -86,7 +85,7 @@ export function HomeHero() {
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.7, ease },
+                transition: { duration: 0.7, ease: motionEase },
               },
             }}
           >
@@ -117,7 +116,7 @@ export function HomeHero() {
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.55, ease },
+                transition: { duration: 0.55, ease: motionEase },
               },
             }}
           >

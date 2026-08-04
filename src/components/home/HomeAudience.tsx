@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+import { motionEase } from "@/lib/motion";
 
 export function HomeAudience() {
   const reduce = useReducedMotion();
@@ -21,7 +21,7 @@ export function HomeAudience() {
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.65, ease }}
+          transition={{ duration: 0.65, ease: motionEase }}
         >
           <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
             Your audience already follows you. Give them a shelf.
@@ -39,7 +39,7 @@ export function HomeAudience() {
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease }}
+            transition={{ duration: 0.7, ease: motionEase }}
           >
             <Image
               src="/assets/images/audience-clothing.jpg"
@@ -65,7 +65,7 @@ export function HomeAudience() {
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.65, delay: reduce ? 0 : 0.06, ease }}
+            transition={{ duration: 0.65, delay: reduce ? 0 : 0.06, ease: motionEase }}
           >
             <Image
               src="/assets/images/audience-clothing-labels.png"
@@ -91,7 +91,7 @@ export function HomeAudience() {
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.65, delay: reduce ? 0 : 0.12, ease }}
+            transition={{ duration: 0.65, delay: reduce ? 0 : 0.12, ease: motionEase }}
           >
             <Image
               src="/assets/images/audience-local-shops.png"
@@ -117,7 +117,7 @@ export function HomeAudience() {
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, delay: reduce ? 0 : 0.08, ease }}
+            transition={{ duration: 0.7, delay: reduce ? 0 : 0.08, ease: motionEase }}
           >
             <Image
               src="/assets/images/audience-baker.jpg"
@@ -143,7 +143,7 @@ export function HomeAudience() {
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, delay: reduce ? 0 : 0.14, ease }}
+            transition={{ duration: 0.7, delay: reduce ? 0 : 0.14, ease: motionEase }}
           >
             <Image
               src="/assets/images/audience-craft.jpg"

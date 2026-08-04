@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 import { IconMessageCircle, IconShoppingBag } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { BezelShell } from "@/components/ui/bezel-shell";
 import { Compare } from "@/components/ui/compare";
+import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-
-const ease = [0.32, 0.72, 0, 1] as const;
 
 const chatOnly = [
   "Orders scattered across chats",
@@ -40,7 +40,7 @@ export function HomeCompare() {
             initial={reduce ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease }}
+            transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase backdrop-blur-sm">
               Before & after
@@ -59,33 +59,37 @@ export function HomeCompare() {
             initial={reduce ? false : { opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.9, delay: reduce ? 0 : 0.08, ease }}
+            transition={{
+              duration: 0.9,
+              delay: reduce ? 0 : 0.08,
+              ease: motionEase,
+            }}
           >
-            {/* Double-bezel shell */}
-            <div className="border-border/60 bg-foreground/[0.03] rounded-[2rem] border p-1.5 shadow-[0_40px_80px_-48px_color-mix(in_srgb,var(--brand)_45%,transparent)] dark:bg-white/[0.04]">
-              <div className="border-border/40 bg-background relative overflow-hidden rounded-[calc(2rem-0.375rem)] border shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
-                <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between p-4 sm:p-5">
-                  <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase backdrop-blur-sm">
-                    Chat-only
-                  </span>
-                  <span className="bg-brand/90 rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase">
-                    With Stallio
-                  </span>
-                </div>
-
-                <Compare
-                  firstImage="/assets/images/compare-before.png"
-                  secondImage="/assets/images/compare-after.png"
-                  firstImageClassName="object-cover object-center"
-                  secondImageClassname="object-cover object-center"
-                  className="h-[18rem] w-full sm:h-[22rem] md:h-[26rem] lg:h-[28rem]"
-                  slideMode="drag"
-                  autoplay={!reduce}
-                  autoplayDuration={5500}
-                  initialSliderPercentage={48}
-                />
+            <BezelShell
+              className="border-border/60 rounded-[2rem] border shadow-[0_40px_80px_-48px_color-mix(in_srgb,var(--brand)_45%,transparent)] ring-0 dark:bg-white/[0.04]"
+              innerClassName="border-border/40 relative overflow-hidden rounded-[calc(2rem-0.375rem)] border shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]"
+            >
+              <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between p-4 sm:p-5">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase backdrop-blur-sm">
+                  Chat-only
+                </span>
+                <span className="bg-brand/90 rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase">
+                  With Stallio
+                </span>
               </div>
-            </div>
+
+              <Compare
+                firstImage="/assets/images/compare-before.png"
+                secondImage="/assets/images/compare-after.png"
+                firstImageClassName="object-cover object-center"
+                secondImageClassname="object-cover object-center"
+                className="h-[18rem] w-full sm:h-[22rem] md:h-[26rem] lg:h-[28rem]"
+                slideMode="drag"
+                autoplay={!reduce}
+                autoplayDuration={5500}
+                initialSliderPercentage={48}
+              />
+            </BezelShell>
           </motion.div>
         </div>
 
@@ -96,7 +100,6 @@ export function HomeCompare() {
             title="Chat-only selling"
             items={chatOnly}
             delay={0.1}
-            reduce={!!reduce}
           />
           <ComparePanel
             tone="brand"
@@ -104,7 +107,6 @@ export function HomeCompare() {
             title="With Stallio"
             items={withStallio}
             delay={0.16}
-            reduce={!!reduce}
           />
         </div>
       </div>
@@ -118,36 +120,38 @@ function ComparePanel({
   title,
   items,
   delay,
-  reduce,
 }: {
   tone: "muted" | "brand";
   icon: ReactNode;
   title: string;
   items: readonly string[];
   delay: number;
-  reduce: boolean;
 }) {
+  const reduce = useReducedMotion();
   const isBrand = tone === "brand";
 
   return (
     <motion.article
-      className={cn(
-        "rounded-[1.75rem] p-1.5",
-        isBrand
-          ? "bg-brand/10 ring-brand/15 ring-1"
-          : "bg-foreground/[0.03] ring-border/50 ring-1",
-      )}
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.75, delay: reduce ? 0 : delay, ease }}
+      transition={{
+        duration: 0.75,
+        delay: reduce ? 0 : delay,
+        ease: motionEase,
+      }}
     >
-      <div
-        className={cn(
-          "rounded-[calc(1.75rem-0.375rem)] p-6 sm:p-7",
+      <BezelShell
+        className={
           isBrand
-            ? "bg-accent shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] dark:bg-brand/15"
-            : "bg-background/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] dark:bg-card",
+            ? "bg-brand/10 ring-brand/15"
+            : undefined
+        }
+        innerClassName={cn(
+          "p-6 sm:p-7",
+          isBrand
+            ? "bg-accent dark:bg-brand/15"
+            : "bg-background/80",
         )}
       >
         <div className="mb-5 flex items-center gap-3">
@@ -189,7 +193,7 @@ function ComparePanel({
             </li>
           ))}
         </ul>
-      </div>
+      </BezelShell>
     </motion.article>
   );
 }
