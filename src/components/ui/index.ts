@@ -25,12 +25,7 @@ export { StickyScroll } from "./sticky-scroll-reveal";
 export type { StickyScrollItem } from "./sticky-scroll-reveal";
 export { FeatureHoverGrid } from "./feature-hover-grid";
 export type { FeatureHoverItem } from "./feature-hover-grid";
-export {
-  HoverEffect,
-  HoverCard,
-  HoverCardTitle,
-  HoverCardDescription,
-} from "./card-hover-effect";
+export { HoverEffect } from "./card-hover-effect";
 export type { HoverEffectItem } from "./card-hover-effect";
 export { Compare } from "./compare";
 export { Button, buttonVariants } from "./button";

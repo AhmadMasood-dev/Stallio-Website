@@ -11,7 +11,6 @@ export type HoverEffectItem = {
   title: string;
   description: string;
   icon?: ReactNode;
-  link?: string;
 };
 
 type HoverEffectProps = {
@@ -33,9 +32,16 @@ export function HoverEffect({ items, className }: HoverEffectProps) {
         className,
       )}
     >
-      {items.map((item, index) => {
-        const inner = (
-          <>
+      {items.map((item, index) => (
+        <li key={item.title} className="min-h-full list-none">
+          <div
+            className="group relative h-full w-full p-2"
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onFocus={() => setHoveredIndex(index)}
+            onBlur={() => setHoveredIndex(null)}
+            tabIndex={0}
+          >
             <AnimatePresence>
               {hoveredIndex === index && (
                 <motion.span
@@ -57,103 +63,20 @@ export function HoverEffect({ items, className }: HoverEffectProps) {
                 />
               )}
             </AnimatePresence>
-            <HoverCard>
+            <div className="bg-background/90 ring-border/50 relative z-20 h-full space-y-3 overflow-hidden rounded-[1.2rem] p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] ring-1 md:p-6 dark:bg-card/90">
               {item.icon ? (
-                <div className="text-brand mb-4 [&>svg]:size-6">{item.icon}</div>
+                <div className="text-brand [&>svg]:size-6">{item.icon}</div>
               ) : null}
-              <HoverCardTitle>{item.title}</HoverCardTitle>
-              <HoverCardDescription>{item.description}</HoverCardDescription>
-            </HoverCard>
-          </>
-        );
-
-        return (
-          <li key={item.title} className="min-h-full list-none">
-            {item.link ? (
-              <a
-                href={item.link}
-                className="group relative block h-full w-full p-2"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onFocus={() => setHoveredIndex(index)}
-                onBlur={() => setHoveredIndex(null)}
-              >
-                {inner}
-              </a>
-            ) : (
-              <div
-                className="group relative h-full w-full p-2"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onFocus={() => setHoveredIndex(index)}
-                onBlur={() => setHoveredIndex(null)}
-                tabIndex={0}
-              >
-                {inner}
-              </div>
-            )}
-          </li>
-        );
-      })}
+              <h3 className="text-foreground text-base font-semibold tracking-tight md:text-lg">
+                {item.title}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-6 md:leading-7">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        </li>
+      ))}
     </ul>
-  );
-}
-
-export function HoverCard({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div
-      className={cn(
-        "relative z-20 h-full overflow-hidden rounded-[1.2rem] p-5 md:p-6",
-        "bg-background/90 ring-border/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] ring-1",
-        "dark:bg-card/90",
-        className,
-      )}
-    >
-      <div className="relative z-50 space-y-3">{children}</div>
-    </div>
-  );
-}
-
-export function HoverCardTitle({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <h3
-      className={cn(
-        "text-foreground text-base font-semibold tracking-tight md:text-lg",
-        className,
-      )}
-    >
-      {children}
-    </h3>
-  );
-}
-
-export function HoverCardDescription({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <p
-      className={cn(
-        "text-muted-foreground text-sm leading-6 md:leading-7",
-        className,
-      )}
-    >
-      {children}
-    </p>
   );
 }

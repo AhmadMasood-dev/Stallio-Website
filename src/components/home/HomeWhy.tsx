@@ -10,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { BezelShell } from "@/components/ui/bezel-shell";
 import {
   HoverEffect,
   type HoverEffectItem,
@@ -97,9 +98,9 @@ export function HomeWhy() {
               ease: motionEase,
             }}
           >
-            <div className="bg-foreground/[0.03] ring-border/50 rounded-[1.75rem] p-2 ring-1 md:p-3">
+            <BezelShell innerClassName="overflow-hidden p-1 md:p-2">
               <HoverEffect items={reasons} />
-            </div>
+            </BezelShell>
           </motion.div>
         </div>
       </div>

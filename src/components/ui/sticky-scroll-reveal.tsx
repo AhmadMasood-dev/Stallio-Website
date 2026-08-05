@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
+import { BezelShell } from "@/components/ui/bezel-shell";
 import { cn } from "@/lib/utils";
 import { motionEase } from "@/lib/motion";
 
@@ -14,15 +15,10 @@ export type StickyScrollItem = {
 
 type StickyScrollProps = {
   content: StickyScrollItem[];
-  contentClassName?: string;
   className?: string;
 };
 
-export function StickyScroll({
-  content,
-  contentClassName,
-  className,
-}: StickyScrollProps) {
+export function StickyScroll({ content, className }: StickyScrollProps) {
   const [activeCard, setActiveCard] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -64,12 +60,9 @@ export function StickyScroll({
   }, [content.length]);
 
   return (
-    <div
-      className={cn(
-        "relative flex items-start gap-10 lg:gap-14",
-        "bg-foreground/[0.03] ring-border/50 rounded-[1.75rem] p-6 ring-1 md:p-10",
-        className,
-      )}
+    <BezelShell
+      className={cn(className)}
+      innerClassName="relative flex items-start gap-10 p-6 md:gap-14 md:p-10"
     >
       <div className="relative w-full max-w-xl flex-1">
         {content.map((item, index) => (
@@ -81,43 +74,29 @@ export function StickyScroll({
             data-sticky-step={index}
             className="flex min-h-[55vh] flex-col justify-center py-10 first:pt-4 last:pb-4 md:min-h-[60vh]"
           >
-            <motion.h3
+            <motion.div
               animate={{ opacity: activeCard === index ? 1 : 0.28 }}
               transition={{ duration: 0.45, ease: motionEase }}
-              className="text-foreground text-2xl font-semibold tracking-tight md:text-3xl"
             >
-              {item.title}
-            </motion.h3>
-            <motion.p
-              animate={{ opacity: activeCard === index ? 1 : 0.28 }}
-              transition={{ duration: 0.45, ease: motionEase }}
-              className="text-muted-foreground mt-5 max-w-sm text-sm leading-7 md:text-base md:leading-8"
-            >
-              {item.description}
-            </motion.p>
+              <h3 className="text-foreground text-2xl font-semibold tracking-tight md:text-3xl">
+                {item.title}
+              </h3>
+              <p className="text-muted-foreground mt-5 max-w-sm text-sm leading-7 md:text-base md:leading-8">
+                {item.description}
+              </p>
+            </motion.div>
           </div>
         ))}
       </div>
 
-      <div
-        className={cn(
-          "sticky top-28 hidden h-80 w-[22rem] shrink-0 overflow-hidden rounded-[1.35rem] lg:block xl:h-[26rem] xl:w-[26rem]",
-          "border-border/50 bg-background shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]",
-          contentClassName,
-        )}
-        data-sticky-visual
-        data-active-card={activeCard}
-      >
+      <div className="border-border/50 bg-background sticky top-28 hidden h-80 w-[22rem] shrink-0 overflow-hidden rounded-[1.35rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] lg:block xl:h-[26rem] xl:w-[26rem]">
         <div className="relative h-full w-full">
           {content.map((item, index) => (
             <motion.div
               key={item.title + index}
               className="absolute inset-0"
               initial={false}
-              animate={{
-                opacity: activeCard === index ? 1 : 0,
-                scale: activeCard === index ? 1 : 0.98,
-              }}
+              animate={{ opacity: activeCard === index ? 1 : 0 }}
               transition={{ duration: 0.45, ease: motionEase }}
               aria-hidden={activeCard !== index}
             >
@@ -126,6 +105,6 @@ export function StickyScroll({
           ))}
         </div>
       </div>
-    </div>
+    </BezelShell>
   );
 }
