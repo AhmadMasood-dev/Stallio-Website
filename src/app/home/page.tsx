@@ -5,6 +5,7 @@ import {
   HomeHero,
   HomeSteps,
   HomeToolkit,
+  HomeWhy,
 } from "@/components/home";
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       <HomeSteps />
       <HomeDemo />
       <HomeToolkit />
+      <HomeWhy />
     </>
   );
 }
