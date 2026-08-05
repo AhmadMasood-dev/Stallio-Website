@@ -17,6 +17,7 @@ export {
 } from "./resizable-navbar";
 export { SparklesCore } from "./sparkles";
 export { Spotlight } from "./spotlight";
+export { BackgroundBeams } from "./background-beams";
 export { TextGenerateEffect } from "./text-generate-effect";
 export { Timeline } from "./timeline";
 export type { TimelineEntry } from "./timeline";

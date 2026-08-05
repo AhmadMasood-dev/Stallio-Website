@@ -1,6 +1,7 @@
 import {
   HomeAudience,
   HomeCompare,
+  HomeCta,
   HomeDemo,
   HomeHero,
   HomeSteps,
@@ -18,6 +19,7 @@ export default function HomePage() {
       <HomeDemo />
       <HomeToolkit />
       <HomeWhy />
+      <HomeCta />
     </>
   );
 }
