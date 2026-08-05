@@ -22,5 +22,7 @@ export { Timeline } from "./timeline";
 export type { TimelineEntry } from "./timeline";
 export { StickyScroll } from "./sticky-scroll-reveal";
 export type { StickyScrollItem } from "./sticky-scroll-reveal";
+export { FeatureHoverGrid } from "./feature-hover-grid";
+export type { FeatureHoverItem } from "./feature-hover-grid";
 export { Compare } from "./compare";
 export { Button, buttonVariants } from "./button";
