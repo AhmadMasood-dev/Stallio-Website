@@ -1,4 +1,5 @@
 import { routes } from "./routes";
+import type { NavItem } from "@/types";
 
 export const siteConfig = {
   name: "Stallio",
@@ -11,7 +12,7 @@ export const siteConfig = {
   email: "contact@stallio.shop",
 } as const;
 
-export const mainNav = [
+export const mainNav: readonly NavItem[] = [
   { label: "Home", href: routes.home },
   { label: "About", href: routes.about },
   { label: "How It Works", href: routes.howItWorks },
@@ -26,15 +27,15 @@ export const footerLinks = {
     { label: "Features", href: routes.features },
     { label: "Pricing", href: routes.pricing },
     { label: "How It Works", href: routes.howItWorks },
-  ],
+  ] as const satisfies readonly NavItem[],
   company: [
     { label: "About", href: routes.about },
     { label: "Contact", href: routes.contact },
     { label: "Log In", href: routes.login },
-  ],
+  ] as const satisfies readonly NavItem[],
   legal: [
     { label: "Privacy Policy", href: routes.privacy },
     { label: "Terms of Service", href: routes.terms },
     { label: "Refund Policy", href: routes.refund },
-  ],
+  ] as const satisfies readonly NavItem[],
 } as const;
