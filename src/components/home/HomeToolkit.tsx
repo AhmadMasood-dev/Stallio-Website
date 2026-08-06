@@ -156,7 +156,7 @@ export function HomeToolkit() {
           transition={{ duration: 0.85, ease: motionEase }}
         >
           <BezelShell innerClassName="overflow-hidden p-0 md:p-1">
-            <FeatureHoverGrid items={toolkit} columns={3} />
+            <FeatureHoverGrid items={toolkit} />
           </BezelShell>
         </motion.div>
       </div>

@@ -17,6 +17,7 @@ export {
 } from "./resizable-navbar";
 export { SparklesCore } from "./sparkles";
 export { Spotlight } from "./spotlight";
+export { BackgroundBeams } from "./background-beams";
 export { TextGenerateEffect } from "./text-generate-effect";
 export { Timeline } from "./timeline";
 export type { TimelineEntry } from "./timeline";
@@ -24,5 +25,7 @@ export { StickyScroll } from "./sticky-scroll-reveal";
 export type { StickyScrollItem } from "./sticky-scroll-reveal";
 export { FeatureHoverGrid } from "./feature-hover-grid";
 export type { FeatureHoverItem } from "./feature-hover-grid";
+export { HoverEffect } from "./card-hover-effect";
+export type { HoverEffectItem } from "./card-hover-effect";
 export { Compare } from "./compare";
 export { Button, buttonVariants } from "./button";

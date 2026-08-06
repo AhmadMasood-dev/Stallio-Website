@@ -13,8 +13,6 @@ export type FeatureHoverItem = {
 type FeatureHoverGridProps = {
   items: FeatureHoverItem[];
   className?: string;
-  /** Desktop column count. Defaults to 3. */
-  columns?: 3 | 4;
 };
 
 /**
@@ -24,15 +22,14 @@ type FeatureHoverGridProps = {
 export function FeatureHoverGrid({
   items,
   className,
-  columns = 3,
 }: FeatureHoverGridProps) {
+  const columns = 3;
   const lastRowStart = Math.floor((items.length - 1) / columns) * columns;
 
   return (
     <div
       className={cn(
-        "relative z-10 grid grid-cols-1 md:grid-cols-2",
-        columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4",
+        "relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
         className,
       )}
     >
@@ -48,9 +45,7 @@ export function FeatureHoverGrid({
               "group/feature relative flex flex-col py-8 md:py-10",
               "border-border/55 border-b last:border-b-0",
               "md:border-border/55 md:border-r md:[&:nth-child(even)]:border-r-0 md:border-b",
-              "lg:border-border/55 lg:border-r",
-              columns === 3 && "lg:[&:nth-child(3n)]:border-r-0",
-              columns === 4 && "lg:[&:nth-child(4n)]:border-r-0",
+              "lg:border-border/55 lg:border-r lg:[&:nth-child(3n)]:border-r-0",
               isFirstInLgRow && "lg:border-l",
               showBottomBorder ? "lg:border-b" : "lg:border-b-0",
             )}
