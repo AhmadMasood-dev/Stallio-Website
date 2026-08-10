@@ -64,7 +64,7 @@ export function FeaturesSpotlight() {
           }}
         >
           <BezelShell
-            className={`rounded-[2rem] ${reduce ? "" : "md:rotate-1"}`}
+            className="rounded-[2rem] md:rotate-1"
             innerClassName="overflow-hidden rounded-[calc(2rem-0.375rem)]"
           >
             <div className="relative aspect-[5/4] w-full">
@@ -79,7 +79,7 @@ export function FeaturesSpotlight() {
           </BezelShell>
 
           <BezelShell
-            className={`absolute -bottom-6 -left-2 w-[42%] max-w-[14rem] rounded-[1.5rem] sm:-left-4 md:-bottom-8 ${reduce ? "" : "md:-rotate-2"}`}
+            className="absolute -bottom-6 -left-2 w-[42%] max-w-[14rem] rounded-[1.5rem] sm:-left-4 md:-bottom-8 md:-rotate-2"
             innerClassName="overflow-hidden rounded-[calc(1.5rem-0.375rem)]"
           >
             <div className="relative aspect-[9/16] w-full">

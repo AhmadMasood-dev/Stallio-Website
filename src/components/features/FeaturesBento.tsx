@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { BezelShell } from "@/components/ui/bezel-shell";
+import { CapabilityTile } from "@/components/marketing";
 import { motionEase } from "@/lib/motion";
 
 const capabilities = [
@@ -24,21 +24,18 @@ const capabilities = [
     body: "Unlimited products and images. Variants, sale prices, stock, and hide/show without deleting.",
     icon: IconPhoto,
     span: "md:col-span-4",
-    tall: false,
   },
   {
     title: "Order dashboard",
     body: "Every order in one inbox. Search, filter, mark paid, set delivery status, add tracking.",
     icon: IconPackages,
     span: "md:col-span-4",
-    tall: false,
   },
   {
     title: "Mobile-first storefront",
     body: "Grid, product pages, and checkout tuned for thumbs, where your buyers actually are.",
     icon: IconDeviceMobile,
     span: "md:col-span-12",
-    tall: false,
   },
 ] as const;
 
@@ -70,36 +67,26 @@ export function FeaturesBento() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-5">
           {capabilities.map((item, index) => {
             const Icon = item.icon;
+            const tall = "tall" in item && item.tall;
             return (
-              <motion.div
+              <CapabilityTile
                 key={item.title}
-                className={`col-span-1 ${item.span}`}
-                initial={reduce ? false : { opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.75,
-                  delay: reduce ? 0 : index * 0.06,
-                  ease: motionEase,
-                }}
+                className={item.span}
+                delay={index * 0.06}
+                innerClassName={`flex h-full flex-col gap-5 p-6 sm:p-8 ${tall ? "md:min-h-[20rem] md:justify-between" : ""}`}
               >
-                <BezelShell
-                  className="h-full rounded-[2rem]"
-                  innerClassName={`flex h-full flex-col gap-5 p-6 sm:p-8 ${item.tall ? "md:min-h-[20rem] md:justify-between" : ""}`}
-                >
-                  <span className="bg-brand/10 text-brand inline-flex size-11 items-center justify-center rounded-2xl">
-                    <Icon className="size-5" stroke={1.5} aria-hidden />
-                  </span>
-                  <div className="space-y-3">
-                    <h3 className="text-foreground text-xl font-semibold tracking-tight sm:text-2xl">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground max-w-[40ch] text-sm leading-6 sm:text-base sm:leading-7">
-                      {item.body}
-                    </p>
-                  </div>
-                </BezelShell>
-              </motion.div>
+                <span className="bg-brand/10 text-brand inline-flex size-11 items-center justify-center rounded-2xl">
+                  <Icon className="size-5" stroke={1.5} aria-hidden />
+                </span>
+                <div className="space-y-3">
+                  <h3 className="text-foreground text-xl font-semibold tracking-tight sm:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground max-w-[40ch] text-sm leading-6 sm:text-base sm:leading-7">
+                    {item.body}
+                  </p>
+                </div>
+              </CapabilityTile>
             );
           })}
         </div>

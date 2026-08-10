@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { BezelShell } from "@/components/ui/bezel-shell";
+import { CapabilityTile } from "@/components/marketing";
 import { motionEase } from "@/lib/motion";
 
 const loop = [
@@ -71,35 +71,26 @@ export function FeaturesLoop() {
           {loop.map((item, index) => {
             const Icon = item.icon;
             return (
-              <motion.div
+              <CapabilityTile
                 key={item.n}
-                className={`col-span-1 ${item.span}`}
-                initial={reduce ? false : { opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{
-                  duration: 0.7,
-                  delay: reduce ? 0 : index * 0.07,
-                  ease: motionEase,
-                }}
+                className={item.span}
+                delay={index * 0.07}
+                amount={0.25}
+                rounded="rounded-[1.75rem]"
+                innerClassName="flex h-full items-start gap-4 p-5 sm:gap-5 sm:p-7"
               >
-                <BezelShell
-                  className="h-full rounded-[1.75rem]"
-                  innerClassName="flex h-full items-start gap-4 p-5 sm:gap-5 sm:p-7"
-                >
-                  <span className="text-muted-foreground font-mono text-xs tracking-[0.18em] tabular-nums">
-                    {item.n}
+                <span className="text-muted-foreground font-mono text-xs tracking-[0.18em] tabular-nums">
+                  {item.n}
+                </span>
+                <div className="flex-1 space-y-3">
+                  <span className="bg-brand/10 text-brand inline-flex size-10 items-center justify-center rounded-2xl">
+                    <Icon className="size-5" stroke={1.5} aria-hidden />
                   </span>
-                  <div className="flex-1 space-y-3">
-                    <span className="bg-brand/10 text-brand inline-flex size-10 items-center justify-center rounded-2xl">
-                      <Icon className="size-5" stroke={1.5} aria-hidden />
-                    </span>
-                    <h3 className="text-foreground text-lg font-semibold tracking-tight text-pretty sm:text-xl">
-                      {item.title}
-                    </h3>
-                  </div>
-                </BezelShell>
-              </motion.div>
+                  <h3 className="text-foreground text-lg font-semibold tracking-tight text-pretty sm:text-xl">
+                    {item.title}
+                  </h3>
+                </div>
+              </CapabilityTile>
             );
           })}
         </div>

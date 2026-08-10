@@ -2,15 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { IconArrowUpRight, IconCheck } from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { StartFreeCta } from "@/components/marketing";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
-import { MovingBorderButton } from "@/components/ui/moving-border";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
-import { motionEase } from "@/lib/motion";
+import { fadeUp, motionEase } from "@/lib/motion";
 
 const bullets = [
   "stallio.shop link, no domain purchase",
@@ -25,18 +25,21 @@ const stack = [
     alt: "Stallio catalog dashboard",
     className: "md:col-span-8",
     aspect: "aspect-[16/10]",
+    rotateClass: "",
   },
   {
     src: "/assets/images/demo-product.png",
     alt: "Mobile product page on Stallio",
     className: "md:col-span-4 md:mt-10",
     aspect: "aspect-[4/5]",
+    rotateClass: "md:rotate-[2deg]",
   },
   {
     src: "/assets/images/demo-checkout.png",
     alt: "Mobile checkout on Stallio",
     className: "md:col-span-5 md:-mt-6",
     aspect: "aspect-[5/4]",
+    rotateClass: "md:-rotate-[1.5deg]",
   },
 ] as const;
 
@@ -70,7 +73,7 @@ export function FeaturesHero() {
                 }}
               >
                 <BezelShell
-                  className={`rounded-[1.75rem] ${reduce ? "" : index === 1 ? "md:rotate-[2deg]" : index === 2 ? "md:-rotate-[1.5deg]" : ""}`}
+                  className={`rounded-[1.75rem] ${item.rotateClass}`}
                   innerClassName="overflow-hidden rounded-[calc(1.75rem-0.375rem)]"
                 >
                   <div className={`relative w-full ${item.aspect}`}>
@@ -100,17 +103,7 @@ export function FeaturesHero() {
             },
           }}
         >
-          <motion.div
-            className="flex items-center gap-3"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.65, ease: motionEase },
-              },
-            }}
-          >
+          <motion.div className="flex items-center gap-3" variants={fadeUp(0.65, 16)}>
             <Image
               src="/assets/images/logo.png"
               alt=""
@@ -126,28 +119,14 @@ export function FeaturesHero() {
 
           <motion.span
             className="border-border/70 bg-background/80 text-muted-foreground w-fit rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase"
-            variants={{
-              hidden: { opacity: 0, y: 14 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.6, ease: motionEase },
-              },
-            }}
+            variants={fadeUp(0.6, 14)}
           >
             Features
           </motion.span>
 
           <motion.h1
             className="text-foreground max-w-[14ch] text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]"
-            variants={{
-              hidden: { opacity: 0, y: 22 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.75, ease: motionEase },
-              },
-            }}
+            variants={fadeUp(0.75, 22)}
           >
             Everything you need{" "}
             <span className="text-brand">to sell from one link.</span>
@@ -155,30 +134,13 @@ export function FeaturesHero() {
 
           <motion.p
             className="text-muted-foreground max-w-[38ch] text-base leading-7 sm:text-lg sm:leading-8"
-            variants={{
-              hidden: { opacity: 0, y: 18 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.7, ease: motionEase },
-              },
-            }}
+            variants={fadeUp(0.7, 18)}
           >
             Storefront, dashboard, and seller tools in one place: hosted link,
             unlimited catalog and orders, no buyer payment gateway required.
           </motion.p>
 
-          <motion.ul
-            className="space-y-2.5"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.65, ease: motionEase },
-              },
-            }}
-          >
+          <motion.ul className="space-y-2.5" variants={fadeUp()}>
             {bullets.map((item) => (
               <li
                 key={item}
@@ -194,47 +156,9 @@ export function FeaturesHero() {
 
           <motion.div
             className="flex flex-wrap items-center gap-3 pt-1"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.65, ease: motionEase },
-              },
-            }}
+            variants={fadeUp()}
           >
-            {reduce ? (
-              <Button
-                asChild
-                size="lg"
-                className="group rounded-full px-5 active:scale-[0.98]"
-              >
-                <Link
-                  href={routes.signup}
-                  className="inline-flex items-center gap-2"
-                >
-                  Start Free
-                  <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full">
-                    <IconArrowUpRight className="size-4" stroke={1.5} />
-                  </span>
-                </Link>
-              </Button>
-            ) : (
-              <MovingBorderButton
-                as={Link}
-                href={routes.signup}
-                borderRadius="9999px"
-                duration={2800}
-                containerClassName="group h-12 w-auto min-w-[10.5rem] active:scale-[0.98]"
-                className="bg-brand gap-2 px-5 hover:bg-[color-mix(in_srgb,var(--brand)_88%,black)]"
-              >
-                Start Free
-                <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
-                  <IconArrowUpRight className="size-4" stroke={1.5} />
-                </span>
-              </MovingBorderButton>
-            )}
-
+            <StartFreeCta />
             <Button
               asChild
               size="lg"
