@@ -38,10 +38,7 @@ export function AboutHero() {
 
   return (
     <section className="relative isolate overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-      >
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute -top-24 left-[12%] h-[380px] w-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_16%,transparent),transparent_72%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_28%,transparent),transparent_72%)]" />
         <div className="absolute right-[4%] bottom-[8%] h-[320px] w-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_12%,transparent),transparent_70%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_10%,transparent),transparent_70%)]" />
       </div>
@@ -121,9 +118,9 @@ export function AboutHero() {
               },
             }}
           >
-            Stallio is a storefront you can share in a message. No domain
-            setup, no payment gateway maze — just a catalog, orders, and
-            invoices that stay out of your DMs.
+            Stallio is a storefront you can share in a message. No domain setup,
+            no payment gateway maze — just a catalog, orders, and invoices that
+            stay out of your DMs.
           </motion.p>
 
           <motion.div
@@ -184,9 +181,13 @@ export function AboutHero() {
           className="relative w-full"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: reduce ? 0 : 0.15, ease: motionEase }}
+          transition={{
+            duration: 0.9,
+            delay: reduce ? 0 : 0.15,
+            ease: motionEase,
+          }}
         >
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:flex-col md:overflow-visible md:pb-0 md:gap-5">
+          <div className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:flex-col md:overflow-visible md:pb-0 md:gap-5">
             {storyPills.map((pill, index) => (
               <motion.div
                 key={pill.label}

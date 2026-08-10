@@ -111,8 +111,7 @@ export function HowHero() {
                 },
               }}
             >
-              Three moves.{" "}
-              <span className="text-brand">One sharp link.</span>
+              Three moves. <span className="text-brand">One sharp link.</span>
             </motion.h1>
 
             <motion.p
@@ -206,7 +205,7 @@ export function HowHero() {
           </motion.div>
 
           <div className="relative md:col-span-6 lg:col-span-7">
-            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:grid md:grid-cols-12 md:gap-4 md:overflow-visible md:pb-0">
+            <div className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:grid md:grid-cols-12 md:gap-4 md:overflow-visible md:pb-0">
               {journey.map((item, index) => (
                 <motion.div
                   key={item.n}
