@@ -11,6 +11,8 @@ export type StickyScrollItem = {
   title: string;
   description: string;
   content?: React.ReactNode;
+  /** Optional mobile-only visual (falls back to content). */
+  mobileContent?: React.ReactNode;
 };
 
 type StickyScrollProps = {
@@ -65,7 +67,10 @@ export function StickyScroll({ content, className }: StickyScrollProps) {
       innerClassName="relative flex items-start gap-10 p-6 md:gap-14 md:p-10"
     >
       <div className="relative w-full max-w-xl flex-1">
-        {content.map((item, index) => (
+        {content.map((item, index) => {
+          const mobileNode = item.mobileContent ?? item.content;
+
+          return (
           <div
             key={item.title + index}
             ref={(el) => {
@@ -84,9 +89,17 @@ export function StickyScroll({ content, className }: StickyScrollProps) {
               <p className="text-muted-foreground mt-5 max-w-sm text-sm leading-7 md:text-base md:leading-8">
                 {item.description}
               </p>
+              {mobileNode ? (
+                <div className="border-border/50 bg-background relative mt-8 aspect-[9/16] w-full max-w-[13.5rem] overflow-hidden rounded-[1.25rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] lg:hidden">
+                  {React.isValidElement(mobileNode)
+                    ? React.cloneElement(mobileNode)
+                    : mobileNode}
+                </div>
+              ) : null}
             </motion.div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="border-border/50 bg-background sticky top-28 hidden h-80 w-[22rem] shrink-0 overflow-hidden rounded-[1.35rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] lg:block xl:h-[26rem] xl:w-[26rem]">
@@ -100,7 +113,9 @@ export function StickyScroll({ content, className }: StickyScrollProps) {
               transition={{ duration: 0.45, ease: motionEase }}
               aria-hidden={activeCard !== index}
             >
-              {item.content}
+              {React.isValidElement(item.content)
+                ? React.cloneElement(item.content)
+                : item.content}
             </motion.div>
           ))}
         </div>

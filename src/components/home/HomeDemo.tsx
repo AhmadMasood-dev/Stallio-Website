@@ -24,7 +24,7 @@ const stickyContent: StickyScrollItem[] = [
         alt="Stallio shop catalog grid on a phone"
         fill
         className="object-cover object-center"
-        sizes="(max-width: 1280px) 22rem, 26rem"
+        sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
       />
     ),
   },
@@ -38,7 +38,7 @@ const stickyContent: StickyScrollItem[] = [
         alt="Stallio product detail screen on a phone"
         fill
         className="object-cover object-center"
-        sizes="(max-width: 1280px) 22rem, 26rem"
+        sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
       />
     ),
   },
@@ -49,10 +49,19 @@ const stickyContent: StickyScrollItem[] = [
     content: (
       <Image
         src="/assets/images/demo-checkout.png"
-        alt="Stallio cart and checkout screen on a phone"
+        alt="Stallio cart and checkout screens on phones"
         fill
         className="object-cover object-center"
         sizes="(max-width: 1280px) 22rem, 26rem"
+      />
+    ),
+    mobileContent: (
+      <Image
+        src="/assets/images/demo-checkout-mobile.png"
+        alt="Stallio checkout screen on a phone"
+        fill
+        className="object-cover object-top"
+        sizes="14rem"
       />
     ),
   },

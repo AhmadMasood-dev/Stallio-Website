@@ -53,16 +53,16 @@ export function Timeline({ data, className }: TimelineProps) {
             className="flex justify-start pt-12 md:gap-10 md:pt-28"
           >
             <div className="sticky top-36 z-30 flex max-w-xs flex-col items-center self-start md:w-full md:max-w-sm md:flex-row">
-              <div className="bg-background absolute left-3 flex size-10 items-center justify-center rounded-full">
-                <div className="border-border bg-muted size-3 rounded-full border p-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]" />
+              <div className="bg-background absolute left-3 flex size-7 items-center justify-center rounded-full md:left-3 md:size-10">
+                <div className="border-border bg-muted size-2 rounded-full border md:size-3 md:p-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]" />
               </div>
               <h3 className="text-muted-foreground/55 hidden text-3xl font-semibold tracking-tight md:block md:pl-20 md:text-5xl">
                 {item.title}
               </h3>
             </div>
 
-            <div className="relative w-full pr-2 pl-20 md:pl-4">
-              <h3 className="text-muted-foreground/70 mb-4 block text-left text-2xl font-semibold tracking-tight md:hidden">
+            <div className="relative w-full pr-2 pl-14 md:pl-4">
+              <h3 className="text-muted-foreground/70 mb-3 block text-left text-base font-semibold tracking-tight sm:text-lg md:hidden">
                 {item.title}
               </h3>
               {item.content}
@@ -72,7 +72,7 @@ export function Timeline({ data, className }: TimelineProps) {
 
         <div
           style={{ height: `${height}px` }}
-          className="absolute top-0 left-8 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,transparent_0%,color-mix(in_srgb,var(--border)_80%,transparent)_10%,color-mix(in_srgb,var(--border)_80%,transparent)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute top-0 left-6 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,transparent_0%,color-mix(in_srgb,var(--border)_80%,transparent)_10%,color-mix(in_srgb,var(--border)_80%,transparent)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
         >
           <motion.div
             style={{
