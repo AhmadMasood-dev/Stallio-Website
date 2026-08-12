@@ -1,0 +1,16 @@
+---
+description: Commit message hygiene — clean authorship, no tool attribution
+alwaysApply: true
+---
+
+# Commit hygiene
+
+- Do NOT add any `Co-authored-by:` trailer to commits. No co-author lines at all.
+- Do NOT add tool/AI attribution of any kind — no "Generated with…", no "Co-authored-by: Cursor",
+  no "🤖" line, no links back to the agent. Commits must read as authored solely by the repo owner.
+- No emoji in commit messages.
+- Keep messages short and conventional: `type: summary` (e.g. `feat: build out how-it-works sections`,
+  `fix: responsive spacing on how-flow`). Imperative mood, lower-case summary.
+- Do NOT amend, rebase, or rewrite existing commit authorship.
+- Keep the auto-generated `<!-- BEGIN:nextjs-agent-rules -->` block in `AGENTS.md` committed with your
+  work (removing it only re-creates an uncommitted change) — but never add attribution about yourself.

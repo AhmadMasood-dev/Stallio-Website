@@ -46,7 +46,9 @@ agents
 skills-lock.json
 
 # cursor
-.cursor/
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 
 # reference captures
 /public/assets/reference/

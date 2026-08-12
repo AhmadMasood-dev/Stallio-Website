@@ -1,0 +1,45 @@
+---
+description: Stallio marketing site — stack, structure, and UI taste conventions
+globs: src/**/*.{ts,tsx,css}
+alwaysApply: true
+---
+
+# Stallio frontend conventions
+
+## Stack (do not swap or introduce alternatives)
+- Next.js 16 App Router with React Server Components (`rsc: true`). React 19, TypeScript.
+- Tailwind CSS v4 (config-less; tokens live in `src/app/globals.css` via CSS variables).
+- shadcn/ui, style `base-nova`, baseColor `neutral`. Icons: **lucide** (`iconLibrary: lucide`).
+- Animation: `motion` (import from `motion/react`) + `tw-animate-css`. Aceternity registry is enabled.
+- IMPORTANT: this Next.js has breaking changes vs. common training data. Before writing any
+  Next-specific code, read the relevant guide under `node_modules/next/dist/docs/`. Heed deprecations.
+
+## Where things live (match this exactly)
+- Route pages: `src/app/<route>/page.tsx` (+ `layout.tsx` for metadata).
+- Section components for a route: `src/components/<route>/` (e.g. `src/components/how-it-works/`).
+- Shared/animated primitives: `src/components/ui/` — exported via `src/components/ui/index.ts`.
+- Utilities: `@/lib/utils` (`cn()`), constants in `src/constants/`, types in `src/types/`.
+- Aliases: `@/components`, `@/components/ui`, `@/lib`, `@/hooks`.
+
+## Reuse before you build (this is the reusability requirement)
+- ALWAYS check `src/components/ui/` first (background-beams, sparkles, spotlight, moving-border,
+  timeline, sticky-scroll-reveal, text-generate-effect, card-hover-effect, compare, etc.) and reuse.
+- For a section, match the pattern of the existing sibling routes (`home`, `features`, `about`)
+  before inventing a new structure. Keep each section a self-contained component; no giant page files.
+- Compose classes with `cn(...)`. Never hand-concatenate className strings.
+- To add a new shadcn/aceternity primitive use `npm run ui:add` — do not paste one in by hand.
+
+## UI taste (enforced — from the task's focus list)
+- Visual flow & hierarchy: sections read top-to-bottom as a narrative; one clear H1 per page,
+  consistent heading scale with the other routes.
+- Spacing & layout: use the existing spacing/container patterns and Tailwind scale — no arbitrary
+  pixel values where a token exists.
+- Responsive: must work at mobile (375px), tablet (768px), desktop (1280px). No overflow, no broken wrap.
+- Animations/hover: use `motion` and existing ui/ effects; keep them subtle and consistent with the
+  rest of the site. Wrap non-essential motion so it respects `prefers-reduced-motion`.
+- Consistency: colors, radius, and type come from `globals.css` tokens — don't introduce new raw hex.
+
+## Definition of done for a page/section task
+Renders with no build/lint/type errors; all intended sections present; responsive at the 3 widths
+above; built from reused components; visually consistent with sibling routes; `npm run build` and
+`npm run lint` pass.
