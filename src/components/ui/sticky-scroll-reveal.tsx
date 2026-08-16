@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { cn } from "@/lib/utils";
@@ -21,6 +21,7 @@ type StickyScrollProps = {
 };
 
 export function StickyScroll({ content, className }: StickyScrollProps) {
+  const reduce = useReducedMotion();
   const [activeCard, setActiveCard] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -80,8 +81,8 @@ export function StickyScroll({ content, className }: StickyScrollProps) {
             className="flex min-h-[55vh] flex-col justify-center py-10 first:pt-4 last:pb-4 md:min-h-[60vh]"
           >
             <motion.div
-              animate={{ opacity: activeCard === index ? 1 : 0.28 }}
-              transition={{ duration: 0.45, ease: motionEase }}
+              animate={{ opacity: reduce || activeCard === index ? 1 : 0.28 }}
+              transition={{ duration: reduce ? 0 : 0.45, ease: motionEase }}
             >
               <h3 className="text-foreground text-2xl font-semibold tracking-tight md:text-3xl">
                 {item.title}
@@ -110,7 +111,7 @@ export function StickyScroll({ content, className }: StickyScrollProps) {
               className="absolute inset-0"
               initial={false}
               animate={{ opacity: activeCard === index ? 1 : 0 }}
-              transition={{ duration: 0.45, ease: motionEase }}
+              transition={{ duration: reduce ? 0 : 0.45, ease: motionEase }}
               aria-hidden={activeCard !== index}
             >
               {React.isValidElement(item.content)

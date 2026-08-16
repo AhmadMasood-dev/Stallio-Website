@@ -23,7 +23,7 @@ export function HomeAudience() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.65, ease: motionEase }}
         >
-          <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+          <h2 className="text-foreground text-section-heading">
             Your audience already follows you. Give them a shelf.
           </h2>
           <p className="text-muted-foreground max-w-xl text-base leading-7 sm:text-lg sm:leading-8">
@@ -33,7 +33,7 @@ export function HomeAudience() {
         </motion.div>
 
         <div className="grid gap-4 md:grid-cols-12 md:gap-5">
-          {/* Social sellers — large left */}
+          {/* Social sellers: large left */}
           <motion.article
             className="group relative min-h-[22rem] overflow-hidden rounded-3xl md:col-span-7 md:row-span-2 md:min-h-[28rem]"
             initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -59,7 +59,7 @@ export function HomeAudience() {
             </div>
           </motion.article>
 
-          {/* Clothing labels — top right */}
+          {/* Clothing labels: top right */}
           <motion.article
             className="group relative min-h-[10.5rem] overflow-hidden rounded-3xl md:col-span-5 md:min-h-[13.5rem]"
             initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -85,7 +85,7 @@ export function HomeAudience() {
             </div>
           </motion.article>
 
-          {/* Local shops — bottom right of top block */}
+          {/* Local shops: bottom right of top block */}
           <motion.article
             className="group relative min-h-[10.5rem] overflow-hidden rounded-3xl md:col-span-5 md:min-h-[13.5rem]"
             initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -94,10 +94,10 @@ export function HomeAudience() {
             transition={{ duration: 0.65, delay: reduce ? 0 : 0.12, ease: motionEase }}
           >
             <Image
-              src="/assets/images/audience-local-shops.png"
-              alt="Stallio mobile shop screen for a local neighborhood store"
+              src="/assets/images/product-1.jpg"
+              alt="Fresh prepared food ready for a neighborhood shop shelf"
               fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 42vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-black/85 dark:via-black/40" />
@@ -111,7 +111,7 @@ export function HomeAudience() {
             </div>
           </motion.article>
 
-          {/* Home bakers — bottom left */}
+          {/* Home bakers: bottom left */}
           <motion.article
             className="group relative min-h-[16rem] overflow-hidden rounded-3xl sm:min-h-[18rem] md:col-span-6"
             initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -137,7 +137,7 @@ export function HomeAudience() {
             </div>
           </motion.article>
 
-          {/* Handmade & craft — bottom right */}
+          {/* Handmade and craft: bottom right */}
           <motion.article
             className="group relative min-h-[16rem] overflow-hidden rounded-3xl sm:min-h-[18rem] md:col-span-6"
             initial={reduce ? false : { opacity: 0, y: 24 }}

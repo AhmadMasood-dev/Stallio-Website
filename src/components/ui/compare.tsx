@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
 
@@ -29,6 +29,7 @@ export const Compare = ({
   autoplay = false,
   autoplayDuration = 5000,
 }: CompareProps) => {
+  const reduce = useReducedMotion();
   const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -37,9 +38,10 @@ export const Compare = ({
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const canAutoplay = autoplay && !reduce;
 
   const startAutoplay = useCallback(() => {
-    if (!autoplay) return;
+    if (!canAutoplay) return;
 
     const startTime = Date.now();
     const animate = () => {
@@ -53,7 +55,7 @@ export const Compare = ({
     };
 
     animate();
-  }, [autoplay, autoplayDuration]);
+  }, [canAutoplay, autoplayDuration]);
 
   const stopAutoplay = useCallback(() => {
     if (autoplayRef.current) {

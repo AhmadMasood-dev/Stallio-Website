@@ -6,6 +6,7 @@ import {
   motion,
   useAnimationControls,
   useMotionValue,
+  useReducedMotion,
   useSpring,
   useTransform,
   useVelocity,
@@ -22,6 +23,8 @@ export const DraggableCardBody = ({
   children?: React.ReactNode;
   drag?: boolean;
 }) => {
+  const reduce = useReducedMotion();
+  const allowDrag = drag && !reduce;
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -79,7 +82,7 @@ export const DraggableCardBody = ({
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!drag) return;
+    if (!allowDrag) return;
     const { clientX, clientY } = e;
     const { width, height, left, top } =
       cardRef.current?.getBoundingClientRect() ?? {
@@ -102,14 +105,14 @@ export const DraggableCardBody = ({
   return (
     <motion.div
       ref={cardRef}
-      drag={drag}
+      drag={allowDrag}
       dragConstraints={constraints}
       onDragStart={() => {
-        if (!drag) return;
+        if (!allowDrag) return;
         document.body.style.cursor = "grabbing";
       }}
       onDragEnd={(_event, info) => {
-        if (!drag) return;
+        if (!allowDrag) return;
         document.body.style.cursor = "default";
 
         controls.start({

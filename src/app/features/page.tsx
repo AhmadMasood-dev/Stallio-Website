@@ -12,7 +12,7 @@ import { siteConfig } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "Features",
-  description: `Everything you need to sell from one link with ${siteConfig.name} — storefront, catalog, orders, invoices, and seller tools.`,
+  description: `Everything you need to sell from one link with ${siteConfig.name}: storefront, catalog, orders, invoices, and seller tools.`,
 };
 
 export default function FeaturesPage() {

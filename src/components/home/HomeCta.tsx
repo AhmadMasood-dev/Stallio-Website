@@ -40,7 +40,7 @@ export function HomeCta() {
               Ready when you are
             </span>
 
-            <h2 className="text-foreground mt-5 text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.85rem] lg:leading-[1.1]">
+            <h2 className="text-foreground mt-5 text-section-heading">
               Ready when you are
               <span className="text-brand" aria-hidden>
                 .

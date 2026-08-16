@@ -8,6 +8,10 @@ import { motion, useReducedMotion } from "motion/react";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
+import {
+  HeroAtmosphere,
+  heroBleedClassName,
+} from "@/components/marketing";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
 import { motionEase } from "@/lib/motion";
@@ -43,11 +47,8 @@ export function HowHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-[12%] left-[8%] h-[420px] w-[480px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_14%,transparent),transparent_72%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_26%,transparent),transparent_72%)]" />
-        <div className="absolute right-[6%] bottom-[10%] h-[300px] w-[340px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_10%,transparent),transparent_70%)] blur-3xl" />
-      </div>
+    <section className={heroBleedClassName}>
+      <HeroAtmosphere sparkleId="how-hero-sparkles" />
 
       <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col justify-end gap-12 px-4 py-24 sm:px-6 md:justify-center md:py-28 lg:gap-16">
         <div className="grid items-end gap-12 md:grid-cols-12 md:gap-8 lg:gap-12">

@@ -13,7 +13,7 @@ export function HowChannels() {
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 md:py-28 md:pb-32">
       <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center text-center">
         <motion.p
-          className="text-foreground max-w-[18ch] text-3xl font-semibold tracking-tight text-balance sm:max-w-none sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]"
+          className="text-foreground text-section-heading max-w-[18ch] sm:max-w-none"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}

@@ -8,6 +8,10 @@ import { motion, useReducedMotion } from "motion/react";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
+import {
+  HeroAtmosphere,
+  heroBleedClassName,
+} from "@/components/marketing";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
 import { motionEase } from "@/lib/motion";
@@ -37,11 +41,8 @@ export function AboutHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute -top-24 left-[12%] h-[380px] w-[460px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_16%,transparent),transparent_72%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_28%,transparent),transparent_72%)]" />
-        <div className="absolute right-[4%] bottom-[8%] h-[320px] w-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_12%,transparent),transparent_70%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_10%,transparent),transparent_70%)]" />
-      </div>
+    <section className={heroBleedClassName}>
+      <HeroAtmosphere sparkleId="about-hero-sparkles" />
 
       <div className="relative z-10 mx-auto grid min-h-[100dvh] w-full max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 md:grid-cols-2 md:gap-10 md:py-28 lg:gap-16">
         <motion.div
@@ -119,7 +120,7 @@ export function AboutHero() {
             }}
           >
             Stallio is a storefront you can share in a message. No domain setup,
-            no payment gateway maze — just a catalog, orders, and invoices that
+            no payment gateway maze. Just a catalog, orders, and invoices that
             stay out of your DMs.
           </motion.p>
 

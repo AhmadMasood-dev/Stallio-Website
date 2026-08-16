@@ -6,9 +6,12 @@ import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { HomeHeroVisual } from "@/components/home/HomeHeroVisual";
+import {
+  HeroAtmosphere,
+  heroBleedClassName,
+} from "@/components/marketing";
 import { Button } from "@/components/ui/button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { Spotlight } from "@/components/ui/spotlight";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { brandColors } from "@/constants/colors";
@@ -20,26 +23,13 @@ export function HomeHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className={heroBleedClassName}>
+      <HeroAtmosphere sparkleId="hero-sparkles" variant="home" />
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -top-28 left-[18%] h-[420px] w-[520px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_22%,transparent),transparent_72%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_34%,transparent),transparent_72%)]" />
-        <div className="absolute top-[35%] right-[8%] h-[380px] w-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_18%,transparent),transparent_70%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#F5C518_14%,transparent),transparent_70%)]" />
         <Spotlight
           className="-top-40 left-0 md:-top-24 md:left-40"
           fill={brandColors.brand}
         />
-        {!reduce ? (
-          <SparklesCore
-            id="hero-sparkles"
-            background="transparent"
-            minSize={0.3}
-            maxSize={1.1}
-            particleDensity={48}
-            speed={2.4}
-            className="absolute inset-0 h-full w-full"
-            particleColor={brandColors.brand}
-          />
-        ) : null}
       </div>
 
       <div className="pointer-events-none relative z-10 mx-auto grid min-h-[calc(100dvh-5rem)] w-full max-w-7xl items-center gap-8 px-6 pt-8 pb-14 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] md:gap-10 md:pt-10 md:pb-16 lg:gap-14">

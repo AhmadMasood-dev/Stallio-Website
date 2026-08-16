@@ -32,7 +32,7 @@ const iconProps = { stroke: 1.5, "aria-hidden": true } as const;
 const toolkit: FeatureHoverItem[] = [
   {
     title: "Hosted shop link",
-    description: "Your stallio.shop URL is ready on day one — no domain setup.",
+    description: "Your stallio.shop URL is ready on day one. No domain setup.",
     icon: <IconWorldWww {...iconProps} />,
   },
   {
@@ -52,7 +52,7 @@ const toolkit: FeatureHoverItem[] = [
   },
   {
     title: "About & Contact",
-    description: "Trust pages that ship with the shop — edit, publish, done.",
+    description: "Trust pages that ship with the shop. Edit, publish, done.",
     icon: <IconUserCircle {...iconProps} />,
   },
   {
@@ -77,7 +77,7 @@ const toolkit: FeatureHoverItem[] = [
   },
   {
     title: "Revenue charts",
-    description: "Orders and revenue at a glance — enough signal, not a BI suite.",
+    description: "Orders and revenue at a glance. Enough signal, not a BI suite.",
     icon: <IconChartBar {...iconProps} />,
   },
   {
@@ -114,7 +114,7 @@ export function HomeToolkit() {
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
               What&apos;s included
             </span>
-            <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+            <h2 className="text-foreground text-section-heading">
               One plan. The full seller toolkit.
             </h2>
             <p className="text-muted-foreground max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">

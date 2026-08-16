@@ -11,7 +11,7 @@ import { siteConfig } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `Why ${siteConfig.name} exists — a shareable storefront for sellers who already have an audience.`,
+  description: `Why ${siteConfig.name} exists: a shareable storefront for sellers who already have an audience.`,
 };
 
 export default function AboutPage() {

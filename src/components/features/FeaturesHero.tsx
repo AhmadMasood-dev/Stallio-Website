@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { StartFreeCta } from "@/components/marketing";
+import { StartFreeCta, HeroAtmosphere, heroBleedClassName } from "@/components/marketing";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/constants/routes";
@@ -47,10 +47,8 @@ export function FeaturesHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-[10%] left-[5%] h-[420px] w-[480px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_14%,transparent),transparent_72%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--brand)_26%,transparent),transparent_72%)]" />
-      </div>
+    <section className={heroBleedClassName}>
+      <HeroAtmosphere sparkleId="features-hero-sparkles" />
 
       <div className="relative z-10 mx-auto grid min-h-[100dvh] w-full max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 md:grid-cols-12 md:gap-10 md:py-28 lg:gap-14">
         <motion.div

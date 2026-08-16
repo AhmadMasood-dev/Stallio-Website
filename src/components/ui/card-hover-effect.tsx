@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { motionEase } from "@/lib/motion";
@@ -19,10 +19,11 @@ type HoverEffectProps = {
 };
 
 /**
- * Aceternity Card Hover Effect — shared layoutId wash behind floating cards.
+ * Aceternity Card Hover Effect: shared layoutId wash behind floating cards.
  * @see https://ui.aceternity.com/components/card-hover-effect
  */
 export function HoverEffect({ items, className }: HoverEffectProps) {
+  const reduce = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -43,7 +44,7 @@ export function HoverEffect({ items, className }: HoverEffectProps) {
             tabIndex={0}
           >
             <AnimatePresence>
-              {hoveredIndex === index && (
+              {!reduce && hoveredIndex === index && (
                 <motion.span
                   className="bg-brand/[0.08] absolute inset-0 block h-full w-full rounded-[1.35rem] dark:bg-brand/[0.14]"
                   layoutId="whyHoverBackground"

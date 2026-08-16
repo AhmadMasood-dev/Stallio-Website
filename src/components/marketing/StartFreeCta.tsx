@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { routes } from "@/constants/routes";
 
-/** Primary Start Free CTA — quiet Button when reduced motion. */
+/** Primary Start Free CTA. Quiet Button when reduced motion. */
 export function StartFreeCta() {
   const reduce = useReducedMotion();
 

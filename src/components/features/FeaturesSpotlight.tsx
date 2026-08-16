@@ -29,7 +29,7 @@ export function FeaturesSpotlight() {
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
             Storefront
           </span>
-          <h2 className="text-foreground mt-5 text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+          <h2 className="text-foreground mt-5 text-section-heading">
             A storefront, not a science project.
           </h2>
           <p className="text-muted-foreground mt-5 max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">

@@ -16,7 +16,7 @@ type FeatureHoverGridProps = {
 };
 
 /**
- * Aceternity Features Section With Hover Effects — connected lattice grid.
+ * Aceternity Features Section With Hover Effects: connected lattice grid.
  * @see https://ui.aceternity.com/blocks/feature-sections/simple-with-hover-effects
  */
 export function FeatureHoverGrid({

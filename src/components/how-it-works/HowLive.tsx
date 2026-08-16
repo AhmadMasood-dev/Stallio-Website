@@ -50,7 +50,7 @@ export function HowLive() {
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
             When you are live
           </span>
-          <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+          <h2 className="text-foreground text-section-heading">
             Buyers see polish. You see control.
           </h2>
           <p className="text-muted-foreground max-w-[42ch] text-base leading-7 sm:text-lg sm:leading-8">

@@ -16,7 +16,7 @@ const principles = [
     number: "01",
     title: "Shareable by default",
     description:
-      "If it cannot live in a story, DM, or WhatsApp message, it is not finished. Your store is a link — not a project plan.",
+      "If it cannot live in a story, DM, or WhatsApp message, it is not finished. Your store is a link, not a project plan.",
     icon: IconLink,
     span: "md:col-span-7",
   },
@@ -24,7 +24,7 @@ const principles = [
     number: "02",
     title: "You keep the money path",
     description:
-      "Bank transfer, payment link, or cash on delivery — Stallio does not insert itself between you and your buyer.",
+      "Bank transfer, payment link, or cash on delivery. Stallio does not insert itself between you and your buyer.",
     icon: IconVault,
     span: "md:col-span-5",
   },
@@ -40,7 +40,7 @@ const principles = [
     number: "04",
     title: "Quiet tools, clear orders",
     description:
-      "Invoices, status, and a dashboard that does not shout. Enough structure to ship — not enough to drown you.",
+      "Invoices, status, and a dashboard that does not shout. Enough structure to ship, not enough to drown you.",
     icon: IconSparkles,
     span: "md:col-span-7",
   },
@@ -62,7 +62,7 @@ export function AboutPrinciples() {
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
             What we believe
           </span>
-          <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+          <h2 className="text-foreground text-section-heading">
             A few rules we will not bend.
           </h2>
           <p className="text-muted-foreground max-w-[42ch] text-base leading-7 sm:text-lg sm:leading-8">

@@ -27,7 +27,7 @@ export function AboutStory() {
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
             Why we built it
           </span>
-          <h2 className="text-foreground mt-5 text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+          <h2 className="text-foreground mt-5 text-section-heading">
             Selling should not mean living in your inbox.
           </h2>
         </motion.div>
@@ -41,7 +41,7 @@ export function AboutStory() {
             transition={{ duration: 0.7, ease: motionEase }}
           >
             We kept watching makers, bakers, and local shops take orders the
-            hard way — screenshots, voice notes, spreadsheet chaos. They already
+            hard way: screenshots, voice notes, spreadsheet chaos. They already
             had the customers. What they needed was a shelf with a link, not
             another enterprise stack.
           </motion.p>
@@ -77,7 +77,7 @@ export function AboutStory() {
             Stallio sits on{" "}
             <span className="text-foreground font-medium">stallio.shop/you</span>
             . You set products, share the link, and run fulfillment from a
-            dashboard — while buyers still pay you directly.
+            dashboard, while buyers still pay you directly.
           </motion.p>
 
           <motion.div
@@ -102,7 +102,7 @@ export function AboutStory() {
               </div>
             </BezelShell>
             <BezelShell
-              className={`absolute -right-3 -bottom-8 w-[58%] rounded-[1.5rem] sm:-right-6 md:-right-10 ${reduce ? "" : "md:rotate-3"}`}
+              className={`absolute -right-3 -bottom-8 w-[58%] rounded-[1.5rem] sm:-right-6 md:-right-4 lg:-right-10 ${reduce ? "" : "md:rotate-3"}`}
               innerClassName="overflow-hidden rounded-[calc(1.5rem-0.375rem)]"
             >
               <div className="relative aspect-[4/5] w-full">

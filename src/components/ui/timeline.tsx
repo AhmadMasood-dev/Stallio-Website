@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useReducedMotion,
   useScroll,
   useTransform,
 } from "motion/react";
@@ -20,6 +21,7 @@ type TimelineProps = {
 };
 
 export function Timeline({ data, className }: TimelineProps) {
+  const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -75,10 +77,14 @@ export function Timeline({ data, className }: TimelineProps) {
           className="absolute top-0 left-6 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,transparent_0%,color-mix(in_srgb,var(--border)_80%,transparent)_10%,color-mix(in_srgb,var(--border)_80%,transparent)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
         >
           <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
+            style={
+              reduce
+                ? { height, opacity: 1 }
+                : {
+                    height: heightTransform,
+                    opacity: opacityTransform,
+                  }
+            }
             className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#5E2BEC] via-[#8B5CF6] to-transparent from-[0%] via-[12%]"
           />
         </div>

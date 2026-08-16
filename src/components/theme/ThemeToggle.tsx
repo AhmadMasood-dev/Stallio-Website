@@ -20,7 +20,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       type="button"
       className={cn(
-        "text-foreground hover:bg-muted inline-flex size-9 items-center justify-center rounded-full transition-colors active:scale-[0.98]",
+        "text-foreground hover:bg-muted inline-flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors active:scale-[0.98]",
         className,
       )}
       aria-label={

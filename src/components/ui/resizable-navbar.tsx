@@ -6,6 +6,7 @@ import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
+  useReducedMotion,
   useScroll,
 } from "motion/react";
 
@@ -80,16 +81,22 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 };
 
 export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+  const reduce = useReducedMotion();
+
   return (
     <motion.div
-      animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "min(920px, 92%)" : "100%",
-        y: visible ? 16 : 0,
-      }}
+      animate={
+        reduce
+          ? undefined
+          : {
+              backdropFilter: visible ? "blur(10px)" : "none",
+              boxShadow: visible
+                ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+                : "none",
+              width: visible ? "min(920px, 92%)" : "100%",
+              y: visible ? 16 : 0,
+            }
+      }
       transition={{
         type: "spring",
         stiffness: 200,
@@ -113,7 +120,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex",
         className,
       )}
     >
@@ -123,12 +130,12 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           href={item.link}
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-3 py-2 text-neutral-600 dark:text-neutral-300"
+          className="text-muted-foreground hover:text-foreground relative px-3 py-2 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
         >
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="bg-muted absolute inset-0 h-full w-full rounded-full"
             />
           )}
           <span className="relative z-20">{item.name}</span>
@@ -139,19 +146,25 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 };
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+  const reduce = useReducedMotion();
+
   return (
     <motion.div
-      animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "1.5rem" : "2rem",
-        y: visible ? 16 : 0,
-      }}
+      animate={
+        reduce
+          ? undefined
+          : {
+              backdropFilter: visible ? "blur(10px)" : "none",
+              boxShadow: visible
+                ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+                : "none",
+              width: visible ? "90%" : "100%",
+              paddingRight: visible ? "12px" : "0px",
+              paddingLeft: visible ? "12px" : "0px",
+              borderRadius: visible ? "1.5rem" : "2rem",
+              y: visible ? 16 : 0,
+            }
+      }
       transition={{
         type: "spring",
         stiffness: 200,
@@ -193,8 +206,9 @@ export const MobileNavMenu = ({
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-2xl bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-2xl bg-white/90 px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] backdrop-blur-xl dark:bg-neutral-950/90",
             className,
           )}
         >
@@ -217,10 +231,14 @@ export const MobileNavToggle = ({
       type="button"
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
-      className="text-foreground inline-flex size-9 items-center justify-center rounded-full"
+      className="text-foreground hover:bg-muted inline-flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
       onClick={onClick}
     >
-      {isOpen ? <IconX className="size-6" /> : <IconMenu2 className="size-6" />}
+      {isOpen ? (
+        <IconX className="size-6" stroke={1.5} />
+      ) : (
+        <IconMenu2 className="size-6" stroke={1.5} />
+      )}
     </button>
   );
 };
@@ -238,7 +256,7 @@ export const NavbarLogo = ({
     <a
       href={href}
       className={cn(
-        "relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black dark:text-white",
+        "relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-foreground",
         className,
       )}
     >
@@ -265,12 +283,12 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<"button">
 )) => {
   const baseStyles =
-    "px-4 py-2 rounded-full text-sm font-semibold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-full text-sm font-semibold relative cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 active:scale-[0.98] inline-block text-center";
 
   const variantStyles = {
     primary:
       "bg-brand text-white shadow-[0_0_24px_rgba(94,43,236,0.18),0_1px_1px_rgba(0,0,0,0.05)]",
-    secondary: "bg-transparent shadow-none text-neutral-700 dark:text-white",
+    secondary: "bg-transparent shadow-none text-foreground",
     dark: "bg-neutral-900 text-white dark:bg-white dark:text-black",
     gradient:
       "bg-gradient-to-b from-[color-mix(in_srgb,var(--brand)_85%,white)] to-brand text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.25)_inset]",

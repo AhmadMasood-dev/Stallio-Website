@@ -88,11 +88,11 @@ export function FeaturesTools() {
             <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
               Seller tools
             </span>
-            <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.5rem] lg:leading-[1.1]">
+            <h2 className="text-foreground text-section-heading">
               The quiet tools that keep orders moving.
             </h2>
             <p className="text-muted-foreground max-w-[34ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Promos, invoices, delivery, and inbox — without bolting on another
+              Promos, invoices, delivery, and inbox, without bolting on another
               plugin stack.
             </p>
           </motion.div>

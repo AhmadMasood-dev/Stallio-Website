@@ -42,7 +42,7 @@ export function Footer() {
           <div className="space-y-6 md:col-span-5 lg:col-span-4">
             <Link
               href={routes.home}
-              className="inline-flex items-center gap-2.5 font-semibold tracking-tight"
+              className="inline-flex items-center gap-2.5 tracking-tight"
             >
               <Image
                 src="/assets/images/logo.png"
@@ -51,7 +51,9 @@ export function Footer() {
                 height={34}
                 className="h-8 w-auto"
               />
-              <span className="text-lg">{siteConfig.name}</span>
+              <span className="font-logo text-[1.85rem] leading-none">
+                {siteConfig.name}
+              </span>
             </Link>
 
             <p className="text-muted-foreground max-w-[32ch] text-sm leading-7 md:text-base md:leading-8">
@@ -97,7 +99,7 @@ export function Footer() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="text-muted-foreground hover:text-foreground group inline-flex text-sm transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                        className="text-muted-foreground hover:text-foreground group inline-flex min-h-11 items-center py-1.5 text-sm transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                       >
                         <span className="transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5">
                           {item.label}
@@ -146,7 +148,7 @@ export function Footer() {
             © {year} {siteConfig.name}. All rights reserved.
           </p>
           <p className="max-w-[42ch] text-xs leading-5 sm:text-right">
-            One link. A real storefront — no domain stress.
+            One link. A real storefront, no domain stress.
           </p>
         </div>
       </div>

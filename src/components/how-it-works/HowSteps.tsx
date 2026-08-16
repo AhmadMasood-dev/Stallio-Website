@@ -65,7 +65,7 @@ export function HowSteps() {
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
             Step by step
           </span>
-          <h2 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+          <h2 className="text-foreground text-section-heading">
             From empty path to live shelf.
           </h2>
         </motion.div>

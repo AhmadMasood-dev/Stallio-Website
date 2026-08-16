@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
+    const reduce = useReducedMotion();
     const paths = [
       "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
       "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
@@ -99,18 +100,31 @@ export const BackgroundBeams = React.memo(
                   y1: "0%",
                   y2: "0%",
                 }}
-                animate={{
-                  x1: ["0%", "100%"],
-                  x2: ["0%", "95%"],
-                  y1: ["0%", "100%"],
-                  y2: ["0%", `${93 + (index % 8)}%`],
-                }}
-                transition={{
-                  duration: 12 + (index % 10),
-                  ease: [0.32, 0.72, 0, 1],
-                  repeat: Infinity,
-                  delay: (index % 12) * 0.35,
-                }}
+                animate={
+                  reduce
+                    ? {
+                        x1: "40%",
+                        x2: "60%",
+                        y1: "20%",
+                        y2: "80%",
+                      }
+                    : {
+                        x1: ["0%", "100%"],
+                        x2: ["0%", "95%"],
+                        y1: ["0%", "100%"],
+                        y2: ["0%", `${93 + (index % 8)}%`],
+                      }
+                }
+                transition={
+                  reduce
+                    ? { duration: 0 }
+                    : {
+                        duration: 12 + (index % 10),
+                        ease: [0.32, 0.72, 0, 1],
+                        repeat: Infinity,
+                        delay: (index % 12) * 0.35,
+                      }
+                }
               >
                 <stop stopColor="#5E2BEC" stopOpacity="0"></stop>
                 <stop stopColor="#7B52F5"></stop>

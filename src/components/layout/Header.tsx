@@ -39,7 +39,7 @@ export function Header() {
             className="h-8 w-auto"
             priority
           />
-          <span className="text-foreground text-base font-semibold tracking-tight">
+          <span className="font-logo text-foreground text-[1.65rem] leading-none tracking-normal">
             {siteConfig.name}
           </span>
         </NavbarLogo>
@@ -68,7 +68,7 @@ export function Header() {
               className="h-7 w-auto"
               priority
             />
-            <span className="text-foreground text-base font-semibold tracking-tight">
+            <span className="font-logo text-foreground text-[1.5rem] leading-none tracking-normal">
               {siteConfig.name}
             </span>
           </NavbarLogo>
@@ -88,7 +88,7 @@ export function Header() {
               key={item.link}
               href={item.link}
               onClick={() => setIsOpen(false)}
-              className="text-foreground relative w-full px-1 py-2 text-sm font-medium"
+              className="text-foreground relative w-full px-1 py-2.5 text-sm font-medium"
             >
               {item.name}
             </Link>

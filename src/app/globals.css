@@ -50,6 +50,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-logo: var(--font-great-vibes);
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 
   @keyframes spotlight {
@@ -151,6 +152,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@utility font-logo {
+  font-family: var(--font-logo), cursive;
+}
+
+@utility text-section-heading {
+  @apply text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1];
 }
 
 @keyframes rise {
