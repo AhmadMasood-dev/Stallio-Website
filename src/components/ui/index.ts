@@ -29,3 +29,7 @@ export { HoverEffect } from "./card-hover-effect";
 export type { HoverEffectItem } from "./card-hover-effect";
 export { Compare } from "./compare";
 export { Button, buttonVariants } from "./button";
+export { StatefulButton } from "./stateful-button";
+export { PlaceholdersAndVanishInput } from "./placeholders-and-vanish-input";
+export { Input } from "./input";
+export { Label } from "./label";

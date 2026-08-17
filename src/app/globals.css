@@ -66,7 +66,7 @@
 }
 
 :root {
-  /* Stallio brand palette — public/assets/reference/colors/figma-colors.json */
+  /* Stallio brand palette: public/assets/reference/colors/figma-colors.json */
   --brand: #5e2bec;
   --brand-foreground: #ffffff;
   --ink: #09090b;

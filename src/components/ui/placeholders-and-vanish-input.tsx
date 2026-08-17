@@ -1,0 +1,296 @@
+"use client";
+
+import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+
+type Particle = {
+  x: number;
+  y: number;
+  r: number;
+  color: string;
+};
+
+type PixelPoint = {
+  x: number;
+  y: number;
+  color: [number, number, number, number];
+};
+
+export function PlaceholdersAndVanishInput({
+  placeholders,
+  onChange,
+  onSubmit,
+}: {
+  placeholders: string[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
+}) {
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startAnimation = () => {
+    intervalRef.current = setInterval(() => {
+      setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
+    }, 3000);
+  };
+  const handleVisibilityChange = () => {
+    if (document.visibilityState !== "visible" && intervalRef.current) {
+      clearInterval(intervalRef.current); // Clear the interval when the tab is not visible
+      intervalRef.current = null;
+    } else if (document.visibilityState === "visible") {
+      startAnimation(); // Restart the interval when the tab becomes visible
+    }
+  };
+
+  useEffect(() => {
+    startAnimation();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [placeholders]);
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const newDataRef = useRef<Particle[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState("");
+  const [animating, setAnimating] = useState(false);
+
+  const draw = useCallback(() => {
+    if (!inputRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = 800;
+    canvas.height = 800;
+    ctx.clearRect(0, 0, 800, 800);
+    const computedStyles = getComputedStyle(inputRef.current);
+
+    const fontSize = parseFloat(computedStyles.getPropertyValue("font-size"));
+    ctx.font = `${fontSize * 2}px ${computedStyles.fontFamily}`;
+    ctx.fillStyle = "#FFF";
+    ctx.fillText(value, 16, 40);
+
+    const imageData = ctx.getImageData(0, 0, 800, 800);
+    const pixelData = imageData.data;
+    const newData: PixelPoint[] = [];
+
+    for (let t = 0; t < 800; t++) {
+      const i = 4 * t * 800;
+      for (let n = 0; n < 800; n++) {
+        const e = i + 4 * n;
+        if (
+          pixelData[e] !== 0 &&
+          pixelData[e + 1] !== 0 &&
+          pixelData[e + 2] !== 0
+        ) {
+          newData.push({
+            x: n,
+            y: t,
+            color: [
+              pixelData[e],
+              pixelData[e + 1],
+              pixelData[e + 2],
+              pixelData[e + 3],
+            ],
+          });
+        }
+      }
+    }
+
+    newDataRef.current = newData.map(({ x, y, color }) => ({
+      x,
+      y,
+      r: 1,
+      color: `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`,
+    }));
+  }, [value]);
+
+  useEffect(() => {
+    draw();
+  }, [value, draw]);
+
+  const animate = (start: number) => {
+    const animateFrame = (pos: number = 0) => {
+      requestAnimationFrame(() => {
+        const newArr = [];
+        for (let i = 0; i < newDataRef.current.length; i++) {
+          const current = newDataRef.current[i];
+          if (current.x < pos) {
+            newArr.push(current);
+          } else {
+            if (current.r <= 0) {
+              current.r = 0;
+              continue;
+            }
+            current.x += Math.random() > 0.5 ? 1 : -1;
+            current.y += Math.random() > 0.5 ? 1 : -1;
+            current.r -= 0.05 * Math.random();
+            newArr.push(current);
+          }
+        }
+        newDataRef.current = newArr;
+        const ctx = canvasRef.current?.getContext("2d");
+        if (ctx) {
+          ctx.clearRect(pos, 0, 800, 800);
+          newDataRef.current.forEach((t) => {
+            const { x: n, y: i, r: s, color: color } = t;
+            if (n > pos) {
+              ctx.beginPath();
+              ctx.rect(n, i, s, s);
+              ctx.fillStyle = color;
+              ctx.strokeStyle = color;
+              ctx.stroke();
+            }
+          });
+        }
+        if (newDataRef.current.length > 0) {
+          animateFrame(pos - 8);
+        } else {
+          setValue("");
+          setAnimating(false);
+        }
+      });
+    };
+    animateFrame(start);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && !animating) {
+      e.preventDefault();
+      inputRef.current?.form?.requestSubmit();
+    }
+  };
+
+  const vanishAndSubmit = () => {
+    setAnimating(true);
+    draw();
+
+    const value = inputRef.current?.value || "";
+    if (value && inputRef.current) {
+      const maxX = newDataRef.current.reduce(
+        (prev, current) => (current.x > prev ? current.x : prev),
+        0
+      );
+      animate(maxX);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (animating) return;
+    try {
+      await onSubmit?.(e);
+      vanishAndSubmit();
+    } catch {
+      // Keep the value when the parent rejects submission.
+    }
+  };
+  return (
+    <form
+      className={cn(
+        "border-border/70 bg-background relative mx-auto h-12 w-full max-w-xl overflow-hidden rounded-full border shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        value && "bg-muted/30",
+      )}
+      onSubmit={handleSubmit}
+    >
+      <canvas
+        className={cn(
+          "absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20",
+          !animating ? "opacity-0" : "opacity-100"
+        )}
+        ref={canvasRef}
+      />
+      <input
+        onChange={(e) => {
+          if (!animating) {
+            setValue(e.target.value);
+            onChange(e);
+          }
+        }}
+        onKeyDown={handleKeyDown}
+        ref={inputRef}
+        value={value}
+        type="email"
+        autoComplete="email"
+        className={cn(
+          "text-foreground relative z-50 h-full w-full rounded-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none sm:text-base pl-4 sm:pl-10 pr-20",
+          animating && "text-transparent dark:text-transparent"
+        )}
+      />
+
+      <button
+        disabled={!value}
+        type="submit"
+        className="bg-brand text-brand-foreground absolute top-1/2 right-2 z-50 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] disabled:opacity-40"
+      >
+        <motion.svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-brand-foreground h-4 w-4"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <motion.path
+            d="M5 12l14 0"
+            initial={{
+              strokeDasharray: "50%",
+              strokeDashoffset: "50%",
+            }}
+            animate={{
+              strokeDashoffset: value ? 0 : "50%",
+            }}
+            transition={{
+              duration: 0.3,
+              ease: "linear",
+            }}
+          />
+          <path d="M13 18l6 -6" />
+          <path d="M13 6l6 6" />
+        </motion.svg>
+      </button>
+
+      <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
+        <AnimatePresence mode="wait">
+          {!value && (
+            <motion.p
+              initial={{
+                y: 5,
+                opacity: 0,
+              }}
+              key={`current-placeholder-${currentPlaceholder}`}
+              animate={{
+                y: 0,
+                opacity: 1,
+              }}
+              exit={{
+                y: -15,
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.3,
+                ease: "linear",
+              }}
+              className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate"
+            >
+              {placeholders[currentPlaceholder]}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+    </form>
+  );
+}
