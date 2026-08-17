@@ -42,6 +42,7 @@ next-env.d.ts
 
 # skills
 .agents/
+.claude/
 agents
 skills-lock.json
 
@@ -52,3 +53,9 @@ skills-lock.json
 
 # reference captures
 /public/assets/reference/
+
+# playwright mcp dumps
+.playwright-mcp/
+
+# local reference docs
+claude-docs/about.md

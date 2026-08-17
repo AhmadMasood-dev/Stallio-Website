@@ -1,0 +1,15 @@
+---
+description: Never use emdashes in Stallio copy or UI text
+alwaysApply: true
+---
+
+# No emdashes
+
+Do not use the emdash character (`—`) or en dash (`–`) in user-facing marketing copy, UI strings, metadata descriptions, or comments that mirror product voice.
+
+Prefer commas, periods, colons, or a short rewrite instead.
+
+Examples:
+- Bad: `One link — no domain stress.`
+- Good: `One link. No domain stress.`
+- Good: `One link: no domain stress.`
