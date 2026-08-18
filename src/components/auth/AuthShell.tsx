@@ -1,20 +1,17 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 
-import { ThemeToggle } from "@/components/theme";
-import { routes } from "@/constants/routes";
+import { Header } from "@/components/layout";
 import { siteConfig } from "@/constants/site";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type AuthShellProps = {
   children: React.ReactNode;
-  eyebrow: string;
-  title: string;
-  description: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
   className?: string;
   /** Compact single-column layout for dense flows like signup. */
   compact?: boolean;
@@ -33,7 +30,7 @@ export function AuthShell({
   return (
     <div
       className={cn(
-        "bg-background relative flex min-h-[100dvh] flex-col",
+        "bg-background relative flex min-h-dvh flex-col",
         compact ? "overflow-hidden" : "overflow-x-hidden",
       )}
     >
@@ -46,25 +43,9 @@ export function AuthShell({
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_90%_80%,color-mix(in_srgb,#F5C518_10%,transparent),transparent_50%)]"
       />
 
-      <header className="relative z-20 mx-auto flex w-full max-w-6xl shrink-0 items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
-        <Link
-          href={routes.home}
-          className="inline-flex items-center gap-2.5 tracking-tight"
-        >
-          <Image
-            src="/assets/images/logo.png"
-            alt=""
-            width={28}
-            height={30}
-            className="h-7 w-auto"
-            priority
-          />
-          <span className="font-logo text-foreground text-[1.55rem] leading-none">
-            {siteConfig.name}
-          </span>
-        </Link>
-        <ThemeToggle />
-      </header>
+      <div className="relative z-20">
+        <Header />
+      </div>
 
       <div
         className={cn(
@@ -82,17 +63,25 @@ export function AuthShell({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: motionEase }}
           >
-            <div className="mb-4 space-y-2 text-center md:mb-5">
-              <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-                {eyebrow}
-              </span>
-              <h1 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-                {title}
-              </h1>
-              <p className="text-muted-foreground mx-auto max-w-[40ch] text-sm leading-6">
-                {description}
-              </p>
-            </div>
+            {(eyebrow || title || description) && (
+              <div className="mb-4 space-y-2 text-center md:mb-5">
+                {eyebrow ? (
+                  <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
+                    {eyebrow}
+                  </span>
+                ) : null}
+                {title ? (
+                  <h1 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+                    {title}
+                  </h1>
+                ) : null}
+                {description ? (
+                  <p className="text-muted-foreground mx-auto max-w-[40ch] text-sm leading-6">
+                    {description}
+                  </p>
+                ) : null}
+              </div>
+            )}
             {children}
           </motion.div>
         ) : (

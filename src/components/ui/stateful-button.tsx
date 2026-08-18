@@ -11,8 +11,22 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const StatefulButton = ({ className, children, ...props }: ButtonProps) => {
   const [scope, animate] = useAnimate();
 
+  const safeAnimate = async (
+    selector: string,
+    keyframes: Record<string, string | number>,
+    options?: { duration?: number; delay?: number },
+  ) => {
+    if (!scope.current) return;
+
+    try {
+      await animate(selector, keyframes, options);
+    } catch {
+      // Ignore animation failures when the target nodes are not mounted.
+    }
+  };
+
   const animateLoading = async () => {
-    await animate(
+    await safeAnimate(
       ".loader",
       {
         width: "20px",
@@ -26,7 +40,7 @@ export const StatefulButton = ({ className, children, ...props }: ButtonProps) =
   };
 
   const animateSuccess = async () => {
-    await animate(
+    await safeAnimate(
       ".loader",
       {
         width: "0px",
@@ -37,7 +51,7 @@ export const StatefulButton = ({ className, children, ...props }: ButtonProps) =
         duration: 0.2,
       },
     );
-    await animate(
+    await safeAnimate(
       ".check",
       {
         width: "20px",
@@ -49,7 +63,7 @@ export const StatefulButton = ({ className, children, ...props }: ButtonProps) =
       },
     );
 
-    await animate(
+    await safeAnimate(
       ".check",
       {
         width: "0px",
@@ -64,7 +78,7 @@ export const StatefulButton = ({ className, children, ...props }: ButtonProps) =
   };
 
   const resetLoader = async () => {
-    await animate(
+    await safeAnimate(
       ".loader",
       {
         width: "0px",

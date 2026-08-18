@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import {
@@ -62,6 +63,7 @@ const shopKeys: (keyof FormState)[] = [
 
 export function SignupForm() {
   const reduce = useReducedMotion();
+  const router = useRouter();
   const [step, setStep] = useState<Step>(0);
   const [form, setForm] = useState<FormState>({
     email: "",
@@ -154,10 +156,9 @@ export function SignupForm() {
       throw new Error("invalid");
     }
 
-    await new Promise((r) => setTimeout(r, 1100));
-    setSuccess(
-      `Shop profile for ${form.shopName.trim()} looks good. Connect your API to finish creating stallio.shop/${form.username.trim()}.`,
-    );
+    await new Promise((r) => setTimeout(r, 900));
+    sessionStorage.setItem("stallio_verification_email", form.email.trim());
+    router.push(routes.verifyEmail);
   }
 
   const storePreview = form.username.trim()

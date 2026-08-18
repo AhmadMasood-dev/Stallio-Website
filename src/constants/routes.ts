@@ -7,6 +7,7 @@ export const routes = {
   contact: "/contact",
   login: "/login",
   signup: "/signup",
+  verifyEmail: "/verify-email",
   forgotPassword: "/forgot-password",
   demo: "https://www.stallio.shop/sweet-cravings-studio",
   privacy: "/privacy",
