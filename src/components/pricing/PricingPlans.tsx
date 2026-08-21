@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { IconArrowUpRight, IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import {
@@ -16,6 +16,7 @@ import {
   type BillingCycle,
 } from "@/constants/pricing";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -26,37 +27,8 @@ const selectClass = cn(
   "bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2371717a%22 stroke-width=%221.5%22%3E%3Cpath d=%22m4 6 4 4 4-4%22/%3E%3C/svg%3E')]",
 );
 
-type Plan = {
-  id: BillingCycle;
-  eyebrow: string;
-  cadence: string;
-  usd: number;
-  blurb: string;
-  cta: string;
-  featured?: boolean;
-};
-
-const plans: Plan[] = [
-  {
-    id: "monthly",
-    eyebrow: "Monthly",
-    cadence: "/mo",
-    usd: usdMonthly,
-    blurb: "Flexible billing. Cancel anytime from your account.",
-    cta: "Start Monthly",
-  },
-  {
-    id: "yearly",
-    eyebrow: "Yearly",
-    cadence: "/yr",
-    usd: usdYearly,
-    blurb: "Pay once per year. Best if you are committed to growing your shop.",
-    cta: "Start Yearly",
-    featured: true,
-  },
-];
-
 export function PricingPlans() {
+  const t = useTranslations("pricing.plans");
   const reduce = useReducedMotion();
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
   const [countryCode, setCountryCode] = useState(pricingCountries[0].code);
@@ -64,6 +36,20 @@ export function PricingPlans() {
     pricingCountries.find((item) => item.code === countryCode) ??
     pricingCountries[0];
   const showLocal = country.currency !== "USD";
+  const highlights = t.raw("highlights") as string[];
+
+  const plans = [
+    {
+      id: "monthly" as const,
+      usd: usdMonthly,
+      featured: false,
+    },
+    {
+      id: "yearly" as const,
+      usd: usdYearly,
+      featured: true,
+    },
+  ];
 
   return (
     <section
@@ -85,14 +71,13 @@ export function PricingPlans() {
             transition={{ duration: 0.75, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Choose billing
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              Monthly or yearly, your choice
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[34ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Preview local amounts by country. Subscriptions are charged in US
-              dollars.
+              {t("body")}
             </p>
 
             <div className="space-y-2">
@@ -100,7 +85,7 @@ export function PricingPlans() {
                 htmlFor="pricing-country"
                 className="text-foreground text-sm font-medium"
               >
-                Your country
+                {t("yourCountry")}
               </label>
               <select
                 id="pricing-country"
@@ -115,13 +100,13 @@ export function PricingPlans() {
                 ))}
               </select>
               <p className="text-muted-foreground text-xs leading-5">
-                Approximate local amount. Subscriptions are charged in USD.
+                {t("approxNote")}
               </p>
             </div>
 
             <div
               role="tablist"
-              aria-label="Billing cycle"
+              aria-label={t("billingCycle")}
               className="bg-background ring-border/60 relative inline-flex w-full rounded-full p-1 ring-1"
             >
               {(["monthly", "yearly"] as const).map((id) => {
@@ -134,7 +119,7 @@ export function PricingPlans() {
                     aria-selected={selected}
                     onClick={() => setCycle(id)}
                     className={cn(
-                      "relative z-10 h-10 flex-1 cursor-pointer rounded-full text-sm font-medium capitalize transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                      "relative z-10 h-10 flex-1 cursor-pointer rounded-full text-sm font-medium transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
                       selected
                         ? "text-brand-foreground"
                         : "text-muted-foreground hover:text-foreground",
@@ -147,7 +132,7 @@ export function PricingPlans() {
                         transition={{ duration: 0.45, ease: motionEase }}
                       />
                     ) : null}
-                    <span className="relative z-10 capitalize">{id}</span>
+                    <span className="relative z-10">{t(`${id}.label`)}</span>
                   </button>
                 );
               })}
@@ -171,6 +156,7 @@ export function PricingPlans() {
                 const local = showLocal
                   ? formatLocal(plan.usd, country)
                   : null;
+                const cadence = t(`${plan.id}.cadence`);
 
                 return (
                   <motion.div
@@ -204,11 +190,13 @@ export function PricingPlans() {
                     >
                       <div className="flex items-center justify-between gap-3">
                         <p className="text-[10px] font-medium tracking-[0.2em] uppercase">
-                          <span className="text-brand">{plan.eyebrow}</span>
+                          <span className="text-brand">
+                            {t(`${plan.id}.label`)}
+                          </span>
                         </p>
                         {plan.featured ? (
                           <span className="bg-brand/10 text-brand rounded-full px-2.5 py-1 text-[10px] font-medium tracking-[0.14em] uppercase">
-                            Save {formatUsd(yearlySaveUsd)}
+                            {t("save", { amount: formatUsd(yearlySaveUsd) })}
                           </span>
                         ) : null}
                       </div>
@@ -218,30 +206,32 @@ export function PricingPlans() {
                           {formatUsd(plan.usd)}
                         </span>
                         <span className="text-muted-foreground mb-1.5 text-sm">
-                          {plan.cadence}
+                          {cadence}
                         </span>
                       </p>
 
                       <p className="text-muted-foreground mt-1 text-xs leading-5">
-                        After trial
-                        {local ? ` · about ${local}${plan.cadence}` : ""}
+                        {t("afterTrial")}
+                        {local
+                          ? ` · ${t("aboutLocal", { amount: local, cadence })}`
+                          : ""}
                       </p>
                       <p className="text-muted-foreground mt-4 max-w-[32ch] text-sm leading-6">
-                        {plan.blurb}
+                        {t(`${plan.id}.blurb`)}
                       </p>
 
                       <ul className="mt-6 space-y-2">
-                        {[
-                          "Full storefront and dashboard",
-                          "Unlimited products and orders",
-                          "Same tools on both plans",
-                        ].map((line) => (
+                        {highlights.map((line) => (
                           <li
                             key={line}
                             className="text-foreground/90 flex items-start gap-2 text-sm leading-6"
                           >
                             <span className="bg-brand/10 text-brand mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full">
-                              <IconCheck className="size-3" stroke={1.5} aria-hidden />
+                              <IconCheck
+                                className="size-3"
+                                stroke={1.5}
+                                aria-hidden
+                              />
                             </span>
                             {line}
                           </li>
@@ -257,7 +247,7 @@ export function PricingPlans() {
                             : "border-border/70 bg-background text-foreground hover:bg-muted/50 border",
                         )}
                       >
-                        {plan.cta}
+                        {t(`${plan.id}.cta`)}
                         <span
                           className={cn(
                             "inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",

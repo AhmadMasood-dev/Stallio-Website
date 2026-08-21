@@ -1,17 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
 export function HomeCta() {
+  const t = useTranslations("home.cta");
+  const tCommon = useTranslations("common");
   const reduce = useReducedMotion();
 
   return (
@@ -37,19 +40,18 @@ export function HomeCta() {
             transition={{ duration: 0.85, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Ready when you are
+              {t("eyebrow")}
             </span>
 
             <h2 className="text-foreground mt-5 text-section-heading">
-              Ready when you are
+              {t("title")}
               <span className="text-brand" aria-hidden>
                 .
               </span>
             </h2>
 
             <p className="text-muted-foreground mt-5 max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Spin up a store in minutes. Share the link tonight. Wake up to
-              orders that did not vanish in your inbox.
+              {t("body")}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -63,7 +65,7 @@ export function HomeCta() {
                     href={routes.signup}
                     className="inline-flex items-center gap-2"
                   >
-                    Start Free
+                    {tCommon("startFree")}
                     <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full">
                       <IconArrowUpRight className="size-4" stroke={1.5} />
                     </span>
@@ -78,7 +80,7 @@ export function HomeCta() {
                   containerClassName="group h-12 w-auto min-w-[10.5rem] active:scale-[0.98]"
                   className="bg-brand gap-2 px-5 hover:bg-[color-mix(in_srgb,var(--brand)_88%,black)]"
                 >
-                  Start Free
+                  {tCommon("startFree")}
                   <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                     <IconArrowUpRight className="size-4" stroke={1.5} />
                   </span>
@@ -91,7 +93,7 @@ export function HomeCta() {
                 variant="outline"
                 className="bg-background/80 rounded-full px-6 active:scale-[0.98]"
               >
-                <Link href={routes.login}>Log In</Link>
+                <Link href={routes.login}>{tCommon("logIn")}</Link>
               </Button>
             </div>
           </motion.div>

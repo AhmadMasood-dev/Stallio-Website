@@ -6,53 +6,34 @@ import {
   IconPhoto,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Timeline, type TimelineEntry } from "@/components/ui/timeline";
 import { motionEase } from "@/lib/motion";
 
-const steps = [
-  {
-    n: "01",
-    title: "Open your shop",
-    body: "Name it, add the basics, and claim your stallio.shop path.",
-    note: "Under five minutes",
-    detail:
-      "No domain, DNS, or hosting setup. Your storefront URL is ready the moment you finish.",
-    icon: IconBuildingStore,
-  },
-  {
-    n: "02",
-    title: "List products",
-    body: "Photos, price, stock, variants - ready to share.",
-    note: "No spreadsheet gymnastics",
-    detail:
-      "Drop in what you already shoot for Instagram. Buyers see a clean shelf instead of a DM thread.",
-    icon: IconPhoto,
-  },
-  {
-    n: "03",
-    title: "Drop the link",
-    body: "Bio, stories, WhatsApp: one link everywhere.",
-    note: "Orders land in your dashboard",
-    detail:
-      "Share once. Mark paid, ship, and export when the orders start showing up.",
-    icon: IconLink,
-  },
-] as const;
+const stepIcons = [IconBuildingStore, IconPhoto, IconLink] as const;
+const stepNumbers = ["01", "02", "03"] as const;
 
 export function HomeSteps() {
+  const t = useTranslations("home.steps");
   const reduce = useReducedMotion();
+  const items = t.raw("items") as Array<{
+    title: string;
+    body: string;
+    detail: string;
+    note: string;
+  }>;
 
-  const data: TimelineEntry[] = steps.map((step) => ({
-    title: step.n,
+  const data: TimelineEntry[] = items.map((step, index) => ({
+    title: stepNumbers[index],
     content: (
       <StepCard
         title={step.title}
         body={step.body}
         note={step.note}
         detail={step.detail}
-        icon={step.icon}
+        icon={stepIcons[index]}
       />
     ),
   }));
@@ -73,14 +54,13 @@ export function HomeSteps() {
           transition={{ duration: 0.8, ease: motionEase }}
         >
           <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-            How it works
+            {t("eyebrow")}
           </span>
           <h2 className="text-foreground text-section-heading">
-            Three moves. You’re live.
+            {t("title")}
           </h2>
           <p className="text-muted-foreground max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">
-            No staging servers. No theme rabbit holes. Scroll the flow - open,
-            list, share.
+            {t("body")}
           </p>
         </motion.div>
 

@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 
 import { Header } from "@/components/layout";
 import { siteConfig } from "@/constants/site";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +29,13 @@ export function AuthShell({
   compact = false,
 }: AuthShellProps) {
   const reduce = useReducedMotion();
+  const t = useTranslations("auth");
+  const tFooter = useTranslations("footer");
+
+  const asideTagline = t("shell.asideTagline", {
+    name: siteConfig.name,
+    tagline: tFooter("siteTagline"),
+  });
 
   return (
     <div
@@ -102,7 +112,7 @@ export function AuthShell({
                 {description}
               </p>
               <p className="text-muted-foreground mt-8 hidden text-sm md:block">
-                {siteConfig.name}, {siteConfig.tagline}.
+                {asideTagline}
               </p>
             </motion.aside>
 

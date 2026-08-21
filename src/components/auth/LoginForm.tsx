@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import {
   AuthAlert,
@@ -16,6 +16,7 @@ import {
 import { isValidEmail } from "@/components/auth/auth-options";
 import { Input } from "@/components/ui/input";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 type FieldErrors = {
@@ -24,6 +25,8 @@ type FieldErrors = {
 };
 
 export function LoginForm() {
+  const t = useTranslations("auth.login");
+  const tCommon = useTranslations("common");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -32,10 +35,9 @@ export function LoginForm() {
 
   function validate(next = { email, password }) {
     const nextErrors: FieldErrors = {};
-    if (!next.email.trim()) nextErrors.email = "Email is required.";
-    else if (!isValidEmail(next.email))
-      nextErrors.email = "Enter a valid email address.";
-    if (!next.password) nextErrors.password = "Password is required.";
+    if (!next.email.trim()) nextErrors.email = t("emailRequired");
+    else if (!isValidEmail(next.email)) nextErrors.email = t("emailInvalid");
+    if (!next.password) nextErrors.password = t("passwordRequired");
     return nextErrors;
   }
 
@@ -47,9 +49,7 @@ export function LoginForm() {
     if (Object.keys(nextErrors).length) throw new Error("invalid");
 
     await new Promise((r) => setTimeout(r, 900));
-    setFormError(
-      "No live auth API is wired yet. Your form is valid and ready to connect.",
-    );
+    setFormError(t("stubSuccess"));
   }
 
   return (
@@ -63,7 +63,7 @@ export function LoginForm() {
 
         <AuthField
           id="login-email"
-          label="Email"
+          label={t("email")}
           required
           error={touched.email ? errors.email : undefined}
         >
@@ -72,7 +72,7 @@ export function LoginForm() {
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="you@example.com"
+            placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -80,7 +80,7 @@ export function LoginForm() {
                 setErrors(validate({ email: e.target.value, password }));
             }}
             onBlur={() => {
-              setTouched((t) => ({ ...t, email: true }));
+              setTouched((prev) => ({ ...prev, email: true }));
               setErrors(validate());
             }}
             aria-invalid={Boolean(touched.email && errors.email) || undefined}
@@ -90,10 +90,10 @@ export function LoginForm() {
 
         <AuthPasswordField
           id="login-password"
-          label="Password"
+          label={t("password")}
           required
           value={password}
-          placeholder="Your password"
+          placeholder={t("passwordPlaceholder")}
           autoComplete="current-password"
           error={touched.password ? errors.password : undefined}
           onChange={(value) => {
@@ -102,7 +102,7 @@ export function LoginForm() {
               setErrors(validate({ email, password: value }));
           }}
           onBlur={() => {
-            setTouched((t) => ({ ...t, password: true }));
+            setTouched((prev) => ({ ...prev, password: true }));
             setErrors(validate());
           }}
         />
@@ -112,22 +112,22 @@ export function LoginForm() {
             href={routes.forgotPassword}
             className="text-brand text-sm font-medium transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:opacity-80"
           >
-            Forgot Password?
+            {t("forgot")}
           </Link>
         </div>
 
-        <AuthSubmitButton onAction={signIn}>Sign In</AuthSubmitButton>
+        <AuthSubmitButton onAction={signIn}>{t("submit")}</AuthSubmitButton>
       </form>
 
       <p className="text-muted-foreground mt-6 text-center text-sm leading-6">
-        New to Stallio?{" "}
+        {t("newTo")}{" "}
         <Link
           href={routes.signup}
           className={cn(
             "text-foreground hover:text-brand font-medium underline-offset-4 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:underline",
           )}
         >
-          Start Free
+          {tCommon("startFree")}
         </Link>
       </p>
     </AuthFormCard>

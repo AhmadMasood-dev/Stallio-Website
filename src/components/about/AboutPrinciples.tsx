@@ -7,47 +7,28 @@ import {
   IconVault,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { motionEase } from "@/lib/motion";
 
-const principles = [
-  {
-    number: "01",
-    title: "Shareable by default",
-    description:
-      "If it cannot live in a story, DM, or WhatsApp message, it is not finished. Your store is a link, not a project plan.",
-    icon: IconLink,
-    span: "md:col-span-7",
-  },
-  {
-    number: "02",
-    title: "You keep the money path",
-    description:
-      "Bank transfer, payment link, or cash on delivery. Stallio does not insert itself between you and your buyer.",
-    icon: IconVault,
-    span: "md:col-span-5",
-  },
-  {
-    number: "03",
-    title: "Thumb-first, always",
-    description:
-      "Most of your buyers will never open a laptop. Catalog, cart, and checkout are designed for one hand.",
-    icon: IconFingerprint,
-    span: "md:col-span-5",
-  },
-  {
-    number: "04",
-    title: "Quiet tools, clear orders",
-    description:
-      "Invoices, status, and a dashboard that does not shout. Enough structure to ship, not enough to drown you.",
-    icon: IconSparkles,
-    span: "md:col-span-7",
-  },
+const principleMeta = [
+  { icon: IconLink, span: "md:col-span-7" },
+  { icon: IconVault, span: "md:col-span-5" },
+  { icon: IconFingerprint, span: "md:col-span-5" },
+  { icon: IconSparkles, span: "md:col-span-7" },
 ] as const;
 
+type PrincipleItem = {
+  number: string;
+  title: string;
+  description: string;
+};
+
 export function AboutPrinciples() {
+  const t = useTranslations("about");
   const reduce = useReducedMotion();
+  const items = t.raw("principles.items") as PrincipleItem[];
 
   return (
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 md:py-32 md:pb-36">
@@ -60,24 +41,25 @@ export function AboutPrinciples() {
           transition={{ duration: 0.7, ease: motionEase }}
         >
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-            What we believe
+            {t("principles.eyebrow")}
           </span>
           <h2 className="text-foreground text-section-heading">
-            A few rules we will not bend.
+            {t("principles.title")}
           </h2>
           <p className="text-muted-foreground max-w-[42ch] text-base leading-7 sm:text-lg sm:leading-8">
-            These are not slogans. They are the constraints that keep Stallio
-            small, fast, and useful for solo sellers.
+            {t("principles.body")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
-          {principles.map((item, index) => {
-            const Icon = item.icon;
+          {items.map((item, index) => {
+            const meta = principleMeta[index];
+            if (!meta) return null;
+            const Icon = meta.icon;
             return (
               <motion.div
                 key={item.number}
-                className={`col-span-1 ${item.span}`}
+                className={`col-span-1 ${meta.span}`}
                 initial={reduce ? false : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}

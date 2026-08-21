@@ -1,42 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { StartFreeCta, HeroAtmosphere, heroBleedClassName } from "@/components/marketing";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/constants/site";
 import { fadeUp, motionEase } from "@/lib/motion";
-
-const bullets = [
-  "stallio.shop link, no domain purchase",
-  "Unlimited products, photos, and orders",
-  "PDF invoices and order export",
-  "Coupons, delivery fees, and COD at checkout",
-] as const;
 
 const stack = [
   {
     src: "/assets/images/demo-catalog.png",
-    alt: "Stallio catalog dashboard",
     className: "md:col-span-8",
     aspect: "aspect-[16/10]",
     rotateClass: "",
   },
   {
     src: "/assets/images/demo-product.png",
-    alt: "Mobile product page on Stallio",
     className: "md:col-span-4 md:mt-10",
     aspect: "aspect-[4/5]",
     rotateClass: "md:rotate-[2deg]",
   },
   {
     src: "/assets/images/demo-checkout.png",
-    alt: "Mobile checkout on Stallio",
     className: "md:col-span-5 md:-mt-6",
     aspect: "aspect-[5/4]",
     rotateClass: "md:-rotate-[1.5deg]",
@@ -44,7 +35,15 @@ const stack = [
 ] as const;
 
 export function FeaturesHero() {
+  const t = useTranslations("features");
   const reduce = useReducedMotion();
+  const bullets = t.raw("hero.bullets") as string[];
+  const alts = t.raw("hero.alts") as {
+    catalog: string;
+    product: string;
+    checkout: string;
+  };
+  const stackAlts = [alts.catalog, alts.product, alts.checkout];
 
   return (
     <section className={heroBleedClassName}>
@@ -77,7 +76,7 @@ export function FeaturesHero() {
                   <div className={`relative w-full ${item.aspect}`}>
                     <Image
                       src={item.src}
-                      alt={item.alt}
+                      alt={stackAlts[index]}
                       fill
                       className="object-cover object-top"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -119,23 +118,22 @@ export function FeaturesHero() {
             className="border-border/70 bg-background/80 text-muted-foreground w-fit rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase"
             variants={fadeUp(0.6, 14)}
           >
-            Features
+            {t("hero.eyebrow")}
           </motion.span>
 
           <motion.h1
             className="text-foreground max-w-[14ch] text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]"
             variants={fadeUp(0.75, 22)}
           >
-            Everything you need{" "}
-            <span className="text-brand">to sell from one link.</span>
+            {t("hero.titleBefore")}{" "}
+            <span className="text-brand">{t("hero.titleAccent")}</span>
           </motion.h1>
 
           <motion.p
             className="text-muted-foreground max-w-[38ch] text-base leading-7 sm:text-lg sm:leading-8"
             variants={fadeUp(0.7, 18)}
           >
-            Storefront, dashboard, and seller tools in one place: hosted link,
-            unlimited catalog and orders, no buyer payment gateway required.
+            {t("hero.body")}
           </motion.p>
 
           <motion.ul className="space-y-2.5" variants={fadeUp()}>
@@ -163,7 +161,7 @@ export function FeaturesHero() {
               variant="ghost"
               className="rounded-full px-5 active:scale-[0.98]"
             >
-              <Link href={routes.howItWorks}>See how it works</Link>
+              <Link href={routes.howItWorks}>{t("hero.secondary")}</Link>
             </Button>
           </motion.div>
         </motion.div>

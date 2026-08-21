@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { ThemeToggle } from "@/components/theme";
 import {
   MobileNav,
@@ -17,15 +18,22 @@ import {
   NavItems,
 } from "@/components/ui/resizable-navbar";
 import { routes } from "@/constants/routes";
-import { mainNav, siteConfig } from "@/constants/site";
-
-const navItems = mainNav.map((item) => ({
-  name: item.label,
-  link: item.href,
-}));
+import { siteConfig } from "@/constants/site";
+import { Link } from "@/i18n/navigation";
 
 export function Header() {
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const [isOpen, setIsOpen] = useState(false);
+
+  const navItems = [
+    { name: tNav("home"), link: routes.home },
+    { name: tNav("about"), link: routes.about },
+    { name: tNav("howItWorks"), link: routes.howItWorks },
+    { name: tNav("features"), link: routes.features },
+    { name: tNav("pricing"), link: routes.pricing },
+    { name: tNav("contact"), link: routes.contact },
+  ];
 
   return (
     <Navbar className="pt-2">
@@ -46,13 +54,14 @@ export function Header() {
 
         <NavItems items={navItems} />
 
-        <div className="relative z-20 flex items-center gap-2">
+        <div className="relative z-20 flex flex-wrap items-center justify-end gap-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           <NavbarButton href={routes.login} variant="secondary">
-            Log In
+            {tCommon("logIn")}
           </NavbarButton>
           <NavbarButton href={routes.signup} variant="primary">
-            Start Free
+            {tCommon("startFree")}
           </NavbarButton>
         </div>
       </NavBody>
@@ -74,6 +83,7 @@ export function Header() {
           </NavbarLogo>
 
           <div className="flex items-center gap-2 pr-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <MobileNavToggle
               isOpen={isOpen}
@@ -100,7 +110,7 @@ export function Header() {
               className="w-full"
               onClick={() => setIsOpen(false)}
             >
-              Log In
+              {tCommon("logIn")}
             </NavbarButton>
             <NavbarButton
               href={routes.signup}
@@ -108,7 +118,7 @@ export function Header() {
               className="w-full"
               onClick={() => setIsOpen(false)}
             >
-              Start Free
+              {tCommon("startFree")}
             </NavbarButton>
           </div>
         </MobileNavMenu>

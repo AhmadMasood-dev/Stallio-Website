@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { motionEase } from "@/lib/motion";
 
 export function AboutStory() {
+  const t = useTranslations("about");
   const reduce = useReducedMotion();
 
   return (
@@ -25,10 +27,10 @@ export function AboutStory() {
           transition={{ duration: 0.75, ease: motionEase }}
         >
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-            Why we built it
+            {t("story.eyebrow")}
           </span>
           <h2 className="text-foreground mt-5 text-section-heading">
-            Selling should not mean living in your inbox.
+            {t("story.title")}
           </h2>
         </motion.div>
 
@@ -40,10 +42,7 @@ export function AboutStory() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7, ease: motionEase }}
           >
-            We kept watching makers, bakers, and local shops take orders the
-            hard way: screenshots, voice notes, spreadsheet chaos. They already
-            had the customers. What they needed was a shelf with a link, not
-            another enterprise stack.
+            {t("story.body")}
           </motion.p>
 
           <motion.blockquote
@@ -58,8 +57,7 @@ export function AboutStory() {
             }}
           >
             <p className="text-foreground text-xl font-medium tracking-tight text-pretty sm:text-2xl sm:leading-snug">
-              One link. A real storefront. Orders that do not disappear into
-              chat history.
+              {t("story.pull")}
             </p>
           </motion.blockquote>
 
@@ -74,10 +72,11 @@ export function AboutStory() {
               ease: motionEase,
             }}
           >
-            Stallio sits on{" "}
-            <span className="text-foreground font-medium">stallio.shop/you</span>
-            . You set products, share the link, and run fulfillment from a
-            dashboard, while buyers still pay you directly.
+            {t("story.closingBefore")}{" "}
+            <span className="text-foreground font-medium">
+              {t("story.closingPath")}
+            </span>
+            {t("story.closingAfter")}
           </motion.p>
 
           <motion.div
@@ -94,7 +93,7 @@ export function AboutStory() {
               <div className="relative aspect-[5/4] w-full">
                 <Image
                   src="/assets/images/audience-clothing.jpg"
-                  alt="Clothing workspace with a phone open to a shop catalog"
+                  alt={t("story.altWorkspace")}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 28rem"
@@ -108,7 +107,7 @@ export function AboutStory() {
               <div className="relative aspect-[4/5] w-full">
                 <Image
                   src="/assets/images/demo-catalog.png"
-                  alt="Stallio catalog screen on a phone"
+                  alt={t("story.altCatalog")}
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 768px) 55vw, 16rem"

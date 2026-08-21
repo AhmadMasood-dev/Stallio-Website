@@ -10,6 +10,7 @@ import {
   useScroll,
 } from "motion/react";
 
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
@@ -120,17 +121,17 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-0.5 text-sm font-medium lg:flex",
         className,
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <Link
           key={`link-${idx}`}
           href={item.link}
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="text-muted-foreground hover:text-foreground relative px-3 py-2 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+          className="text-muted-foreground hover:text-foreground relative whitespace-nowrap px-2 py-2 text-[13px] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] xl:px-3 xl:text-sm"
         >
           {hovered === idx && (
             <motion.div
@@ -139,7 +140,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             />
           )}
           <span className="relative z-20">{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
@@ -253,7 +254,7 @@ export const NavbarLogo = ({
   className?: string;
 }) => {
   return (
-    <a
+    <Link
       href={href}
       className={cn(
         "relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-foreground",
@@ -261,13 +262,13 @@ export const NavbarLogo = ({
       )}
     >
       {children}
-    </a>
+    </Link>
   );
 };
 
 export const NavbarButton = ({
   href,
-  as: Tag = "a",
+  as: Tag = Link,
   children,
   className,
   variant = "primary",

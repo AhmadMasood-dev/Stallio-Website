@@ -6,37 +6,25 @@ import {
   IconPhoto,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const steps = [
-  {
-    n: "01",
-    title: "Create your shop",
-    body: "Sign up, name your store, pick your URL. You get a live link you can paste anywhere.",
-    note: "No DNS. No deploy.",
-    icon: IconBuildingStore,
-  },
-  {
-    n: "02",
-    title: "Add your products",
-    body: "Photos, prices, short descriptions. One catalog you can refine anytime.",
-    note: "Clarity, not chaos",
-    icon: IconPhoto,
-  },
-  {
-    n: "03",
-    title: "Share and take orders",
-    body: "Same link in bio, stories, and chats. Buyers browse on the phone. You track in one dashboard.",
-    note: "Orders land here",
-    icon: IconLink,
-  },
-] as const;
+const stepIcons = [IconBuildingStore, IconPhoto, IconLink] as const;
+
+type FlowStep = {
+  n: string;
+  title: string;
+  body: string;
+  note: string;
+};
 
 export function HowFlow() {
+  const t = useTranslations("howItWorks.flow");
   const reduce = useReducedMotion();
+  const steps = t.raw("steps") as FlowStep[];
 
   return (
     <section className="border-border relative overflow-hidden border-y bg-background">
@@ -55,14 +43,13 @@ export function HowFlow() {
             transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-surface/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              The flow
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading mt-5">
-              Open. List. Share.
+              {t("title")}
             </h2>
             <p className="text-muted-foreground mt-4 max-w-[32ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Three deliberate beats so you ship a storefront that feels
-              intentional, not improvised.
+              {t("body")}
             </p>
 
             <div className="mt-10 hidden md:block">
@@ -71,7 +58,7 @@ export function HowFlow() {
                 innerClassName="overflow-hidden rounded-[calc(1.75rem-0.375rem)] p-5"
               >
                 <p className="text-muted-foreground text-[10px] font-medium tracking-[0.18em] uppercase">
-                  Path
+                  {t("pathLabel")}
                 </p>
                 <ol className="mt-4 space-y-3">
                   {steps.map((step) => (
@@ -100,7 +87,7 @@ export function HowFlow() {
 
             <ol className="flex flex-col gap-6 md:gap-8">
               {steps.map((step, index) => {
-                const Icon = step.icon;
+                const Icon = stepIcons[index] ?? IconLink;
                 const rotate =
                   index === 0
                     ? "md:-rotate-[1.25deg]"

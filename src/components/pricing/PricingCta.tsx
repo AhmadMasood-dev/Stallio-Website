@@ -1,16 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { MarketingCta } from "@/components/marketing";
 import { routes } from "@/constants/routes";
 
 export function PricingCta() {
+  const t = useTranslations("pricing.cta");
+
   return (
     <MarketingCta
-      eyebrow="Still deciding?"
-      title="Ask us, or start a trial."
-      body="Write on the contact page, or open a shop and see the product for yourself. First month free, no card on file."
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      body={t("body")}
       secondary={{
-        label: "Contact Us",
+        label: t("secondary"),
         href: routes.contact,
       }}
     />

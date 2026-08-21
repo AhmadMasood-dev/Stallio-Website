@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { HomeHeroVisual } from "@/components/home/HomeHeroVisual";
 import {
@@ -16,10 +16,12 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { brandColors } from "@/constants/colors";
 import { routes } from "@/constants/routes";
-import { siteConfig } from "@/constants/site";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
 export function HomeHero() {
+  const t = useTranslations("home.hero");
+  const tCommon = useTranslations("common");
   const reduce = useReducedMotion();
 
   return (
@@ -64,7 +66,7 @@ export function HomeHero() {
               priority
             />
             <p className="text-foreground text-[1.75rem] font-semibold tracking-tight sm:text-3xl">
-              {siteConfig.name}
+              {tCommon("brandName")}
             </p>
           </motion.div>
 
@@ -79,8 +81,8 @@ export function HomeHero() {
               },
             }}
           >
-            One link.{" "}
-            <span className="text-brand">A real storefront.</span>
+            {t("titleBefore")}{" "}
+            <span className="text-brand">{t("titleAccent")}</span>
           </motion.h1>
 
           <motion.div
@@ -93,7 +95,7 @@ export function HomeHero() {
             }}
           >
             <TextGenerateEffect
-              words={siteConfig.heroSubtext}
+              words={t("subtext")}
               className="max-w-[34ch] text-base leading-7 sm:text-lg sm:leading-8"
               duration={0.35}
             />
@@ -117,7 +119,7 @@ export function HomeHero() {
                 className="rounded-full px-6 active:scale-[0.98]"
               >
                 <Link href={routes.signup}>
-                  Start Free
+                  {tCommon("startFree")}
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
@@ -130,7 +132,7 @@ export function HomeHero() {
                 containerClassName="h-11 w-auto min-w-[9.5rem]"
                 className="bg-brand px-6 hover:bg-[color-mix(in_srgb,var(--brand)_88%,black)]"
               >
-                Start Free
+                {tCommon("startFree")}
                 <ArrowRight className="size-4" />
               </MovingBorderButton>
             )}
@@ -141,7 +143,7 @@ export function HomeHero() {
               className="bg-background/75 rounded-full px-6 backdrop-blur-sm active:scale-[0.98]"
             >
               <a href={routes.demo} target="_blank" rel="noopener noreferrer">
-                View Demo
+                {tCommon("viewDemo")}
               </a>
             </Button>
           </motion.div>

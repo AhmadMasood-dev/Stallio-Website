@@ -2,13 +2,15 @@
 
 import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
-import { includedFeatures } from "@/constants/pricing";
 import { motionEase } from "@/lib/motion";
 
 export function PricingIncluded() {
+  const t = useTranslations("pricing.included");
   const reduce = useReducedMotion();
+  const features = t.raw("features") as string[];
 
   return (
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 md:py-32 md:pb-36">
@@ -22,15 +24,13 @@ export function PricingIncluded() {
             transition={{ duration: 0.75, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Included
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              Everything in both plans
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[36ch] text-base leading-7 sm:text-lg sm:leading-8">
-              One product, two billing rhythms. Your first month is free. We
-              remind you before the trial ends so you can pick monthly or
-              yearly, or cancel if it is not a fit.
+              {t("body")}
             </p>
           </motion.div>
 
@@ -50,7 +50,7 @@ export function PricingIncluded() {
               innerClassName="rounded-[calc(2rem-0.375rem)] p-6 sm:p-8"
             >
               <ul className="grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
-                {includedFeatures.map((item) => (
+                {features.map((item) => (
                   <li
                     key={item}
                     className="text-foreground/90 flex items-start gap-2.5 text-sm leading-6"

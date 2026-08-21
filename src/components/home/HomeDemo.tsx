@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,64 +11,69 @@ import {
   type StickyScrollItem,
 } from "@/components/ui/sticky-scroll-reveal";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
-const stickyContent: StickyScrollItem[] = [
-  {
-    title: "Browse the shelf",
-    description:
-      "Categories, variants, and sale prices in a grid buyers understand on the first tap.",
-    content: (
-      <Image
-        src="/assets/images/demo-catalog.png"
-        alt="Stallio shop catalog grid on a phone"
-        fill
-        className="object-cover object-center"
-        sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
-      />
-    ),
-  },
-  {
-    title: "Open a product",
-    description:
-      "Photos, price, and stock on one clean detail page - ready to share from bio or WhatsApp.",
-    content: (
-      <Image
-        src="/assets/images/demo-product.png"
-        alt="Stallio product detail screen on a phone"
-        fill
-        className="object-cover object-center"
-        sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
-      />
-    ),
-  },
-  {
-    title: "Check out",
-    description:
-      "Cart, coupons, and delivery fees. You mark paid and ship; payments stay between you and the buyer.",
-    content: (
-      <Image
-        src="/assets/images/demo-checkout.png"
-        alt="Stallio cart and checkout screens on phones"
-        fill
-        className="object-cover object-center"
-        sizes="(max-width: 1280px) 22rem, 26rem"
-      />
-    ),
-    mobileContent: (
-      <Image
-        src="/assets/images/demo-checkout-mobile.png"
-        alt="Stallio checkout screen on a phone"
-        fill
-        className="object-cover object-top"
-        sizes="14rem"
-      />
-    ),
-  },
-];
-
 export function HomeDemo() {
+  const t = useTranslations("home.demo");
   const reduce = useReducedMotion();
+  const items = t.raw("items") as Array<{
+    title: string;
+    description: string;
+    alt: string;
+    altMobile?: string;
+  }>;
+
+  const stickyContent: StickyScrollItem[] = [
+    {
+      title: items[0].title,
+      description: items[0].description,
+      content: (
+        <Image
+          src="/assets/images/demo-catalog.png"
+          alt={items[0].alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
+        />
+      ),
+    },
+    {
+      title: items[1].title,
+      description: items[1].description,
+      content: (
+        <Image
+          src="/assets/images/demo-product.png"
+          alt={items[1].alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 14rem, (max-width: 1280px) 22rem, 26rem"
+        />
+      ),
+    },
+    {
+      title: items[2].title,
+      description: items[2].description,
+      content: (
+        <Image
+          src="/assets/images/demo-checkout.png"
+          alt={items[2].alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 1280px) 22rem, 26rem"
+        />
+      ),
+      mobileContent: (
+        <Image
+          src="/assets/images/demo-checkout-mobile.png"
+          alt={items[2].altMobile ?? items[2].alt}
+          fill
+          className="object-cover object-top"
+          sizes="14rem"
+        />
+      ),
+    },
+  ];
 
   return (
     <section className="relative">
@@ -87,14 +92,13 @@ export function HomeDemo() {
             transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Inside the box
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              What buyers actually tap through
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[38ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Grid, product detail, cart cues: premium enough to trust, simple
-              enough to ship today.
+              {t("body")}
             </p>
           </motion.div>
 
@@ -115,7 +119,7 @@ export function HomeDemo() {
               className="group rounded-full px-5 active:scale-[0.98]"
             >
               <Link href={routes.signup} className="inline-flex items-center gap-2">
-                Open Your Shop
+                {t("openShop")}
                 <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                   <IconArrowUpRight className="size-4" stroke={1.5} />
                 </span>
@@ -128,7 +132,7 @@ export function HomeDemo() {
               className="rounded-full px-6 active:scale-[0.98]"
             >
               <a href={routes.demo} target="_blank" rel="noopener noreferrer">
-                Browse Demo
+                {t("browseDemo")}
               </a>
             </Button>
           </motion.div>
@@ -137,7 +141,7 @@ export function HomeDemo() {
         <StickyScroll content={stickyContent} />
 
         <p className="text-muted-foreground mt-6 text-sm">
-          Live example:{" "}
+          {t("liveExample")}{" "}
           <a
             href={routes.demo}
             target="_blank"

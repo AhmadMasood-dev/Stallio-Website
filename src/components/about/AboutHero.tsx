@@ -1,44 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { IconArrowUpRight } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
-import { BezelShell } from "@/components/ui/bezel-shell";
-import { Button } from "@/components/ui/button";
-import { MovingBorderButton } from "@/components/ui/moving-border";
 import {
   HeroAtmosphere,
+  StartFreeCta,
   heroBleedClassName,
 } from "@/components/marketing";
+import { BezelShell } from "@/components/ui/bezel-shell";
+import { Button } from "@/components/ui/button";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
-const storyPills = [
+const pillMeta = [
   {
     src: "/assets/images/audience-baker.jpg",
-    alt: "Baker packaging goods beside a phone storefront",
-    label: "Kitchens",
     rotateClass: "md:-rotate-[3deg]",
   },
   {
     src: "/assets/images/audience-craft.jpg",
-    alt: "Maker studio with handmade goods ready to ship",
-    label: "Studios",
     rotateClass: "md:rotate-[2.5deg]",
   },
   {
     src: "/assets/images/audience-local-shops.png",
-    alt: "Local shop counter with catalog open on a phone",
-    label: "Counters",
     rotateClass: "md:-rotate-[1.5deg]",
   },
 ] as const;
 
+type PillCopy = {
+  label: string;
+  alt: string;
+};
+
 export function AboutHero() {
+  const t = useTranslations("about");
   const reduce = useReducedMotion();
+  const pills = t.raw("hero.pills") as PillCopy[];
 
   return (
     <section className={heroBleedClassName}>
@@ -91,7 +92,7 @@ export function AboutHero() {
               },
             }}
           >
-            About us
+            {t("hero.eyebrow")}
           </motion.span>
 
           <motion.h1
@@ -105,7 +106,7 @@ export function AboutHero() {
               },
             }}
           >
-            Built for sellers who already have an audience.
+            {t("hero.title")}
           </motion.h1>
 
           <motion.p
@@ -119,9 +120,7 @@ export function AboutHero() {
               },
             }}
           >
-            Stallio is a storefront you can share in a message. No domain setup,
-            no payment gateway maze. Just a catalog, orders, and invoices that
-            stay out of your DMs.
+            {t("hero.body")}
           </motion.p>
 
           <motion.div
@@ -135,45 +134,14 @@ export function AboutHero() {
               },
             }}
           >
-            {reduce ? (
-              <Button
-                asChild
-                size="lg"
-                className="group rounded-full px-5 active:scale-[0.98]"
-              >
-                <Link
-                  href={routes.signup}
-                  className="inline-flex items-center gap-2"
-                >
-                  Start Free
-                  <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full">
-                    <IconArrowUpRight className="size-4" stroke={1.5} />
-                  </span>
-                </Link>
-              </Button>
-            ) : (
-              <MovingBorderButton
-                as={Link}
-                href={routes.signup}
-                borderRadius="9999px"
-                duration={2800}
-                containerClassName="group h-12 w-auto min-w-[10.5rem] active:scale-[0.98]"
-                className="bg-brand gap-2 px-5 hover:bg-[color-mix(in_srgb,var(--brand)_88%,black)]"
-              >
-                Start Free
-                <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
-                  <IconArrowUpRight className="size-4" stroke={1.5} />
-                </span>
-              </MovingBorderButton>
-            )}
-
+            <StartFreeCta />
             <Button
               asChild
               size="lg"
               variant="ghost"
               className="rounded-full px-5 active:scale-[0.98]"
             >
-              <Link href={routes.home}>See how it works</Link>
+              <Link href={routes.home}>{t("hero.secondary")}</Link>
             </Button>
           </motion.div>
         </motion.div>
@@ -189,39 +157,43 @@ export function AboutHero() {
           }}
         >
           <div className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:flex-col md:overflow-visible md:pb-0 md:gap-5">
-            {storyPills.map((pill, index) => (
-              <motion.div
-                key={pill.label}
-                className={`w-[78%] shrink-0 snap-center sm:w-[62%] md:w-full md:max-w-[28rem] md:shrink md:odd:ml-auto md:even:mr-auto ${reduce ? "" : pill.rotateClass}`}
-                initial={reduce ? false : { opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.75,
-                  delay: reduce ? 0 : 0.2 + index * 0.1,
-                  ease: motionEase,
-                }}
-              >
-                <BezelShell
-                  className="rounded-[1.75rem]"
-                  innerClassName="overflow-hidden rounded-[calc(1.75rem-0.375rem)]"
+            {pillMeta.map((meta, index) => {
+              const pill = pills[index];
+              if (!pill) return null;
+              return (
+                <motion.div
+                  key={`${pill.label}-${index}`}
+                  className={`w-[78%] shrink-0 snap-center sm:w-[62%] md:w-full md:max-w-[28rem] md:shrink md:odd:ml-auto md:even:mr-auto ${reduce ? "" : meta.rotateClass}`}
+                  initial={reduce ? false : { opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.75,
+                    delay: reduce ? 0 : 0.2 + index * 0.1,
+                    ease: motionEase,
+                  }}
                 >
-                  <div className="relative aspect-[16/10] w-full">
-                    <Image
-                      src={pill.src}
-                      alt={pill.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 80vw, 28rem"
-                      priority={index === 0}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                    <p className="absolute bottom-4 left-4 text-sm font-medium tracking-wide text-white">
-                      {pill.label}
-                    </p>
-                  </div>
-                </BezelShell>
-              </motion.div>
-            ))}
+                  <BezelShell
+                    className="rounded-[1.75rem]"
+                    innerClassName="overflow-hidden rounded-[calc(1.75rem-0.375rem)]"
+                  >
+                    <div className="relative aspect-[16/10] w-full">
+                      <Image
+                        src={meta.src}
+                        alt={pill.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 80vw, 28rem"
+                        priority={index === 0}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                      <p className="absolute bottom-4 left-4 text-sm font-medium tracking-wide text-white">
+                        {pill.label}
+                      </p>
+                    </div>
+                  </BezelShell>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

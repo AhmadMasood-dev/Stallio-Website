@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 
 import { StartFreeCta } from "@/components/marketing/StartFreeCta";
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
 type MarketingCtaProps = {

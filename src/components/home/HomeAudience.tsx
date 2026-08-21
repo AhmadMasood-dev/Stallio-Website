@@ -2,11 +2,18 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { motionEase } from "@/lib/motion";
 
 export function HomeAudience() {
+  const t = useTranslations("home.audience");
   const reduce = useReducedMotion();
+  const items = t.raw("items") as Array<{
+    title: string;
+    copy: string;
+    alt: string;
+  }>;
 
   return (
     <section className="relative overflow-hidden border-y border-border bg-surface dark:bg-background">
@@ -24,11 +31,10 @@ export function HomeAudience() {
           transition={{ duration: 0.65, ease: motionEase }}
         >
           <h2 className="text-foreground text-section-heading">
-            Your audience already follows you. Give them a shelf.
+            {t("title")}
           </h2>
           <p className="text-muted-foreground max-w-xl text-base leading-7 sm:text-lg sm:leading-8">
-            Built for kitchens, studios, and counters - not for teams buried in
-            enterprise dashboards.
+            {t("body")}
           </p>
         </motion.div>
 
@@ -43,7 +49,7 @@ export function HomeAudience() {
           >
             <Image
               src="/assets/images/audience-clothing.jpg"
-              alt="Clothing workspace with a phone open to a shop catalog"
+              alt={items[0].alt}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 58vw"
@@ -51,10 +57,10 @@ export function HomeAudience() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent dark:from-black/85 dark:via-black/35" />
             <div className="absolute inset-x-0 bottom-0 space-y-2 p-6 sm:p-8">
               <h3 className="text-2xl font-semibold tracking-tight text-white">
-                Social sellers
+                {items[0].title}
               </h3>
               <p className="max-w-[28ch] text-sm leading-6 text-white/80 sm:text-base">
-                Turn story taps into orders with one shareable link.
+                {items[0].copy}
               </p>
             </div>
           </motion.article>
@@ -69,7 +75,7 @@ export function HomeAudience() {
           >
             <Image
               src="/assets/images/audience-clothing-labels.png"
-              alt="Clothing label studio with garments and a phone showing the shop catalog"
+              alt={items[1].alt}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 42vw"
@@ -77,10 +83,10 @@ export function HomeAudience() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent dark:from-black/85 dark:via-black/35" />
             <div className="absolute inset-x-0 bottom-0 space-y-1.5 p-6 sm:p-7">
               <h3 className="text-xl font-semibold tracking-tight text-white">
-                Clothing labels
+                {items[1].title}
               </h3>
               <p className="max-w-[26ch] text-sm leading-6 text-white/80">
-                Drop collections to bio and WhatsApp the same day.
+                {items[1].copy}
               </p>
             </div>
           </motion.article>
@@ -95,7 +101,7 @@ export function HomeAudience() {
           >
             <Image
               src="/assets/images/product-1.jpg"
-              alt="Fresh prepared food ready for a neighborhood shop shelf"
+              alt={items[2].alt}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 42vw"
@@ -103,10 +109,10 @@ export function HomeAudience() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-black/85 dark:via-black/40" />
             <div className="absolute inset-x-0 bottom-0 space-y-1.5 p-6 sm:p-7">
               <h3 className="text-xl font-semibold tracking-tight text-white">
-                Local shops
+                {items[2].title}
               </h3>
               <p className="max-w-[26ch] text-sm leading-6 text-white/80">
-                A cleaner shelf for walk-ins who already trust you.
+                {items[2].copy}
               </p>
             </div>
           </motion.article>
@@ -121,7 +127,7 @@ export function HomeAudience() {
           >
             <Image
               src="/assets/images/audience-baker.jpg"
-              alt="Fresh pastries beside a phone showing a product catalog"
+              alt={items[3].alt}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -129,10 +135,10 @@ export function HomeAudience() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent dark:from-black/80 dark:via-black/30" />
             <div className="absolute inset-x-0 bottom-0 space-y-1.5 p-5 sm:p-6">
               <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                Home bakers
+                {items[3].title}
               </h3>
               <p className="max-w-[32ch] text-sm leading-6 text-white/80 sm:text-base">
-                Menus that look as good as the tray.
+                {items[3].copy}
               </p>
             </div>
           </motion.article>
@@ -147,7 +153,7 @@ export function HomeAudience() {
           >
             <Image
               src="/assets/images/audience-craft.jpg"
-              alt="Handmade ceramics and textiles with a shop page on a phone"
+              alt={items[4].alt}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -155,10 +161,10 @@ export function HomeAudience() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80 dark:via-black/30" />
             <div className="absolute inset-x-0 bottom-0 space-y-1.5 p-5 sm:p-6">
               <h3 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                Handmade & craft
+                {items[4].title}
               </h3>
               <p className="max-w-[28ch] text-sm leading-6 text-white/80">
-                Show texture, price, and stock without the DM ping-pong.
+                {items[4].copy}
               </p>
             </div>
           </motion.article>

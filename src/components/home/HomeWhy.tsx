@@ -9,6 +9,7 @@ import {
   IconWorldOff,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import {
@@ -19,46 +20,28 @@ import { motionEase } from "@/lib/motion";
 
 const iconProps = { stroke: 1.5, "aria-hidden": true } as const;
 
-const reasons: HoverEffectItem[] = [
-  {
-    title: "No Domain Stress",
-    description:
-      "Your link is ready on stallio.shop. No DNS, hosting, or deploy keys.",
-    icon: <IconWorldOff {...iconProps} />,
-  },
-  {
-    title: "You Collect Payment",
-    description:
-      "Add bank, link, or COD instructions. Stallio does not sit in the middle of buyer payments.",
-    icon: <IconCreditCardOff {...iconProps} />,
-  },
-  {
-    title: "Built For Thumbs",
-    description:
-      "Mobile-first storefront, cart, and checkout that feel natural on a phone.",
-    icon: <IconDeviceMobile {...iconProps} />,
-  },
-  {
-    title: "Orders In One Place",
-    description:
-      "Mark paid, ship, export CSV, without hunting through chat threads.",
-    icon: <IconPackages {...iconProps} />,
-  },
-  {
-    title: "Run Promotions",
-    description:
-      "Coupons, sale prices, and delivery fees without bolting on another tool.",
-    icon: <IconDiscount2 {...iconProps} />,
-  },
-  {
-    title: "Start Free",
-    description: "First month free, no card required. Open a shop tonight.",
-    icon: <IconLink {...iconProps} />,
-  },
-];
+const reasonIcons = [
+  <IconWorldOff key="world" {...iconProps} />,
+  <IconCreditCardOff key="card" {...iconProps} />,
+  <IconDeviceMobile key="mobile" {...iconProps} />,
+  <IconPackages key="packages" {...iconProps} />,
+  <IconDiscount2 key="discount" {...iconProps} />,
+  <IconLink key="link" {...iconProps} />,
+] as const;
 
 export function HomeWhy() {
+  const t = useTranslations("home.why");
   const reduce = useReducedMotion();
+  const items = t.raw("items") as Array<{
+    title: string;
+    description: string;
+  }>;
+
+  const reasons: HoverEffectItem[] = items.map((item, index) => ({
+    title: item.title,
+    description: item.description,
+    icon: reasonIcons[index],
+  }));
 
   return (
     <section className="relative overflow-hidden border-y border-border bg-surface dark:bg-background">
@@ -77,13 +60,13 @@ export function HomeWhy() {
             transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Why it lands
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              Sharp where money moves. Quiet everywhere else.
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[34ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Fewer tools to babysit. More time making and shipping.
+              {t("body")}
             </p>
           </motion.div>
 

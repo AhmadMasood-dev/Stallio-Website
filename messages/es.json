@@ -1,0 +1,819 @@
+{
+  "common": {
+    "startFree": "Empieza gratis",
+    "logIn": "Iniciar sesión",
+    "viewDemo": "Ver demo",
+    "viewDemoStore": "Ver tienda demo",
+    "brandName": "Stallio",
+    "language": "Idioma",
+    "switchToEnglish": "Cambiar a inglés",
+    "switchToSpanish": "Cambiar a español"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "howItWorks": "Cómo funciona",
+    "features": "Funciones",
+    "pricing": "Precios",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "blurb": "{name}, {tagline}. Comparte un solo enlace. Vende como una tienda de verdad.",
+    "siteTagline": "tu tienda online, a un enlace de distancia",
+    "product": "Producto",
+    "company": "Empresa",
+    "legal": "Legal",
+    "privacy": "Política de privacidad",
+    "terms": "Términos del servicio",
+    "refund": "Política de reembolso",
+    "rights": "© {year} {name}. Todos los derechos reservados.",
+    "closing": "Un enlace. Un escaparate real, sin estrés de dominio."
+  },
+  "metadata": {
+    "defaultTitle": "{name}, {tagline}",
+    "description": "Tu catálogo en stallio.shop/you. Sin dominio, hosting ni pasarela de pago que configurar. Los compradores piden; tú recibes un panel y facturas PDF.",
+    "home": {
+      "title": "Inicio",
+      "description": "Tu catálogo en stallio.shop/you. Los compradores piden. Tú recibes facturas y un panel."
+    },
+    "about": {
+      "title": "Nosotros",
+      "description": "Por qué existe Stallio: un escaparate para compartir, pensado para vendedores que ya tienen audiencia."
+    },
+    "features": {
+      "title": "Funciones",
+      "description": "Todo lo que necesitas para vender desde un solo enlace con Stallio: escaparate, catálogo, pedidos, facturas y herramientas de vendedor."
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "description": "Abre. Publica. Comparte. Cómo Stallio te lleva de una ruta vacía a un escaparate en vivo en tres pasos."
+    },
+    "pricing": {
+      "title": "Precios",
+      "description": "Números claros, un solo producto completo. Empieza gratis con Stallio y elige mensual o anual. El mismo escaparate, panel y herramientas en ambos casos."
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "description": "Inicia sesión en Stallio y gestiona tu tienda, productos y pedidos."
+    },
+    "signup": {
+      "title": "Crea tu tienda",
+      "description": "Empieza gratis con Stallio. Un enlace de tienda, un catálogo y un panel para productos y pedidos."
+    },
+    "forgotPassword": {
+      "title": "Olvidé mi contraseña",
+      "description": "Restablece tu contraseña de Stallio con un enlace seguro por correo."
+    }
+  },
+  "home": {
+    "hero": {
+      "titleBefore": "Un enlace.",
+      "titleAccent": "Un escaparate real.",
+      "subtext": "Tu catálogo en stallio.shop/you. Los compradores piden. Tú recibes facturas y un panel."
+    },
+    "audience": {
+      "title": "Tu audiencia ya te sigue. Dales un estante.",
+      "body": "Hecho para cocinas, estudios y mostradores, no para equipos perdidos en paneles empresariales.",
+      "items": [
+        {
+          "title": "Vendedores en redes",
+          "copy": "Convierte toques en stories en pedidos con un solo enlace para compartir.",
+          "alt": "Espacio de ropa con un teléfono abierto en el catálogo de la tienda"
+        },
+        {
+          "title": "Marcas de ropa",
+          "copy": "Publica colecciones en el bio y por WhatsApp el mismo día.",
+          "alt": "Estudio de marca de ropa con prendas y un teléfono mostrando el catálogo"
+        },
+        {
+          "title": "Tiendas locales",
+          "copy": "Un estante más claro para quienes ya confían en ti y pasan por tu local.",
+          "alt": "Comida fresca preparada lista para el estante de una tienda de barrio"
+        },
+        {
+          "title": "Reposteros caseros",
+          "copy": "Menús que se ven tan bien como la bandeja.",
+          "alt": "Pastelería fresca junto a un teléfono mostrando un catálogo de productos"
+        },
+        {
+          "title": "Hecho a mano y craft",
+          "copy": "Muestra textura, precio y stock sin el ping-pong de DMs.",
+          "alt": "Cerámica y textiles hechos a mano con una página de tienda en un teléfono"
+        }
+      ]
+    },
+    "compare": {
+      "eyebrow": "Antes y después",
+      "title": "Los DMs son ruido. Una tienda se entiende.",
+      "body": "Arrastra el control. Mira cómo el caos de vender solo por chat da paso a un estante que los compradores sí pueden recorrer.",
+      "beforeLabel": "Solo chat",
+      "afterLabel": "Con Stallio",
+      "beforeTitle": "Vender solo por chat",
+      "afterTitle": "Con Stallio",
+      "before": [
+        "Pedidos repartidos en chats",
+        "Ningún lugar único para precios y fotos",
+        "Los clientes repiten las mismas preguntas",
+        "Pagos y entrega se sienten improvisados"
+      ],
+      "after": [
+        "Un enlace: catálogo + carrito",
+        "Páginas de producto claras que puedes compartir donde sea",
+        "Menos mensajes de \"¿cuánto cuesta?\"",
+        "Un escaparate que se ve intencional"
+      ]
+    },
+    "steps": {
+      "eyebrow": "Cómo funciona",
+      "title": "Tres pasos. Ya estás en vivo.",
+      "body": "Sin servidores de prueba. Sin laberintos de temas. Recorre el flujo: abre, lista, comparte.",
+      "items": [
+        {
+          "title": "Abre tu tienda",
+          "body": "Ponle nombre, agrega lo básico y reclama tu ruta en stallio.shop.",
+          "detail": "Sin dominio, DNS ni hosting. Tu URL de escaparate está lista en cuanto terminas.",
+          "note": "Menos de cinco minutos"
+        },
+        {
+          "title": "Publica productos",
+          "body": "Fotos, precio, stock, variantes: listos para compartir.",
+          "detail": "Sube lo que ya fotografías para Instagram. Los compradores ven un estante limpio en lugar de un hilo de DMs.",
+          "note": "Sin malabares con hojas de cálculo"
+        },
+        {
+          "title": "Comparte el enlace",
+          "body": "Bio, stories, WhatsApp: un enlace en todas partes.",
+          "detail": "Comparte una vez. Marca como pagado, envía y exporta cuando empiecen a llegar los pedidos.",
+          "note": "Los pedidos llegan a tu panel"
+        }
+      ]
+    },
+    "demo": {
+      "eyebrow": "Dentro de la caja",
+      "title": "Lo que los compradores realmente tocan",
+      "body": "Cuadrícula, detalle de producto y carrito: premium para confiar, simple para lanzar hoy.",
+      "openShop": "Abre tu tienda",
+      "browseDemo": "Ver demo",
+      "liveExample": "Ejemplo en vivo:",
+      "items": [
+        {
+          "title": "Recorre el escaparate",
+          "description": "Categorías, variantes y precios de oferta en una cuadrícula que se entiende al primer toque.",
+          "alt": "Cuadrícula del catálogo Stallio en un teléfono"
+        },
+        {
+          "title": "Abre un producto",
+          "description": "Fotos, precio y stock en una ficha limpia, lista para compartir desde la bio o WhatsApp.",
+          "alt": "Pantalla de detalle de producto Stallio en un teléfono"
+        },
+        {
+          "title": "Paga el pedido",
+          "description": "Carrito, cupones y gastos de envío. Tú marcas pagado y envías; el pago queda entre tú y el comprador.",
+          "alt": "Pantallas de carrito y checkout Stallio en teléfonos",
+          "altMobile": "Pantalla de checkout Stallio en un teléfono"
+        }
+      ]
+    },
+    "toolkit": {
+      "eyebrow": "Qué incluye",
+      "title": "Un plan. El kit completo del vendedor.",
+      "body": "Todo lo de abajo forma parte de Stallio, no son extras. Empieza gratis y elige mensual o anual cuando estés listo.",
+      "cta": "Empieza gratis",
+      "items": [
+        {
+          "title": "Enlace de tienda alojado",
+          "description": "Tu URL de stallio.shop está lista desde el día uno. Sin configurar dominio."
+        },
+        {
+          "title": "Catálogo ilimitado",
+          "description": "Productos, fotos y pedidos sin límites duros en el plan."
+        },
+        {
+          "title": "Checkout móvil",
+          "description": "Escaparate, carrito y checkout pensados para el pulgar, no para el escritorio."
+        },
+        {
+          "title": "Variantes y stock",
+          "description": "Tallas, colores, precios de oferta e inventario en una sola vista de estante."
+        },
+        {
+          "title": "Nosotros y Contacto",
+          "description": "Páginas de confianza que vienen con la tienda. Edita, publica y listo."
+        },
+        {
+          "title": "Cupones y envío",
+          "description": "Códigos promo y costos de envío sin impuestos de plugins aparte."
+        },
+        {
+          "title": "Facturas PDF",
+          "description": "Una factura limpia por cada pedido, lista para enviar o imprimir."
+        },
+        {
+          "title": "Operaciones de fulfillment",
+          "description": "Marca pagado, envía y exporta CSV cuando la contabilidad lo pida."
+        },
+        {
+          "title": "EN, ES y AR",
+          "description": "Tienda y panel en tres idiomas, incluido árabe RTL."
+        },
+        {
+          "title": "Gráficos de ingresos",
+          "description": "Pedidos e ingresos de un vistazo. Suficiente señal, no un suite de BI."
+        },
+        {
+          "title": "Mensajes de compradores",
+          "description": "Chat de soporte para que las preguntas queden junto al pedido, no en los DMs."
+        },
+        {
+          "title": "Primer mes gratis",
+          "description": "Sin tarjeta para empezar. Elige mensual o anual cuando estés listo."
+        }
+      ]
+    },
+    "why": {
+      "eyebrow": "Por qué funciona",
+      "title": "Nítido donde se mueve el dinero. Tranquilo en todo lo demás.",
+      "body": "Menos herramientas que cuidar. Más tiempo para crear y enviar.",
+      "items": [
+        {
+          "title": "Sin estrés de dominio",
+          "description": "Tu enlace está listo en stallio.shop. Sin DNS, hosting ni claves de deploy."
+        },
+        {
+          "title": "Tú cobras",
+          "description": "Agrega banco, enlace o instrucciones COD. Stallio no se interpone en los pagos del comprador."
+        },
+        {
+          "title": "Hecho para el pulgar",
+          "description": "Escaparate, carrito y checkout mobile-first que se sienten naturales en el teléfono."
+        },
+        {
+          "title": "Pedidos en un solo lugar",
+          "description": "Marca pagado, envía, exporta CSV, sin buscar en hilos de chat."
+        },
+        {
+          "title": "Lanza promociones",
+          "description": "Cupones, precios de oferta y costos de envío sin enganchar otra herramienta."
+        },
+        {
+          "title": "Empieza gratis",
+          "description": "Primer mes gratis, sin tarjeta. Abre una tienda esta noche."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Listo cuando tú lo estés",
+      "title": "Listo cuando tú lo estés",
+      "body": "Levanta una tienda en minutos. Comparte el enlace esta noche. Despierta con pedidos que no desaparecieron en tu bandeja."
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Sobre nosotros",
+      "title": "Hecho para vendedores que ya tienen audiencia.",
+      "body": "Stallio es un escaparate que puedes compartir en un mensaje. Sin configurar dominio, sin laberinto de pasarelas de pago. Solo un catálogo, pedidos y facturas que no viven en tus DMs.",
+      "secondary": "Ver cómo funciona",
+      "pills": [
+        {
+          "label": "Cocinas",
+          "alt": "Repostero empacando pedidos junto a un escaparate en el teléfono"
+        },
+        {
+          "label": "Estudios",
+          "alt": "Estudio de maker con piezas hechas a mano listas para enviar"
+        },
+        {
+          "label": "Mostradores",
+          "alt": "Mostrador de tienda local con el catálogo abierto en un teléfono"
+        }
+      ]
+    },
+    "story": {
+      "eyebrow": "Por qué lo construimos",
+      "title": "Vender no debería significar vivir en tu bandeja.",
+      "body": "Veíamos a makers, reposteros y tiendas locales tomar pedidos a la antigua: capturas, notas de voz, caos de hojas de cálculo. Ya tenían clientes. Lo que necesitaban era un estante con enlace, no otra pila empresarial.",
+      "pull": "Un enlace. Un escaparate real. Pedidos que no desaparecen en el historial del chat.",
+      "closingBefore": "Stallio vive en",
+      "closingPath": "stallio.shop/you",
+      "closingAfter": ". Tú configuras productos, compartes el enlace y gestionas el fulfillment desde un panel, mientras los compradores te pagan directamente.",
+      "altWorkspace": "Espacio de ropa con un teléfono abierto en el catálogo de la tienda",
+      "altCatalog": "Pantalla del catálogo de Stallio en un teléfono"
+    },
+    "principles": {
+      "eyebrow": "En lo que creemos",
+      "title": "Algunas reglas que no doblamos.",
+      "body": "No son eslóganes. Son las restricciones que mantienen Stallio pequeño, rápido y útil para vendedores en solitario.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Compartible por defecto",
+          "description": "Si no cabe en una story, un DM o un mensaje de WhatsApp, no está terminado. Tu tienda es un enlace, no un plan de proyecto."
+        },
+        {
+          "number": "02",
+          "title": "Tú controlas el dinero",
+          "description": "Transferencia bancaria, enlace de pago o contra entrega. Stallio no se inserta entre tú y tu comprador."
+        },
+        {
+          "number": "03",
+          "title": "Primero el pulgar, siempre",
+          "description": "La mayoría de tus compradores nunca abrirán una laptop. Catálogo, carrito y checkout están pensados para una sola mano."
+        },
+        {
+          "number": "04",
+          "title": "Herramientas tranquilas, pedidos claros",
+          "description": "Facturas, estado y un panel que no grita. Estructura suficiente para enviar, no tanta como para ahogarte."
+        }
+      ]
+    },
+    "for": {
+      "eyebrow": "Para quién es",
+      "title": "Si ya vendes en conversación, tú eres el cliente.",
+      "body": "Stallio no es para equipos de almacén. Es para quienes envían desde una cocina, un estudio o un mostrador a la calle.",
+      "items": [
+        {
+          "title": "Vendedores en redes",
+          "copy": "Convierte toques en stories en pedidos sin mandar otra lista de precios.",
+          "alt": "Espacio de ropa con un teléfono abierto en el catálogo de la tienda"
+        },
+        {
+          "title": "Reposteros caseros",
+          "copy": "Un catálogo que los compradores pueden recorrer mientras terminas el siguiente lote.",
+          "alt": "Repostero empacando pedidos junto a un escaparate en el teléfono"
+        },
+        {
+          "title": "Makers y craft",
+          "copy": "Muestra tu trabajo con claridad. Toma pedidos sin ahogarte en DMs.",
+          "alt": "Estudio de maker con piezas hechas a mano listas para enviar"
+        },
+        {
+          "title": "Tiendas locales",
+          "copy": "Lleva el mostrador online. Los mismos pagos, pedidos más claros.",
+          "alt": "Comida fresca preparada lista para el estante de una tienda local"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Siguiente paso",
+      "title": "Pon tu catálogo en un enlace esta noche.",
+      "body": "Gratis para empezar. Comparte stallio.shop/you cuando estés listo. Sin papeleo de dominio.",
+      "secondary": "Háblanos"
+    }
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "Funciones",
+      "titleBefore": "Todo lo que necesitas",
+      "titleAccent": "para vender desde un solo enlace.",
+      "body": "Escaparate, panel y herramientas de vendedor en un solo lugar: enlace alojado, catálogo y pedidos ilimitados, sin pasarela de pago del comprador.",
+      "secondary": "Ver cómo funciona",
+      "bullets": [
+        "Enlace stallio.shop, sin comprar dominio",
+        "Productos, fotos y pedidos ilimitados",
+        "Facturas PDF y exportación de pedidos",
+        "Cupones, costos de envío y COD en el checkout"
+      ],
+      "alts": {
+        "catalog": "Panel del catálogo de Stallio",
+        "product": "Página de producto móvil en Stallio",
+        "checkout": "Checkout móvil en Stallio"
+      }
+    },
+    "bento": {
+      "eyebrow": "Núcleo",
+      "title": "Las piezas que sienten compradores y vendedores.",
+      "items": [
+        {
+          "title": "Enlace de tienda personalizado",
+          "body": "Una ruta para bio, WhatsApp, stories y QR. Copia y pega; nosotros alojamos la tienda."
+        },
+        {
+          "title": "Catálogo de productos",
+          "body": "Productos e imágenes ilimitados. Variantes, precios de oferta, stock, y ocultar/mostrar sin borrar.",
+          "badge": "Un estante"
+        },
+        {
+          "title": "Panel de pedidos",
+          "body": "Cada pedido en una bandeja. Busca, filtra, marca pagado, define el estado de entrega, agrega tracking.",
+          "badge": "Fulfillment"
+        },
+        {
+          "title": "Escaparate mobile-first",
+          "body": "Cuadrícula, páginas de producto y checkout afinados para el pulgar, donde están tus compradores.",
+          "badge": "Listo para el pulgar"
+        }
+      ]
+    },
+    "loop": {
+      "eyebrow": "Ritmo diario",
+      "title": "Actualiza una vez. Vende en todas partes.",
+      "items": [
+        {
+          "title": "Pedidos con estado de pago y entrega",
+          "body": "Cada pedido llega a una sola bandeja. Marca pagado, define la entrega y sigue."
+        },
+        {
+          "title": "Productos con variantes, ofertas y stock",
+          "body": "Actualiza el estante una vez. Stories, bio y chats apuntan al mismo catálogo."
+        },
+        {
+          "title": "Cupones y envío en el checkout",
+          "body": "Códigos promo y costos de envío viven en el flujo que los compradores ya usan."
+        },
+        {
+          "title": "Factura PDF lista para enviar",
+          "body": "Una factura limpia por cada pedido, lista para reenviar o imprimir."
+        }
+      ]
+    },
+    "spotlight": {
+      "eyebrow": "Tu cara pública",
+      "title": "Un escaparate que se ve intencional desde el día uno.",
+      "body": "Comparte un solo enlace. Los compradores llegan a una tienda real, no a un hilo de capturas.",
+      "points": [
+        "Alojado en stallio.shop/yourname",
+        "Escaparate en inglés, español o árabe",
+        "Páginas de Nosotros, Contacto e Inicio incluidas"
+      ],
+      "altWorkspace": "Escaparate en el teléfono abierto junto a un espacio de ropa",
+      "altCatalog": "Catálogo móvil de Stallio"
+    },
+    "tools": {
+      "eyebrow": "Herramientas de vendedor",
+      "title": "Los extras discretos que mantienen los pedidos en movimiento.",
+      "items": [
+        {
+          "title": "Cupones y promociones",
+          "description": "Códigos de porcentaje o monto fijo, con vencimiento opcional. Los compradores los aplican en el checkout."
+        },
+        {
+          "title": "Facturas PDF",
+          "description": "Descarga una factura profesional por pedido para enviar por WhatsApp o correo."
+        },
+        {
+          "title": "Envío y COD",
+          "description": "Envío fijo o gratis por encima de un mínimo, texto de ETA, notas en checkout y pago contra entrega."
+        },
+        {
+          "title": "Categorías y páginas",
+          "description": "Agrupa productos, hero personalizado en inicio, líneas de confianza, reseñas, más Nosotros y Contacto."
+        },
+        {
+          "title": "Tú controlas el pago",
+          "description": "Dile a los compradores cómo pagar: banco, enlace o COD. Stallio rastrea el pedido; tú confirmas el dinero."
+        },
+        {
+          "title": "Resumen de ingresos",
+          "description": "Gráficos y totales de pedidos pagados de hoy, de la semana o de un rango personalizado."
+        },
+        {
+          "title": "Mensajes de compradores",
+          "description": "Los envíos del formulario de contacto llegan a tu bandeja para que nada quede solo en Instagram."
+        },
+        {
+          "title": "Soporte al vendedor",
+          "description": "Chatea con el equipo de Stallio desde tu panel cuando necesites una mano."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Pruébalo",
+      "title": "Míralo en un escaparate real.",
+      "body": "Levanta tu tienda en minutos, o mira la demo primero. Sin tarjeta en archivo.",
+      "secondary": "Ver tienda demo"
+    }
+  },
+  "howItWorks": {
+    "hero": {
+      "eyebrow": "Cómo funciona",
+      "titleBefore": "Tres pasos.",
+      "titleAccent": "Un enlace nítido.",
+      "body": "Abre tu tienda, carga tu catálogo y pega la misma URL donde tus compradores ya te encuentran. Hecho para el pulgar, no para tickets de IT.",
+      "metaFast": "~5 min primer borrador",
+      "metaMobile": "Mobile first",
+      "journey": [
+        {
+          "n": "01",
+          "label": "Nombre + URL",
+          "detail": "Reclama tu ruta",
+          "alt": "Pantalla del catálogo de Stallio en un teléfono"
+        },
+        {
+          "n": "02",
+          "label": "Agrega productos",
+          "detail": "Fotos y precios",
+          "alt": "Fotografía de producto lista para un listado del catálogo"
+        },
+        {
+          "n": "03",
+          "label": "Comparte el enlace",
+          "detail": "Bio, Stories, Chat",
+          "alt": "Pantalla de checkout móvil en Stallio"
+        }
+      ]
+    },
+    "flow": {
+      "eyebrow": "El flujo",
+      "title": "Abre. Publica. Comparte.",
+      "body": "Tres tiempos deliberados para publicar un escaparate que se sienta intencional, no improvisado.",
+      "pathLabel": "Ruta",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Crea tu tienda",
+          "body": "Regístrate, nombra tu tienda, elige tu URL. Obtienes un enlace en vivo que puedes pegar donde sea.",
+          "note": "Sin DNS. Sin deploy."
+        },
+        {
+          "n": "02",
+          "title": "Agrega tus productos",
+          "body": "Fotos, precios, descripciones cortas. Un catálogo que puedes refinar cuando quieras.",
+          "note": "Claridad, no caos"
+        },
+        {
+          "n": "03",
+          "title": "Comparte y toma pedidos",
+          "body": "El mismo enlace en bio, stories y chats. Los compradores navegan en el teléfono. Tú haces seguimiento en un solo panel.",
+          "note": "Los pedidos llegan aquí"
+        }
+      ]
+    },
+    "steps": {
+      "eyebrow": "Paso a paso",
+      "title": "De una ruta vacía a un estante en vivo.",
+      "details": [
+        {
+          "n": "01",
+          "title": "Crea tu tienda",
+          "body": "Regístrate, nombra tu tienda, elige tu URL. Obtienes un enlace en vivo que puedes pegar donde sea. Sin DNS, sin deploy, sin drama.",
+          "checks": [
+            "Crea tu cuenta",
+            "Agrega el nombre y los detalles de la tienda",
+            "Obtén tu enlace (stallio.shop/you)"
+          ],
+          "alt": "Repostero empacando pedidos junto a un escaparate en el teléfono"
+        },
+        {
+          "n": "02",
+          "title": "Agrega tus productos",
+          "body": "Fotos, precios, descripciones cortas. Un catálogo que puedes refinar cuando quieras. Los compradores ven claridad, no caos.",
+          "checks": [
+            "Agrega fotos de producto",
+            "Define precios y descripciones",
+            "Mantén un catálogo organizado"
+          ],
+          "alt": "Estudio de maker con piezas hechas a mano listas para enviar"
+        },
+        {
+          "n": "03",
+          "title": "Comparte y toma pedidos",
+          "body": "El mismo enlace en bio, stories y chats. Ellos navegan en el teléfono. Tú haces seguimiento de todo en tu panel.",
+          "checks": [
+            "Pon el enlace en tu perfil o bio",
+            "Comparte en chat o publicaciones",
+            "Sigue los pedidos en un solo lugar"
+          ],
+          "alt": "Espacio de ropa con un teléfono abierto en el catálogo de la tienda"
+        }
+      ]
+    },
+    "channels": {
+      "titleBefore": "El mismo enlace",
+      "titleMid": "Cada canal",
+      "titleAfter": "Escaparate real",
+      "items": [
+        "Bio",
+        "Stories",
+        "WhatsApp",
+        "Chat"
+      ]
+    },
+    "live": {
+      "eyebrow": "Cuando estás en vivo",
+      "title": "Los compradores ven pulido. Tú ves control.",
+      "body": "Un escaparate rápido por fuera. Un panel tranquilo por dentro.",
+      "dashboardTitle": "Centro de mando",
+      "dashboardBody": "Pedidos, productos y solicitudes en una sola vista. Actualiza stock entre entregas sin abrir diez apps.",
+      "dashboardPoints": [
+        "Marca pagado, envía y descarga facturas PDF",
+        "Cupones, envío y stock en un solo lugar",
+        "Exporta pedidos o agrega un pedido manual por teléfono"
+      ],
+      "phoneTitle": "Amigable al pulgar",
+      "phoneBody": "Categorías, carrito, cupones y checkout en el teléfono. Los compradores pueden cambiar entre inglés, español o árabe en tu tienda.",
+      "phoneChips": [
+        "Cupones",
+        "Facturas",
+        "EN / ES / AR"
+      ],
+      "altDashboard": "Vista del catálogo de vendedor en Stallio",
+      "altPhone": "Detalle de producto móvil en un escaparate de Stallio"
+    },
+    "cta": {
+      "eyebrow": "Listo",
+      "title": "Publica el enlace esta noche.",
+      "body": "Gratis para empezar. Sin tarjeta en archivo. Si te encaja, sigue vendiendo desde la misma URL mañana.",
+      "secondary": "Explorar funciones"
+    }
+  },
+  "pricing": {
+    "hero": {
+      "eyebrow": "Precios",
+      "titleBefore": "Números claros.",
+      "titleAccent": "Un producto completo.",
+      "body": "Un mes de nuestra parte, luego elige mensual o anual. Las mismas funciones en ambos casos: escaparate, panel y herramientas incluidos.",
+      "fromPrice": "Desde {price}/mes después de la prueba",
+      "noCard": "Sin tarjeta para empezar",
+      "whatYouGet": "Qué obtienes",
+      "chooseBilling": "Elige facturación",
+      "previewNote": "Previsualiza montos locales por país abajo. Las suscripciones se cobran en dólares estadounidenses.",
+      "monthly": {
+        "label": "Mensual",
+        "note": "Flexible. Cancela cuando quieras.",
+        "price": "{price}/mes"
+      },
+      "yearly": {
+        "label": "Anual",
+        "note": "Dos meses gratis vs mensual.",
+        "price": "{price}/año"
+      }
+    },
+    "plans": {
+      "eyebrow": "Elige facturación",
+      "title": "Mensual o anual, tú eliges",
+      "body": "Previsualiza montos locales por país. Las suscripciones se cobran en dólares estadounidenses.",
+      "yourCountry": "Tu país",
+      "approxNote": "Monto local aproximado. Las suscripciones se cobran en USD.",
+      "billingCycle": "Ciclo de facturación",
+      "afterTrial": "Después de la prueba",
+      "aboutLocal": "aprox. {amount}{cadence}",
+      "save": "Ahorra {amount}",
+      "highlights": [
+        "Escaparate y panel completos",
+        "Productos y pedidos ilimitados",
+        "Las mismas herramientas en ambos planes"
+      ],
+      "monthly": {
+        "label": "Mensual",
+        "cadence": "/mes",
+        "blurb": "Facturación flexible. Cancela cuando quieras desde tu cuenta.",
+        "cta": "Empezar mensual"
+      },
+      "yearly": {
+        "label": "Anual",
+        "cadence": "/año",
+        "blurb": "Paga una vez al año. Ideal si estás comprometido a hacer crecer tu tienda.",
+        "cta": "Empezar anual"
+      }
+    },
+    "included": {
+      "eyebrow": "Incluido",
+      "title": "Todo en ambos planes",
+      "body": "Un producto, dos ritmos de facturación. Tu primer mes es gratis. Te recordamos antes de que termine la prueba para que elijas mensual o anual, o canceles si no encaja.",
+      "features": [
+        "Enlace alojado en stallio.shop (sin dominio)",
+        "Productos, fotos y pedidos ilimitados",
+        "Escaparate, carrito y checkout móvil",
+        "Variantes, precios de oferta y stock",
+        "Páginas de Nosotros y Contacto",
+        "Cupones y costos de envío",
+        "Factura PDF por pedido",
+        "Marca pagado, envía y exporta CSV",
+        "Tienda y panel en EN, ES y AR",
+        "Gráficos de ingresos y pedidos",
+        "Mensajes de compradores y chat de soporte",
+        "Primer mes gratis, sin tarjeta"
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Preguntas de precios, respondidas",
+      "body": "Respuestas rápidas sobre pruebas, facturación y qué pasa cuando te suscribes.",
+      "items": [
+        {
+          "q": "¿Necesito mi propio dominio o hosting?",
+          "a": "No. Tu tienda vive en stallio.shop/your-username. Comparte ese enlace en todas partes; nosotros alojamos el escaparate y el panel."
+        },
+        {
+          "q": "¿Stallio procesa los pagos de mis clientes?",
+          "a": "No. Tú les dices cómo pagar (transferencia bancaria, enlace de pago, contra entrega, etc.). Stallio maneja el pedido, la factura PDF y el estado pagado o pendiente; tú confirmas cuando llega el dinero."
+        },
+        {
+          "q": "¿Los productos y pedidos son ilimitados?",
+          "a": "Sí. Tanto el plan mensual como el anual incluyen productos, imágenes de producto y pedidos ilimitados. El mismo conjunto completo de funciones en cualquiera de los dos."
+        },
+        {
+          "q": "¿Necesito una tarjeta para empezar?",
+          "a": "No. Puedes explorar Stallio sin poner una tarjeta en archivo. Cuando elijas un plan de pago, agregarás los datos a través de nuestro checkout seguro."
+        },
+        {
+          "q": "¿Qué pasa después de la prueba gratis?",
+          "a": "Te recordamos antes de que termine la prueba. Puedes elegir facturación mensual o anual, o cancelar si no encaja. Hasta que te suscribas, no se te cobran cuotas de suscripción."
+        },
+        {
+          "q": "¿Los precios están en dólares estadounidenses?",
+          "a": "Las suscripciones se facturan en USD. El selector de país en esta página muestra montos locales aproximados para planificar; tu banco puede aplicar su propio tipo de cambio o comisiones."
+        },
+        {
+          "q": "¿Puedo cancelar en cualquier momento?",
+          "a": "Sí en los planes mensuales. Cancela desde tu cuenta y no se te cobrará por meses futuros. Los planes anuales se pagan por adelantado por el período; consulta los Términos para detalles sobre reembolsos si los ofrecemos."
+        },
+        {
+          "q": "¿Ambos planes incluyen las mismas funciones?",
+          "a": "Sí. Mensual y anual incluyen el mismo escaparate, panel y herramientas. El anual tiene descuento porque te comprometes por un año completo."
+        },
+        {
+          "q": "¿Con quién contacto sobre facturación?",
+          "a": "Usa la página de Contacto y elige un asunto relacionado con facturación. Incluye el correo de tu tienda para que encontremos tu cuenta rápido."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "¿Aún lo estás pensando?",
+      "title": "Pregúntanos, o empieza una prueba.",
+      "body": "Escríbenos en la página de contacto, o abre una tienda y conoce el producto por ti mismo. Primer mes gratis, sin tarjeta en archivo.",
+      "secondary": "Contáctanos"
+    }
+  },
+  "auth": {
+    "shell": {
+      "asideTagline": "{name}, {tagline}."
+    },
+    "login": {
+      "eyebrow": "Bienvenido de nuevo",
+      "title": "Iniciar sesión",
+      "description": "Abre tu panel, actualiza el catálogo y mantén los pedidos en movimiento desde un solo lugar.",
+      "email": "Correo",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Tu contraseña",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "newTo": "¿Nuevo en Stallio?",
+      "emailRequired": "El correo es obligatorio.",
+      "emailInvalid": "Ingresa una dirección de correo válida.",
+      "passwordRequired": "La contraseña es obligatoria.",
+      "stubSuccess": "Aún no hay API de auth en vivo. Tu formulario es válido y está listo para conectar."
+    },
+    "signup": {
+      "eyebrow": "Empieza",
+      "title": "Crea tu tienda",
+      "description": "Dos pasos rápidos. Prueba gratis, un enlace de tienda y un panel para productos y pedidos.",
+      "stepAccount": "Cuenta",
+      "stepShop": "Tienda",
+      "email": "Correo",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "password": "Contraseña (mín. 8)",
+      "passwordPlaceholder": "Crea una contraseña segura",
+      "confirmPassword": "Confirmar contraseña",
+      "confirmPlaceholder": "Repite la contraseña",
+      "shopName": "Nombre de la tienda",
+      "shopNamePlaceholder": "Mi Tienda Genial",
+      "storeUrl": "URL de la tienda",
+      "usernamePlaceholder": "mitienda",
+      "country": "País",
+      "currency": "Moneda",
+      "logo": "Logo de la tienda",
+      "optional": "Opcional",
+      "chooseLogo": "Elegir logo",
+      "continue": "Continuar",
+      "back": "Atrás",
+      "submit": "Crear tienda",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Iniciar sesión",
+      "emailRequired": "El correo es obligatorio.",
+      "emailInvalid": "Ingresa una dirección de correo válida.",
+      "shopRequired": "El nombre de la tienda es obligatorio.",
+      "urlRequired": "La URL de la tienda es obligatoria.",
+      "urlInvalid": "Usa al menos 3 caracteres: letras, números, guiones bajos o guiones.",
+      "passwordRequired": "La contraseña es obligatoria.",
+      "passwordShort": "La contraseña debe tener al menos 8 caracteres.",
+      "confirmRequired": "Confirma tu contraseña.",
+      "passwordMismatch": "Las contraseñas no coinciden.",
+      "countryRequired": "Selecciona un país.",
+      "currencyRequired": "Selecciona una moneda.",
+      "fixError": "Revisa los campos marcados e inténtalo de nuevo.",
+      "stubSuccess": "Aún no hay API de auth en vivo. Los datos de tu tienda se ven bien y están listos para conectar.",
+      "legalBefore": "Al continuar, aceptas los",
+      "legalMid": "y la",
+      "legalAfter": " de {name}."
+    },
+    "forgot": {
+      "eyebrow": "Restablecer contraseña",
+      "title": "Olvidé mi contraseña",
+      "description": "Ingresa el correo de tu cuenta. Te enviaremos un enlace para elegir una nueva contraseña.",
+      "email": "Correo",
+      "submit": "Enviar enlace de restablecimiento",
+      "hint": "Enviaremos un enlace de restablecimiento si ese correo tiene una tienda.",
+      "sent": "Si existe una cuenta para {email}, un enlace de restablecimiento estará listo para enviarse cuando se conecte el envío de correos.",
+      "back": "Volver a iniciar sesión",
+      "backAlt": "Volver a iniciar sesión",
+      "emailRequired": "El correo es obligatorio.",
+      "emailInvalid": "Ingresa una dirección de correo válida."
+    },
+    "password": {
+      "show": "Mostrar contraseña",
+      "hide": "Ocultar contraseña"
+    }
+  }
+}

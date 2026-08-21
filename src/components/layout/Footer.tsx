@@ -1,24 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { IconArrowUpRight, IconMail } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { routes } from "@/constants/routes";
-import { footerLinks, siteConfig } from "@/constants/site";
+import { siteConfig } from "@/constants/site";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
-const linkGroups = [
-  { title: "Product", items: footerLinks.product },
-  { title: "Company", items: footerLinks.company },
-  { title: "Legal", items: footerLinks.legal },
-] as const;
-
 export function Footer() {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const reduce = useReducedMotion();
   const year = new Date().getFullYear();
+
+  const linkGroups = [
+    {
+      title: t("product"),
+      items: [
+        { label: tNav("home"), href: routes.home },
+        { label: tNav("features"), href: routes.features },
+        { label: tNav("pricing"), href: routes.pricing },
+        { label: tNav("howItWorks"), href: routes.howItWorks },
+      ],
+    },
+    {
+      title: t("company"),
+      items: [
+        { label: tNav("about"), href: routes.about },
+        { label: tNav("contact"), href: routes.contact },
+        { label: tCommon("logIn"), href: routes.login },
+      ],
+    },
+    {
+      title: t("legal"),
+      items: [
+        { label: t("privacy"), href: routes.privacy },
+        { label: t("terms"), href: routes.terms },
+        { label: t("refund"), href: routes.refund },
+      ],
+    },
+  ] as const;
 
   return (
     <footer className="border-border relative mt-auto overflow-hidden border-t">
@@ -57,8 +83,10 @@ export function Footer() {
             </Link>
 
             <p className="text-muted-foreground max-w-[32ch] text-sm leading-7 md:text-base md:leading-8">
-              {siteConfig.name}, {siteConfig.tagline}. Share one link. Sell like
-              a real shop.
+              {t("blurb", {
+                name: siteConfig.name,
+                tagline: t("siteTagline"),
+              })}
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -71,7 +99,7 @@ export function Footer() {
                   href={routes.signup}
                   className="inline-flex items-center gap-2"
                 >
-                  Start Free
+                  {tCommon("startFree")}
                   <span className="bg-background/15 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                     <IconArrowUpRight className="size-4" stroke={1.5} />
                   </span>
@@ -145,10 +173,10 @@ export function Footer() {
 
         <div className="border-border/60 text-muted-foreground mt-6 flex flex-col gap-3 border-t pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {siteConfig.name}. All rights reserved.
+            {t("rights", { year, name: siteConfig.name })}
           </p>
           <p className="max-w-[42ch] text-xs leading-5 sm:text-right">
-            One link. A real storefront, no domain stress.
+            {t("closing")}
           </p>
         </div>
       </div>

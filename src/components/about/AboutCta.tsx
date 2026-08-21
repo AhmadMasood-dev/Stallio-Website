@@ -1,15 +1,19 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { MarketingCta } from "@/components/marketing";
 import { routes } from "@/constants/routes";
 
 export function AboutCta() {
+  const t = useTranslations("about");
+
   return (
     <MarketingCta
-      eyebrow="Next step"
-      title="Put your catalog on a link tonight."
-      body="Free to start. Share stallio.shop/you when you are ready. No domain paperwork required."
-      secondary={{ label: "Talk to us", href: routes.contact }}
+      eyebrow={t("cta.eyebrow")}
+      title={t("cta.title")}
+      body={t("cta.body")}
+      secondary={{ label: t("cta.secondary"), href: routes.contact }}
     />
   );
 }

@@ -3,28 +3,18 @@
 import type { ReactNode } from "react";
 import { IconMessageCircle, IconShoppingBag } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Compare } from "@/components/ui/compare";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const chatOnly = [
-  "Orders scattered across chats",
-  "No single place for prices and photos",
-  "Customers ask the same questions on repeat",
-  "Payments and delivery feel improvised",
-] as const;
-
-const withStallio = [
-  "One link: catalog + cart",
-  "Clear product pages you can share anywhere",
-  "Fewer “how much?” messages",
-  "A storefront that looks intentional",
-] as const;
-
 export function HomeCompare() {
+  const t = useTranslations("home.compare");
   const reduce = useReducedMotion();
+  const before = t.raw("before") as string[];
+  const after = t.raw("after") as string[];
 
   return (
     <section className="relative overflow-hidden">
@@ -43,14 +33,13 @@ export function HomeCompare() {
             transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase backdrop-blur-sm">
-              Before & after
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              DMs are loud. A store is legible.
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[36ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Drag the handle. Watch the chaos of chat-only selling give way to
-              a shelf buyers can actually browse.
+              {t("body")}
             </p>
           </motion.div>
 
@@ -71,10 +60,10 @@ export function HomeCompare() {
             >
               <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between p-4 sm:p-5">
                 <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase backdrop-blur-sm">
-                  Chat-only
+                  {t("beforeLabel")}
                 </span>
                 <span className="bg-brand/90 rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white uppercase">
-                  With Stallio
+                  {t("afterLabel")}
                 </span>
               </div>
 
@@ -97,15 +86,15 @@ export function HomeCompare() {
           <ComparePanel
             tone="muted"
             icon={<IconMessageCircle className="size-4" stroke={1.5} />}
-            title="Chat-only selling"
-            items={chatOnly}
+            title={t("beforeTitle")}
+            items={before}
             delay={0.1}
           />
           <ComparePanel
             tone="brand"
             icon={<IconShoppingBag className="size-4" stroke={1.5} />}
-            title="With Stallio"
-            items={withStallio}
+            title={t("afterTitle")}
+            items={after}
             delay={0.16}
           />
         </div>

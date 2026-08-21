@@ -3,18 +3,15 @@
 import Image from "next/image";
 import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { motionEase } from "@/lib/motion";
 
-const checks = [
-  "Hosted on stallio.shop/yourname",
-  "English, Spanish, or Arabic storefront",
-  "About, contact, and home page included",
-] as const;
-
 export function FeaturesSpotlight() {
+  const t = useTranslations("features");
   const reduce = useReducedMotion();
+  const points = t.raw("spotlight.points") as string[];
 
   return (
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 md:py-32 md:pb-36">
@@ -27,18 +24,16 @@ export function FeaturesSpotlight() {
           transition={{ duration: 0.8, ease: motionEase }}
         >
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-            Storefront
+            {t("spotlight.eyebrow")}
           </span>
           <h2 className="text-foreground mt-5 text-section-heading">
-            A storefront, not a science project.
+            {t("spotlight.title")}
           </h2>
           <p className="text-muted-foreground mt-5 max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">
-            Buyers browse categories, pick variants, apply coupons, and place
-            orders on their phone. Share one link tonight with no hosting bill,
-            custom domain, or deploy keys.
+            {t("spotlight.body")}
           </p>
           <ul className="mt-7 space-y-3">
-            {checks.map((item) => (
+            {points.map((item) => (
               <li
                 key={item}
                 className="text-foreground/90 flex items-start gap-3 text-sm leading-6 sm:text-base"
@@ -70,7 +65,7 @@ export function FeaturesSpotlight() {
             <div className="relative aspect-[5/4] w-full">
               <Image
                 src="/assets/images/audience-clothing.jpg"
-                alt="Phone storefront open beside a clothing workspace"
+                alt={t("spotlight.altWorkspace")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 55vw"
@@ -85,7 +80,7 @@ export function FeaturesSpotlight() {
             <div className="relative aspect-[9/16] w-full">
               <Image
                 src="/assets/images/demo-catalog.png"
-                alt="Stallio mobile catalog"
+                alt={t("spotlight.altCatalog")}
                 fill
                 className="object-cover object-top"
                 sizes="14rem"

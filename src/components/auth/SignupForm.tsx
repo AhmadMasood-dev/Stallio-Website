@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import {
@@ -25,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { routes } from "@/constants/routes";
 import { siteConfig } from "@/constants/site";
+import { Link, useRouter } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +62,8 @@ const shopKeys: (keyof FormState)[] = [
 ];
 
 export function SignupForm() {
+  const t = useTranslations("auth.signup");
+  const tFooter = useTranslations("footer");
   const reduce = useReducedMotion();
   const router = useRouter();
   const [step, setStep] = useState<Step>(0);
@@ -90,35 +92,33 @@ export function SignupForm() {
 
   function validate(next: FormState = form) {
     const nextErrors: FieldErrors = {};
-    if (!next.email.trim()) nextErrors.email = "Email is required.";
-    else if (!isValidEmail(next.email))
-      nextErrors.email = "Enter a valid email address.";
+    if (!next.email.trim()) nextErrors.email = t("emailRequired");
+    else if (!isValidEmail(next.email)) nextErrors.email = t("emailInvalid");
 
-    if (!next.shopName.trim()) nextErrors.shopName = "Shop name is required.";
+    if (!next.shopName.trim()) nextErrors.shopName = t("shopRequired");
 
-    if (!next.username.trim()) nextErrors.username = "Store URL is required.";
+    if (!next.username.trim()) nextErrors.username = t("urlRequired");
     else if (!isValidUsername(next.username))
-      nextErrors.username =
-        "Use at least 3 characters: letters, numbers, underscores, or hyphens.";
+      nextErrors.username = t("urlInvalid");
 
-    if (!next.password) nextErrors.password = "Password is required.";
+    if (!next.password) nextErrors.password = t("passwordRequired");
     else if (!isValidPassword(next.password))
-      nextErrors.password = "Password must be at least 8 characters.";
+      nextErrors.password = t("passwordShort");
 
     if (!next.confirmPassword)
-      nextErrors.confirmPassword = "Confirm your password.";
+      nextErrors.confirmPassword = t("confirmRequired");
     else if (next.confirmPassword !== next.password)
-      nextErrors.confirmPassword = "Passwords do not match.";
+      nextErrors.confirmPassword = t("passwordMismatch");
 
-    if (!next.country) nextErrors.country = "Select a country.";
-    if (!next.currency) nextErrors.currency = "Select a currency.";
+    if (!next.country) nextErrors.country = t("countryRequired");
+    if (!next.currency) nextErrors.currency = t("currencyRequired");
 
     return nextErrors;
   }
 
   function markTouched(keys: (keyof FormState)[]) {
-    setTouched((t) => {
-      const next = { ...t };
+    setTouched((prev) => {
+      const next = { ...prev };
       for (const key of keys) next[key] = true;
       return next;
     });
@@ -141,7 +141,7 @@ export function SignupForm() {
     setSuccess(null);
     const stepErrors = validateStep(0);
     if (Object.keys(stepErrors).length) {
-      setFormError("Check the highlighted fields and try again.");
+      setFormError(t("fixError"));
       return;
     }
     setStep(1);
@@ -152,7 +152,7 @@ export function SignupForm() {
     setSuccess(null);
     const stepErrors = validateStep(1);
     if (Object.keys(stepErrors).length) {
-      setFormError("Check the highlighted fields and try again.");
+      setFormError(t("fixError"));
       throw new Error("invalid");
     }
 
@@ -188,7 +188,7 @@ export function SignupForm() {
                 step === index ? "text-foreground" : "text-muted-foreground",
               )}
             >
-              {index === 0 ? "Account" : "Shop"}
+              {index === 0 ? t("stepAccount") : t("stepShop")}
             </span>
             {index === 0 ? (
               <span className="bg-border mx-1 h-px w-6 sm:w-10" />
@@ -218,7 +218,7 @@ export function SignupForm() {
               >
                 <AuthField
                   id="signup-email"
-                  label="Email"
+                  label={t("email")}
                   required
                   className="space-y-1.5"
                   error={touched.email ? errors.email : undefined}
@@ -228,11 +228,11 @@ export function SignupForm() {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    placeholder="you@example.com"
+                    placeholder={t("emailPlaceholder")}
                     value={form.email}
                     onChange={(e) => setField("email", e.target.value)}
                     onBlur={() => {
-                      setTouched((t) => ({ ...t, email: true }));
+                      setTouched((prev) => ({ ...prev, email: true }));
                       setErrors(validate());
                     }}
                     aria-invalid={
@@ -244,31 +244,31 @@ export function SignupForm() {
 
                 <AuthPasswordField
                   id="signup-password"
-                  label="Password (min 8)"
+                  label={t("password")}
                   name="password"
                   required
                   className="space-y-1.5"
                   inputClassName="h-11"
                   value={form.password}
-                  placeholder="Create a strong password"
+                  placeholder={t("passwordPlaceholder")}
                   autoComplete="new-password"
                   error={touched.password ? errors.password : undefined}
                   onChange={(value) => setField("password", value)}
                   onBlur={() => {
-                    setTouched((t) => ({ ...t, password: true }));
+                    setTouched((prev) => ({ ...prev, password: true }));
                     setErrors(validate());
                   }}
                 />
 
                 <AuthPasswordField
                   id="signup-confirm"
-                  label="Confirm password"
+                  label={t("confirmPassword")}
                   name="confirmPassword"
                   required
                   className="space-y-1.5"
                   inputClassName="h-11"
                   value={form.confirmPassword}
-                  placeholder="Repeat password"
+                  placeholder={t("confirmPlaceholder")}
                   autoComplete="new-password"
                   error={
                     touched.confirmPassword
@@ -277,7 +277,7 @@ export function SignupForm() {
                   }
                   onChange={(value) => setField("confirmPassword", value)}
                   onBlur={() => {
-                    setTouched((t) => ({ ...t, confirmPassword: true }));
+                    setTouched((prev) => ({ ...prev, confirmPassword: true }));
                     setErrors(validate());
                   }}
                 />
@@ -294,7 +294,7 @@ export function SignupForm() {
                 <div className="grid gap-3.5 sm:grid-cols-2">
                   <AuthField
                     id="signup-shop"
-                    label="Shop Name"
+                    label={t("shopName")}
                     required
                     className="space-y-1.5"
                     error={touched.shopName ? errors.shopName : undefined}
@@ -304,11 +304,11 @@ export function SignupForm() {
                       name="shopName"
                       type="text"
                       autoComplete="organization"
-                      placeholder="My Awesome Shop"
+                      placeholder={t("shopNamePlaceholder")}
                       value={form.shopName}
                       onChange={(e) => setField("shopName", e.target.value)}
                       onBlur={() => {
-                        setTouched((t) => ({ ...t, shopName: true }));
+                        setTouched((prev) => ({ ...prev, shopName: true }));
                         setErrors(validate());
                       }}
                       aria-invalid={
@@ -321,7 +321,7 @@ export function SignupForm() {
 
                   <AuthField
                     id="signup-username"
-                    label="Store URL"
+                    label={t("storeUrl")}
                     required
                     className="space-y-1.5"
                     error={touched.username ? errors.username : undefined}
@@ -336,11 +336,11 @@ export function SignupForm() {
                       name="username"
                       type="text"
                       autoComplete="username"
-                      placeholder="myshop"
+                      placeholder={t("usernamePlaceholder")}
                       value={form.username}
                       onChange={(e) => setField("username", e.target.value)}
                       onBlur={() => {
-                        setTouched((t) => ({ ...t, username: true }));
+                        setTouched((prev) => ({ ...prev, username: true }));
                         setErrors(validate());
                       }}
                       aria-invalid={
@@ -355,7 +355,7 @@ export function SignupForm() {
                 <div className="grid gap-3.5 sm:grid-cols-2">
                   <AuthField
                     id="signup-country"
-                    label="Country"
+                    label={t("country")}
                     required
                     className="space-y-1.5"
                     error={touched.country ? errors.country : undefined}
@@ -366,7 +366,7 @@ export function SignupForm() {
                       value={form.country}
                       onChange={(e) => setField("country", e.target.value)}
                       onBlur={() => {
-                        setTouched((t) => ({ ...t, country: true }));
+                        setTouched((prev) => ({ ...prev, country: true }));
                         setErrors(validate());
                       }}
                       aria-invalid={
@@ -385,7 +385,7 @@ export function SignupForm() {
 
                   <AuthField
                     id="signup-currency"
-                    label="Currency"
+                    label={t("currency")}
                     required
                     className="space-y-1.5"
                     error={touched.currency ? errors.currency : undefined}
@@ -396,7 +396,7 @@ export function SignupForm() {
                       value={form.currency}
                       onChange={(e) => setField("currency", e.target.value)}
                       onBlur={() => {
-                        setTouched((t) => ({ ...t, currency: true }));
+                        setTouched((prev) => ({ ...prev, currency: true }));
                         setErrors(validate());
                       }}
                       aria-invalid={
@@ -417,16 +417,16 @@ export function SignupForm() {
 
                 <AuthField
                   id="signup-logo"
-                  label="Shop Logo"
+                  label={t("logo")}
                   className="space-y-1.5"
-                  hint={logoName ? `Selected: ${logoName}` : "Optional"}
+                  hint={logoName ? `Selected: ${logoName}` : t("optional")}
                 >
                   <label
                     htmlFor="signup-logo"
                     className="border-border/70 bg-background hover:bg-muted/40 text-foreground flex h-11 cursor-pointer items-center justify-between rounded-2xl border px-4 text-sm transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                   >
                     <span className="text-muted-foreground truncate">
-                      {logoName ?? "Choose Logo"}
+                      {logoName ?? t("chooseLogo")}
                     </span>
                     <span className="text-brand shrink-0 text-xs font-medium tracking-[0.14em] uppercase">
                       Upload
@@ -455,7 +455,7 @@ export function SignupForm() {
             onClick={goNext}
             className="bg-brand text-brand-foreground hover:ring-brand inline-flex h-11 w-full items-center justify-center rounded-full px-6 text-sm font-medium ring-offset-2 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:ring-2 active:scale-[0.98] dark:ring-offset-black"
           >
-            Continue
+            {t("continue")}
           </button>
         ) : (
           <div className="grid gap-2.5 sm:grid-cols-[auto_1fr]">
@@ -467,37 +467,37 @@ export function SignupForm() {
               }}
               className="border-border/70 bg-background text-foreground hover:bg-muted/50 inline-flex h-11 items-center justify-center rounded-full border px-5 text-sm font-medium transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
             >
-              Back
+              {t("back")}
             </button>
             <AuthSubmitButton onAction={createShop} className="h-11">
-              Create My Shop
+              {t("submit")}
             </AuthSubmitButton>
           </div>
         )}
       </form>
 
       <p className="text-muted-foreground mt-4 text-center text-sm leading-6">
-        Already have a shop?{" "}
+        {t("haveAccount")}{" "}
         <Link
           href={routes.login}
           className="text-foreground hover:text-brand font-medium underline-offset-4 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:underline"
         >
-          Log In
+          {t("signIn")}
         </Link>
       </p>
       <p className="text-muted-foreground mt-2 text-center text-xs leading-5">
-        By continuing you agree to {siteConfig.name}&apos;s{" "}
+        {t("legalBefore", { name: siteConfig.name })}{" "}
         <Link href={routes.terms} className="underline-offset-2 hover:underline">
-          Terms
+          {tFooter("terms")}
         </Link>{" "}
-        and{" "}
+        {t("legalMid")}{" "}
         <Link
           href={routes.privacy}
           className="underline-offset-2 hover:underline"
         >
-          Privacy Policy
+          {tFooter("privacy")}
         </Link>
-        .
+        {t("legalAfter", { name: siteConfig.name })}
       </p>
     </AuthFormCard>
   );

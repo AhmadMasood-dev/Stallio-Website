@@ -8,29 +8,18 @@ import {
   IconTicket,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { motionEase } from "@/lib/motion";
 
-const dashboardPoints = [
-  {
-    icon: IconPackages,
-    text: "Mark paid, ship, and download invoice PDFs",
-  },
-  {
-    icon: IconTicket,
-    text: "Coupons, delivery, and stock in one place",
-  },
-  {
-    icon: IconFileInvoice,
-    text: "Export orders or add a manual phone order",
-  },
-] as const;
-
-const phoneChips = ["Cart", "Coupons", "Invoices"] as const;
+const dashboardIcons = [IconPackages, IconTicket, IconFileInvoice] as const;
 
 export function HowLive() {
+  const t = useTranslations("howItWorks.live");
   const reduce = useReducedMotion();
+  const dashboardPoints = t.raw("dashboardPoints") as string[];
+  const phoneChips = t.raw("phoneChips") as string[];
 
   return (
     <section className="border-border relative overflow-hidden border-y bg-surface dark:bg-background">
@@ -48,13 +37,13 @@ export function HowLive() {
           transition={{ duration: 0.7, ease: motionEase }}
         >
           <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-            When you are live
+            {t("eyebrow")}
           </span>
           <h2 className="text-foreground text-section-heading">
-            Buyers see polish. You see control.
+            {t("title")}
           </h2>
           <p className="text-muted-foreground max-w-[42ch] text-base leading-7 sm:text-lg sm:leading-8">
-            A fast storefront on the outside. A calm dashboard on the inside.
+            {t("body")}
           </p>
         </motion.div>
 
@@ -73,7 +62,7 @@ export function HowLive() {
               <div className="relative aspect-[16/10] w-full border-b border-border/60">
                 <Image
                   src="/assets/images/demo-catalog.png"
-                  alt="Stallio seller catalog view"
+                  alt={t("altDashboard")}
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 58vw"
@@ -83,25 +72,24 @@ export function HowLive() {
               <div className="flex flex-1 flex-col gap-5 p-6 sm:p-8">
                 <div>
                   <h3 className="text-foreground text-xl font-semibold tracking-tight sm:text-2xl">
-                    Command center
+                    {t("dashboardTitle")}
                   </h3>
                   <p className="text-muted-foreground mt-2 max-w-[40ch] text-sm leading-6 sm:text-base sm:leading-7">
-                    Orders, products, and requests in one view. Update stock
-                    between deliveries without opening ten apps.
+                    {t("dashboardBody")}
                   </p>
                 </div>
                 <ul className="space-y-3">
-                  {dashboardPoints.map((point) => {
-                    const Icon = point.icon;
+                  {dashboardPoints.map((text, index) => {
+                    const Icon = dashboardIcons[index] ?? IconPackages;
                     return (
                       <li
-                        key={point.text}
+                        key={text}
                         className="flex items-start gap-3 text-sm leading-6 sm:text-base"
                       >
                         <span className="bg-brand/10 text-brand mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-2xl">
                           <Icon className="size-4" stroke={1.5} aria-hidden />
                         </span>
-                        <span className="text-foreground/90">{point.text}</span>
+                        <span className="text-foreground/90">{text}</span>
                       </li>
                     );
                   })}
@@ -128,15 +116,18 @@ export function HowLive() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="text-foreground text-xl font-semibold tracking-tight sm:text-2xl">
-                    Thumb friendly
+                    {t("phoneTitle")}
                   </h3>
                   <p className="text-muted-foreground mt-2 max-w-[28ch] text-sm leading-6 sm:text-base sm:leading-7">
-                    Categories, cart, coupons, and checkout on the phone. Buyers
-                    can switch English, Spanish, or Arabic on your store.
+                    {t("phoneBody")}
                   </p>
                 </div>
                 <span className="bg-brand/10 text-brand inline-flex size-10 shrink-0 items-center justify-center rounded-2xl">
-                  <IconDeviceMobile className="size-5" stroke={1.5} aria-hidden />
+                  <IconDeviceMobile
+                    className="size-5"
+                    stroke={1.5}
+                    aria-hidden
+                  />
                 </span>
               </div>
 
@@ -147,7 +138,7 @@ export function HowLive() {
                 <div className="relative aspect-[9/16] w-full">
                   <Image
                     src="/assets/images/demo-product.png"
-                    alt="Mobile product detail on a Stallio storefront"
+                    alt={t("altPhone")}
                     fill
                     className="object-cover object-top"
                     sizes="14rem"

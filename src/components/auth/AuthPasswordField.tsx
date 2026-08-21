@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { useTranslations } from "next-intl";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 import { AuthField } from "@/components/auth/AuthField";
@@ -42,6 +43,7 @@ export function AuthPasswordField({
   const reactId = useId();
   const id = idProp ?? reactId;
   const [visible, setVisible] = useState(false);
+  const t = useTranslations("auth.password");
 
   return (
     <AuthField
@@ -69,7 +71,7 @@ export function AuthPasswordField({
           type="button"
           onClick={() => setVisible((v) => !v)}
           className="text-muted-foreground hover:text-foreground absolute top-1/2 right-3 inline-flex size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-          aria-label={visible ? "Hide password" : "Show password"}
+          aria-label={visible ? t("hide") : t("show")}
         >
           {visible ? (
             <IconEyeOff className="size-4" stroke={1.5} />

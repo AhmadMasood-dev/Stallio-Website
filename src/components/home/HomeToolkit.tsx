@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   IconArrowUpRight,
   IconChartBar,
@@ -17,6 +16,7 @@ import {
   IconWorldWww,
 } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
 import { Button } from "@/components/ui/button";
@@ -25,75 +25,39 @@ import {
   type FeatureHoverItem,
 } from "@/components/ui/feature-hover-grid";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 
 const iconProps = { stroke: 1.5, "aria-hidden": true } as const;
 
-const toolkit: FeatureHoverItem[] = [
-  {
-    title: "Hosted shop link",
-    description: "Your stallio.shop URL is ready on day one. No domain setup.",
-    icon: <IconWorldWww {...iconProps} />,
-  },
-  {
-    title: "Unlimited catalog",
-    description: "Products, photos, and orders with no hard caps on the plan.",
-    icon: <IconPackage {...iconProps} />,
-  },
-  {
-    title: "Mobile checkout",
-    description: "Storefront, cart, and checkout built for thumbs, not desktops.",
-    icon: <IconShoppingCart {...iconProps} />,
-  },
-  {
-    title: "Variants & stock",
-    description: "Sizes, colors, sale prices, and inventory in one shelf view.",
-    icon: <IconDiscount2 {...iconProps} />,
-  },
-  {
-    title: "About & Contact",
-    description: "Trust pages that ship with the shop. Edit, publish, done.",
-    icon: <IconUserCircle {...iconProps} />,
-  },
-  {
-    title: "Coupons & delivery",
-    description: "Promo codes and delivery fees without a separate plugin tax.",
-    icon: <IconTruckDelivery {...iconProps} />,
-  },
-  {
-    title: "PDF invoices",
-    description: "A clean invoice for every order, ready to send or print.",
-    icon: <IconFileInvoice {...iconProps} />,
-  },
-  {
-    title: "Fulfillment ops",
-    description: "Mark paid, ship, and export CSV when the books need a dump.",
-    icon: <IconReceipt {...iconProps} />,
-  },
-  {
-    title: "EN, ES, and AR",
-    description: "Shop and dashboard in three languages, including RTL Arabic.",
-    icon: <IconLanguage {...iconProps} />,
-  },
-  {
-    title: "Revenue charts",
-    description: "Orders and revenue at a glance. Enough signal, not a BI suite.",
-    icon: <IconChartBar {...iconProps} />,
-  },
-  {
-    title: "Buyer messages",
-    description: "Support chat so questions stay next to the order, not in DMs.",
-    icon: <IconMessages {...iconProps} />,
-  },
-  {
-    title: "First month free",
-    description: "No card to start. Pick monthly or yearly when you are ready.",
-    icon: <IconGift {...iconProps} />,
-  },
-];
+const toolkitIcons = [
+  <IconWorldWww key="www" {...iconProps} />,
+  <IconPackage key="package" {...iconProps} />,
+  <IconShoppingCart key="cart" {...iconProps} />,
+  <IconDiscount2 key="discount" {...iconProps} />,
+  <IconUserCircle key="user" {...iconProps} />,
+  <IconTruckDelivery key="truck" {...iconProps} />,
+  <IconFileInvoice key="invoice" {...iconProps} />,
+  <IconReceipt key="receipt" {...iconProps} />,
+  <IconLanguage key="lang" {...iconProps} />,
+  <IconChartBar key="chart" {...iconProps} />,
+  <IconMessages key="messages" {...iconProps} />,
+  <IconGift key="gift" {...iconProps} />,
+] as const;
 
 export function HomeToolkit() {
+  const t = useTranslations("home.toolkit");
   const reduce = useReducedMotion();
+  const items = t.raw("items") as Array<{
+    title: string;
+    description: string;
+  }>;
+
+  const toolkit: FeatureHoverItem[] = items.map((item, index) => ({
+    title: item.title,
+    description: item.description,
+    icon: toolkitIcons[index],
+  }));
 
   return (
     <section className="relative overflow-hidden">
@@ -112,14 +76,13 @@ export function HomeToolkit() {
             transition={{ duration: 0.8, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/70 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              What&apos;s included
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              One plan. The full seller toolkit.
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[40ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Everything below is part of Stallio, not add-ons. Start free, then
-              pick monthly or yearly when you are ready.
+              {t("body")}
             </p>
           </motion.div>
 
@@ -140,7 +103,7 @@ export function HomeToolkit() {
               className="group border-brand/40 text-brand hover:bg-brand/5 hover:text-brand rounded-full px-5 active:scale-[0.98]"
             >
               <Link href={routes.signup} className="inline-flex items-center gap-2">
-                Start free
+                {t("cta")}
                 <span className="bg-brand/10 inline-flex size-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                   <IconArrowUpRight className="size-4" stroke={1.5} />
                 </span>

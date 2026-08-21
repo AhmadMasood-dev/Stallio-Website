@@ -1,13 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { motionEase } from "@/lib/motion";
 
-const channels = ["Bio", "Stories", "WhatsApp", "Chat"] as const;
-
 export function HowChannels() {
+  const t = useTranslations("howItWorks.channels");
   const reduce = useReducedMotion();
+  const channels = t.raw("items") as string[];
 
   return (
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 md:py-28 md:pb-32">
@@ -19,11 +20,11 @@ export function HowChannels() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.85, ease: motionEase }}
         >
-          Same link
+          {t("titleBefore")}
           <span className="text-muted-foreground"> · </span>
-          Every channel
+          {t("titleMid")}
           <span className="text-muted-foreground"> · </span>
-          <span className="text-brand">Real storefront</span>
+          <span className="text-brand">{t("titleAfter")}</span>
         </motion.p>
 
         <motion.div

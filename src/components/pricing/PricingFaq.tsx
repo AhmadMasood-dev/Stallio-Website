@@ -3,15 +3,22 @@
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { BezelShell } from "@/components/ui/bezel-shell";
-import { pricingFaqs } from "@/constants/pricing";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
+type FaqItem = {
+  q: string;
+  a: string;
+};
+
 export function PricingFaq() {
+  const t = useTranslations("pricing.faq");
   const reduce = useReducedMotion();
   const [open, setOpen] = useState<number | null>(0);
+  const faqs = t.raw("items") as FaqItem[];
 
   return (
     <section className="border-border relative overflow-hidden border-y bg-surface dark:bg-background">
@@ -30,14 +37,13 @@ export function PricingFaq() {
             transition={{ duration: 0.75, ease: motionEase }}
           >
             <span className="border-border/70 bg-background/80 text-muted-foreground inline-flex rounded-full border px-3 py-1 text-[10px] font-medium tracking-[0.2em] uppercase">
-              FAQ
+              {t("eyebrow")}
             </span>
             <h2 className="text-foreground text-section-heading">
-              Pricing questions, answered
+              {t("title")}
             </h2>
             <p className="text-muted-foreground max-w-[32ch] text-base leading-7 sm:text-lg sm:leading-8">
-              Quick answers about trials, billing, and what happens when you
-              subscribe.
+              {t("body")}
             </p>
           </motion.div>
 
@@ -52,7 +58,7 @@ export function PricingFaq() {
               className="rounded-[2rem]"
               innerClassName="divide-border/70 overflow-hidden rounded-[calc(2rem-0.375rem)] divide-y"
             >
-              {pricingFaqs.map((item, index) => {
+              {faqs.map((item, index) => {
                 const isOpen = open === index;
                 const panelId = `pricing-faq-${index}`;
                 return (

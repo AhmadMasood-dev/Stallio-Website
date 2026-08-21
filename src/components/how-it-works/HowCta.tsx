@@ -1,15 +1,19 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { MarketingCta } from "@/components/marketing";
 import { routes } from "@/constants/routes";
 
 export function HowCta() {
+  const t = useTranslations("howItWorks.cta");
+
   return (
     <MarketingCta
-      eyebrow="Ready"
-      title="Ship the link tonight."
-      body="Free to start. No card on file. If it feels right, keep selling from the same URL tomorrow."
-      secondary={{ label: "Explore features", href: routes.features }}
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      body={t("body")}
+      secondary={{ label: t("secondary"), href: routes.features }}
     />
   );
 }
