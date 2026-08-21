@@ -64,6 +64,7 @@ const shopKeys: (keyof FormState)[] = [
 export function SignupForm() {
   const t = useTranslations("auth.signup");
   const tFooter = useTranslations("footer");
+  const tGeo = useTranslations("geo");
   const reduce = useReducedMotion();
   const router = useRouter();
   const [step, setStep] = useState<Step>(0);
@@ -374,10 +375,10 @@ export function SignupForm() {
                       }
                       className={selectClass}
                     >
-                      <option value="">Select country</option>
+                      <option value="">{t("selectCountry")}</option>
                       {countries.map((c) => (
                         <option key={c.value} value={c.value}>
-                          {c.label}
+                          {tGeo(`countries.${c.value}`)}
                         </option>
                       ))}
                     </select>
@@ -405,10 +406,10 @@ export function SignupForm() {
                       }
                       className={selectClass}
                     >
-                      <option value="">Select currency</option>
+                      <option value="">{t("selectCurrency")}</option>
                       {currencies.map((c) => (
                         <option key={c.value} value={c.value}>
-                          {c.label}
+                          {tGeo(`currencies.${c.value}`)}
                         </option>
                       ))}
                     </select>

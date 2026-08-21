@@ -29,6 +29,7 @@ const selectClass = cn(
 
 export function PricingPlans() {
   const t = useTranslations("pricing.plans");
+  const tGeo = useTranslations("geo");
   const reduce = useReducedMotion();
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
   const [countryCode, setCountryCode] = useState(pricingCountries[0].code);
@@ -95,7 +96,7 @@ export function PricingPlans() {
               >
                 {pricingCountries.map((item) => (
                   <option key={item.code} value={item.code}>
-                    {item.name} · {item.currency}
+                    {tGeo(`countries.${item.code}`)} · {item.currency}
                   </option>
                 ))}
               </select>

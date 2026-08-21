@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 
 import { Header } from "@/components/layout";
 import { siteConfig } from "@/constants/site";
-import { Link } from "@/i18n/navigation";
 import { motionEase } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 

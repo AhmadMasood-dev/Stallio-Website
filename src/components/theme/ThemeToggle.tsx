@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
+  const t = useTranslations("common");
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -26,9 +28,9 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={
         mounted
           ? isDark
-            ? "Switch to light mode"
-            : "Switch to dark mode"
-          : "Toggle color theme"
+            ? t("themeLight")
+            : t("themeDark")
+          : t("themeToggle")
       }
       onClick={() => {
         if (!mounted) return;

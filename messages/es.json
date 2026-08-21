@@ -7,7 +7,10 @@
     "brandName": "Stallio",
     "language": "Idioma",
     "switchToEnglish": "Cambiar a inglés",
-    "switchToSpanish": "Cambiar a español"
+    "switchToSpanish": "Cambiar a español",
+    "themeLight": "Cambiar a modo claro",
+    "themeDark": "Cambiar a modo oscuro",
+    "themeToggle": "Cambiar tema de color"
   },
   "nav": {
     "home": "Inicio",
@@ -63,7 +66,8 @@
     "forgotPassword": {
       "title": "Olvidé mi contraseña",
       "description": "Restablece tu contraseña de Stallio con un enlace seguro por correo."
-    }
+    },
+    "titleTemplate": "%s | {name}"
   },
   "home": {
     "hero": {
@@ -796,7 +800,9 @@
       "stubSuccess": "Aún no hay API de auth en vivo. Los datos de tu tienda se ven bien y están listos para conectar.",
       "legalBefore": "Al continuar, aceptas los",
       "legalMid": "y la",
-      "legalAfter": " de {name}."
+      "legalAfter": " de {name}.",
+      "selectCountry": "Selecciona un país",
+      "selectCurrency": "Selecciona una moneda"
     },
     "forgot": {
       "eyebrow": "Restablecer contraseña",
@@ -814,6 +820,50 @@
     "password": {
       "show": "Mostrar contraseña",
       "hide": "Ocultar contraseña"
+    }
+  },
+  "geo": {
+    "countries": {
+      "PK": "Pakistán",
+      "AE": "Emiratos Árabes Unidos",
+      "SA": "Arabia Saudí",
+      "US": "Estados Unidos",
+      "GB": "Reino Unido",
+      "CA": "Canadá",
+      "AU": "Australia",
+      "IN": "India",
+      "EG": "Egipto",
+      "TR": "Turquía",
+      "MY": "Malasia",
+      "SG": "Singapur",
+      "DE": "Alemania",
+      "FR": "Francia",
+      "ES": "España",
+      "BR": "Brasil",
+      "MX": "México",
+      "NG": "Nigeria",
+      "KE": "Kenia",
+      "ZA": "Sudáfrica"
+    },
+    "currencies": {
+      "PKR": "PKR, rupia pakistaní",
+      "AED": "AED, dírham de EAU",
+      "SAR": "SAR, riyal saudí",
+      "USD": "USD, dólar estadounidense",
+      "GBP": "GBP, libra esterlina",
+      "EUR": "EUR, euro",
+      "CAD": "CAD, dólar canadiense",
+      "AUD": "AUD, dólar australiano",
+      "INR": "INR, rupia india",
+      "EGP": "EGP, libra egipcia",
+      "TRY": "TRY, lira turca",
+      "MYR": "MYR, ringgit malayo",
+      "SGD": "SGD, dólar de Singapur",
+      "BRL": "BRL, real brasileño",
+      "MXN": "MXN, peso mexicano",
+      "NGN": "NGN, naira nigeriana",
+      "KES": "KES, chelín keniano",
+      "ZAR": "ZAR, rand sudafricano"
     }
   }
 }

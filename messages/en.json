@@ -7,7 +7,10 @@
     "brandName": "Stallio",
     "language": "Language",
     "switchToEnglish": "Switch to English",
-    "switchToSpanish": "Switch to Spanish"
+    "switchToSpanish": "Switch to Spanish",
+    "themeLight": "Switch to light mode",
+    "themeDark": "Switch to dark mode",
+    "themeToggle": "Toggle color theme"
   },
   "nav": {
     "home": "Home",
@@ -63,7 +66,8 @@
     "forgotPassword": {
       "title": "Forgot Password",
       "description": "Reset your Stallio password with a secure email link."
-    }
+    },
+    "titleTemplate": "%s | {name}"
   },
   "home": {
     "hero": {
@@ -796,7 +800,9 @@
       "stubSuccess": "No live auth API is wired yet. Your shop details look good and are ready to connect.",
       "legalBefore": "By continuing you agree to {name}'s",
       "legalMid": "and",
-      "legalAfter": "."
+      "legalAfter": ".",
+      "selectCountry": "Select country",
+      "selectCurrency": "Select currency"
     },
     "forgot": {
       "eyebrow": "Password reset",
@@ -814,6 +820,50 @@
     "password": {
       "show": "Show password",
       "hide": "Hide password"
+    }
+  },
+  "geo": {
+    "countries": {
+      "PK": "Pakistan",
+      "AE": "United Arab Emirates",
+      "SA": "Saudi Arabia",
+      "US": "United States",
+      "GB": "United Kingdom",
+      "CA": "Canada",
+      "AU": "Australia",
+      "IN": "India",
+      "EG": "Egypt",
+      "TR": "Turkey",
+      "MY": "Malaysia",
+      "SG": "Singapore",
+      "DE": "Germany",
+      "FR": "France",
+      "ES": "Spain",
+      "BR": "Brazil",
+      "MX": "Mexico",
+      "NG": "Nigeria",
+      "KE": "Kenya",
+      "ZA": "South Africa"
+    },
+    "currencies": {
+      "PKR": "PKR, Pakistani Rupee",
+      "AED": "AED, UAE Dirham",
+      "SAR": "SAR, Saudi Riyal",
+      "USD": "USD, US Dollar",
+      "GBP": "GBP, British Pound",
+      "EUR": "EUR, Euro",
+      "CAD": "CAD, Canadian Dollar",
+      "AUD": "AUD, Australian Dollar",
+      "INR": "INR, Indian Rupee",
+      "EGP": "EGP, Egyptian Pound",
+      "TRY": "TRY, Turkish Lira",
+      "MYR": "MYR, Malaysian Ringgit",
+      "SGD": "SGD, Singapore Dollar",
+      "BRL": "BRL, Brazilian Real",
+      "MXN": "MXN, Mexican Peso",
+      "NGN": "NGN, Nigerian Naira",
+      "KES": "KES, Kenyan Shilling",
+      "ZAR": "ZAR, South African Rand"
     }
   }
 }
